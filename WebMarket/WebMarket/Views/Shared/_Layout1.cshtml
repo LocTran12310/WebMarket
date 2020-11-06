@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+}
+@section background{
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Groceries</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+}
+
+@RenderBody()
+<div class="products">
+    <div class="container">
+        <div class="col-md-4 products-left">
+            @Html.Partial("_Menu");
+        </div>
+        <div class="col-md-8 products-right">
+        </div>
+        <div>
+        </div>
