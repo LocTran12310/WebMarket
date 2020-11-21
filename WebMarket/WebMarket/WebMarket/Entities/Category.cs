@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebMarket.Entities
+{
+    public partial class Category
+    {
+        public Category()
+        {
+            Type = new HashSet<Type>();
+        }
+
+        public int Id { get; set; }
+        public int Name { get; set; }
+
+        public virtual ICollection<Type> Type { get; set; }
+    }
+}
