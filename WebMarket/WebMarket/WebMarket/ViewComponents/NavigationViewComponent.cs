@@ -17,7 +17,10 @@ namespace WebMarket.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await _context.Category.ToListAsync());
+            var categories = await _context.Category.ToListAsync();
+            var types = await _context.Type.ToListAsync();
+            ViewBag.categories = categories;
+            return View(types);
         }
     }
 }

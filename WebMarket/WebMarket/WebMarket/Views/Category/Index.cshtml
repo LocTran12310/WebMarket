@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+@section background {
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">@ViewBag.id</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+}
+<div class="products">
+    <div class="container">
+        <div class="col-md-4 products-left">
+            @await Component.InvokeAsync("Type", new { name = ViewBag.id })
+        </div>
+        <div class="col-md-8 products-right">
+        </div>
+    </div>
+</div>

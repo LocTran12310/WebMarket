@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebMarket.Entities.Type>
+
+@{
+
+    ViewData["Title"] = "View";
+}
+
+
+<div class="categories">
+
+    <h2>Categories</h2>
+    <ul class="cate">
+        @foreach (var item in Model)
+        {
+            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>@item.Name</a></li>
+        }
+
+    </ul>
+</div>
+

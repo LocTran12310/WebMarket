@@ -19,7 +19,14 @@ namespace WebMarket.Controllers
         }
 
         public IActionResult Index()
+        {    
+            return View();
+        }
+
+        public IActionResult Categories(int id)
         {
+            ViewBag.id = id;
+
             return View();
         }
 
