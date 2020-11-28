@@ -46,12 +46,10 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5720D7A024D")
+                    .HasName("UQ__account__F3DBC57271283242")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdCustomer).HasColumnName("ID_customer");
 
@@ -80,12 +78,10 @@ namespace WebMarket.Entities
                 entity.ToTable("admin");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admin__F3DBC572325BB578")
+                    .HasName("UQ__admin__F3DBC5727B18AAED")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -124,9 +120,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("cart");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdCustomer).HasColumnName("ID_customer");
 
@@ -152,21 +146,22 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__737584F65DC378D7")
+                    .HasName("UQ__category__737584F6DCE72AFC")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("customer");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")
@@ -207,9 +202,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("image");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdProduct).HasColumnName("ID_product");
 
@@ -236,9 +229,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("order");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -300,9 +291,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("orderdetail");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Discount).HasColumnName("discount");
 
@@ -337,9 +326,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("priceupdate");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.DateEnd)
                     .HasColumnName("date_end")
@@ -373,12 +360,10 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1B57483769")
+                    .HasName("UQ__product__72E12F1B45EDFEEC")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
@@ -415,9 +400,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("productdetail");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.EntryDate)
                     .HasColumnName("entry_date")
@@ -447,12 +430,10 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B76F30689")
+                    .HasName("UQ__provider__72E12F1BC49A22BA")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -478,12 +459,10 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1B88C6D28A")
+                    .HasName("UQ__type__72E12F1B1C0A9C08")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdCategory).HasColumnName("ID_category");
 
@@ -504,9 +483,7 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("warehouse");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdAdmin).HasColumnName("ID_admin");
 

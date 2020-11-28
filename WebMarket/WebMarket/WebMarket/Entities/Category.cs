@@ -11,7 +11,7 @@ namespace WebMarket.Entities
         }
 
         public int Id { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Type> Type { get; set; }
     }
