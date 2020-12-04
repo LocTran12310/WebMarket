@@ -10,7 +10,7 @@ namespace WebMarket.ViewComponents
 {
     public class NavigationViewComponent : ViewComponent
     {
-        private WebMarketContext _context;
+        private readonly WebMarketContext _context;
         public NavigationViewComponent(WebMarketContext context)
         {
             _context = context;

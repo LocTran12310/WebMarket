@@ -9,9 +9,9 @@ namespace WebMarket.Controllers
     public class CategoryController : Controller
     {
        
-        public IActionResult Index(string id)
+        public IActionResult Index(string name)
         {
-            ViewBag.id = id;
+            ViewBag.name = name;
             return View();
         }
         

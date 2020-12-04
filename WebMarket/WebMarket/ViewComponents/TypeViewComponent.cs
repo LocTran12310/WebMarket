@@ -17,10 +17,12 @@ namespace WebMarket.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync(string name)
         {
-            var cate = _context.Category.Where(p => p.Name == name).SingleOrDefault();
-          
-            var types = _context.Type.Where(p => p.IdCategory == cate.Id).ToList();
-            ViewBag.namecate = cate.Name;
+            var types = from t in _context.Type
+                        join c in _context.Category
+                        on t.IdCategory equals c.Id
+                        where c.Name == name
+                        select t;
+            ViewBag.namecate = name;
             return View(types);
         }
     }
