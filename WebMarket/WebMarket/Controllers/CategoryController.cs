@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebMarket.Controllers
 {
+   
     public class CategoryController : Controller
     {
-       
-        public IActionResult Index(string id)
+        [HttpGet("Category/{name}")]
+        public IActionResult Index(string name)
         {
-            ViewBag.id = id;
+
+            ViewBag.name = name;
             return View();
         }
         

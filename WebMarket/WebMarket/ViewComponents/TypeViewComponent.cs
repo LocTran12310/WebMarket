@@ -15,12 +15,14 @@ namespace WebMarket.ViewComponents
         {
             _context = context;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string name)
+        public IViewComponentResult Invoke(string name)
         {
-            var cate = _context.Category.Where(p => p.Name == name).SingleOrDefault();
-          
-            var types = _context.Type.Where(p => p.IdCategory == cate.Id).ToList();
-            ViewBag.namecate = cate.Name;
+            
+            var types = from type in _context.Type
+                        join category in _context.Category
+                        on type.IdCategory equals category.Id 
+                        select type;
+            ViewBag.namecate = name;
             return View(types);
         }
     }

@@ -29,6 +29,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
+          "Unity": "5.11.9",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -2121,6 +2122,25 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "Unity/5.11.9": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Unity.Abstractions.dll": {
+            "assemblyVersion": "5.11.6.0",
+            "fileVersion": "5.11.6.0"
+          },
+          "lib/netcoreapp3.0/Unity.Container.dll": {
+            "assemblyVersion": "5.11.10.0",
+            "fileVersion": "5.11.10.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Unity.Abstractions.dll": {},
+          "lib/netcoreapp3.0/Unity.Container.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -4815,6 +4835,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "Unity/5.11.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2bGJwQ4FSKQiuDd2riU8Ul2792v60DroVmsJLpuwlTCQq54P3sAwKlqLjQkPP/LRxL6m6CgxNOh485XEEW7ajg==",
+      "path": "unity/5.11.9",
+      "hashPath": "unity.5.11.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

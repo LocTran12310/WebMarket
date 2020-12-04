@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
+    "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
   },
   "projects": {
-    "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {
+    "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "projectUniqueName": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
         "projectName": "WebMarket",
-        "projectPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "projectPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
         "packagesPath": "C:\\Users\\TAI TRAN\\.nuget\\packages\\",
-        "outputPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+        "outputPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -64,6 +64,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "Unity": {
+              "target": "Package",
+              "version": "[5.11.9, )"
             }
           },
           "imports": [

@@ -17,6 +17,7 @@ namespace WebMarket.Entities
 
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Background> Background { get; set; }
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
@@ -116,6 +117,27 @@ namespace WebMarket.Entities
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Background>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("background");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Image)
+                    .HasColumnName("image")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("cart");
@@ -150,6 +172,11 @@ namespace WebMarket.Entities
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Image)
+                    .HasColumnName("image")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
