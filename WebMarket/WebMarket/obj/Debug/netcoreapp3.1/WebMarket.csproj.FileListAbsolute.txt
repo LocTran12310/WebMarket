@@ -148,8 +148,8 @@ D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\ob
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Categories.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\Index.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\appsettings.Development.json
-E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\appsettings.json
+E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\WebMarket.exe
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\WebMarket.deps.json
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\WebMarket.runtimeconfig.json
@@ -264,7 +264,6 @@ E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win-x86\native
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfoInputs.cache
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfo.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
@@ -280,6 +279,7 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Catego
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Navigation\Default.cshtml.g.cs
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Type\Default.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -296,4 +296,3 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebassets\WebMark
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
-E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
