@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Models;
+using WebMarket.Entities;
+
 
 namespace WebMarket.Controllers
 {
@@ -18,18 +20,11 @@ namespace WebMarket.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
-        {    
-            return View();
-        }
-
-        public IActionResult Categories(int id)
         {
-            ViewBag.id = id;
-
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();

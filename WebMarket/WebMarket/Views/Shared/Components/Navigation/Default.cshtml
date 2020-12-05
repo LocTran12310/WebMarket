@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="multi-gd-img">
                                         <ul class="multi-column-dropdown">
-                                            <h6><a href="~/Category/Index/@cate.Name">All @cate.Name </a></h6>
+                                            <h6><a href="~/Category/@cate.Name">All @cate.Name </a></h6>
                                             @foreach (var t in Model.Where(a => a.IdCategory == cate.Id))
                                             {
                                                 <li><a href="#">@t.Name</a></li>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Entities;
+using WebMarket.Models;
 
 namespace WebMarket.ViewComponents
 {
@@ -15,14 +16,21 @@ namespace WebMarket.ViewComponents
         {
             _context = context;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string name)
+        public IViewComponentResult Invoke(string name)
         {
-            var products = from p in _context.Product
-                           join t in _context.Type
-                           on p.IdType equals t.Id
-                           where t.Name == name
-                           select p;
-            return View(products);
+            var sellitems = (from p in _context.Product
+                             join i in _context.Image
+                             on p.Id equals i.IdProduct
+                             select new ProductVM
+                             {
+                                 Id = p.Id,
+                                 Image = i.Image1,
+                                 Name = p.Name,
+                                 Price = p.Price,
+                                 Discount = p.Discount,
+                                 NewPrice = (Double)((100 - p.Discount) * p.Price)/100
+                             }).ToList();
+            return View(sellitems);
         }
     }
 }

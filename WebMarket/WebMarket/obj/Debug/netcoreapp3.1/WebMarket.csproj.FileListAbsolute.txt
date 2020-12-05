@@ -275,7 +275,6 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.TagHelpers.ou
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.RazorCoreGenerate.cache
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\Index.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Empty\Index.cshtml.g.cs
-E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Categories.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Navigation\Default.cshtml.g.cs
@@ -283,7 +282,6 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Comp
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Type\Default.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout1.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -296,3 +294,7 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebassets\WebMark
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\_ProductPartialView.cshtml.g.cs
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Empty\_RenderSellItems.cshtml.g.cs
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TopSelling\Default.cshtml.g.cs
