@@ -3,6 +3,8 @@
 
 @foreach (var item in Model)
 {
+
+    
 <div class="agile_top_brands_grids">
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
@@ -15,7 +17,7 @@
                     <figure>
                         <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.html"><img title=" " alt="@item.Name" src="~/images/14.png"></a>
+                                <a href="single.html"><img title=" " alt="@item.Name" src="~/img-products/@item.Image" class="img-responsive"></a>
                                 <p>@item.Name</p>
                                 <h4>@item.Price <span>@item.Discount</span></h4>
                             </div>
