@@ -1,4 +1,4 @@
-/*--
+0/*--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -50,6 +50,10 @@ span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
 .agile_top_brand_left_grid {
     position: relative;
     display: block;
+}
+.agile_top_brand_left_grid1 a img {
+    max-width: 100%;
+    max-height: 100%;
 }
 i.badge.badge-notify.my-cart-badge {
     font-style: normal;
