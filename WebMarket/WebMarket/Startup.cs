@@ -54,7 +54,7 @@ namespace WebMarket
                
                 endpoints.MapControllerRoute(
                     name: "Categotry",
-                    pattern: "{controller=Category}/{action=Index}/{name?}");
+                    pattern: "{controller=Empty}/{action=Index}/{name?}");
             });
         }
     }

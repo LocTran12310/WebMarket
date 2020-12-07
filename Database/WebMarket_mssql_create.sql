@@ -1,4 +1,4 @@
-USE [master]
+﻿USE [master]
 GO
 
 DROP DATABASE [WebMarket]
@@ -10,7 +10,8 @@ GO
 
 CREATE TABLE [category] (
 	ID integer NOT NULL,
-	Name integer NOT NULL UNIQUE,
+	Name nvarchar(50) NOT NULL UNIQUE,
+	image varchar(255)
   CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -18,9 +19,10 @@ CREATE TABLE [category] (
 
 )
 GO
+
 CREATE TABLE [type] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
+	name nvarchar(50) NOT NULL UNIQUE,
 	ID_category integer NOT NULL,
   CONSTRAINT [PK_TYPE] PRIMARY KEY CLUSTERED
   (
@@ -31,8 +33,8 @@ CREATE TABLE [type] (
 GO
 CREATE TABLE [provider] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
-	address varchar(50) NOT NULL,
+	name nvarchar(50) NOT NULL UNIQUE,
+	address nvarchar(50) NOT NULL,
 	phone varchar(11) NOT NULL,
   CONSTRAINT [PK_PROVIDER] PRIMARY KEY CLUSTERED
   (
@@ -43,7 +45,7 @@ CREATE TABLE [provider] (
 GO
 CREATE TABLE [product] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
+	name nvarchar(50) NOT NULL UNIQUE,
 	price float,
 	description text,
 	ID_provider integer NOT NULL,
@@ -197,6 +199,16 @@ CREATE TABLE [cart] (
 
 )
 GO
+CREATE TABLE [background](
+		ID integer NOT NULL IDENTITY,
+		name varchar(50),
+		image varchar(255),
+		description varchar(255) 
+ )
+
+
+
+
 
 ALTER TABLE [type] WITH CHECK ADD CONSTRAINT [type_fk0] FOREIGN KEY ([ID_category]) REFERENCES [category]([ID])
 ON UPDATE CASCADE
@@ -295,4 +307,7 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [cart] CHECK CONSTRAINT [cart_fk1]
 GO
+insert into category values(1,'Goceries','b3.jpg')
+lỗi đết đâu
+ủa kì v
 
