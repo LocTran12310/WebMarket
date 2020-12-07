@@ -25,11 +25,13 @@ namespace WebMarket.Controllers
                 (
                 from product in _context.Product
                 from cate in _context.Category
+                from Image in _context.Image.Where(i =>i.IdProduct ==product.Id ).Take(1)
                 where cate.Name==name
                 select new ProductVM
                 {
                     Id = product.Id,
                     Name = product.Name,
+                    Image = Image.Image1,
                     Price = product.Price,
                     Discount = product.Discount,
                     NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
@@ -37,6 +39,7 @@ namespace WebMarket.Controllers
             var count = (
                 from product in _context.Product
                 from cate in _context.Category
+                from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                 where cate.Name == name
                 select product).Count();
             ViewBag.name = name;
@@ -53,11 +56,13 @@ namespace WebMarket.Controllers
                join t in _context.Type
                on product.IdType equals t.Id
                from cate in _context.Category
+               from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                where cate.Name == name && t.Name == type
                select new ProductVM
                {
                    Id = product.Id,
                    Name = product.Name,
+                   Image = Image.Image1,
                    Price = product.Price,
                    Discount = product.Discount,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
