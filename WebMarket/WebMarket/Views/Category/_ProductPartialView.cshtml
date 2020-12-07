@@ -3,50 +3,72 @@
 
 
 
-    
+
 <div class="agile_top_brands_grids">
-    @foreach(var item in Model)
+    @foreach (var item in Model)
     {
-    <div class="col-md-4 top_brand_left" style=" margin-bottom :20px">
-        <div class="hover14 column">
-            <div class="agile_top_brand_left_grid">
+        <div class="col-md-4 top_brand_left" style=" margin-bottom :20px">
+            <div class="hover14 column">
+                <div class="agile_top_brand_left_grid">
 
-                <div class="agile_top_brand_left_grid_pos">
-                    <img src="~/images/offer.png" alt=" " class="img-responsive">
-                </div>
-                <div class="agile_top_brand_left_grid1">
-                    <figure>
-                        <div class="snipcart-item block">
-                            <div class="snipcart-thumb" style="height:200px;">
-                                <a href="single.html"  style="height:150px;"><img title=" " alt="@item.Name" src="~/images/img-products/@item.Image" width="150px" height="150px" class="img-responsive"></a>
-                                <p>@item.Name</p>
-                                <h4>@item.NewPrice@if (item.Discount > 0)
-                                                                {<span>@item.Price</span>}</h4>
-                            </div>
-                            <div class="snipcart-details top_brand_home_details">
-                                <form action="#" method="post">
-                                    <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="business" value=" ">
-                                        <input type="hidden" name="item_name" value="@item.Name">
-                                        <input type="hidden" name="amount" value="@item.Price">
-                                        <input type="hidden" name="discount_amount" value="1.00">
-                                        <input type="hidden" name="currency_code" value="USD">
-                                        <input type="hidden" name="return" value=" ">
-                                        <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="submit" name="submit" value="Add to cart" class="button">
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </figure>
-                </div>
+                    <div class="agile_top_brand_left_grid_pos">
+                        <img src="~/images/offer.png" alt=" " class="img-responsive">
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                        <figure>
+                            <div class="snipcart-item block" data-id="@item.Id">
+                                <div class="snipcart-thumb" style="height:200px;">
+                                    <a href="single.html" style="height:150px;"><img title=" " alt="@item.Name" src="~/images/img-products/@item.Image" width="150px" height="150px" class="img-responsive"></a>
+                                    <p>@item.Name</p>
+                                    <h4>
+                                        @item.NewPrice@if (item.Discount > 0)
+                                        {<span>@item.Price</span>}
 
+                                    </h4>
+                                    <input type="hidden" value="@item.Description" />
+                                </div>
+                                <div class="snipcart-details top_brand_home_details">
+                                    <button type="button" class="btn btn-primary show" data-toggle="modal" data-target="#modal-cart">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-
+        <!-- Modal -->
+        <div class="modal fade" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">@item.Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" data-id="@item.Id">
+                        <div class="row">
+                            <div class="col-md-5 ">
+                                <img src="~/images/img-products/@item.Image" width="150px" height="150px">
+                            </div>
+                            <div class="col-md-7">
+                                <h2></h2>
+                                <h3></h3>
+                                <input type="number" value="1" name="quantity" min="1" max="100" />
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary add-to-cart">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
     <div class="clearfix"> </div>
 </div>
@@ -78,3 +100,6 @@
     </ul>
 </nav>
 
+
+
+<script src="~/js/cart.js"></script>

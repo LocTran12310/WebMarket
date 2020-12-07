@@ -23,10 +23,11 @@ namespace WebMarket.Controllers
         {
             var listproduct =
                 (
-                from product in _context.Product
-                from cate in _context.Category
-                from Image in _context.Image.Where(i =>i.IdProduct ==product.Id ).Take(1)
-                where cate.Name==name
+                 from cate in _context.Category.Where(c => c.Name == name)
+                 from product in _context.Product
+                 join type in _context.Type
+                 on product.IdType equals type.Id
+                 where type.IdCategory == cate.Id
                 from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                 select new ProductVM
                 {
@@ -37,12 +38,21 @@ namespace WebMarket.Controllers
                     Discount = product.Discount,
                     NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                 }).ToList().Skip((page - 1) * numpage).Take(numpage);
-            var count = (
-                from product in _context.Product
-                from cate in _context.Category
-                from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
-                where cate.Name == name
-                select product).Count();
+            int count;
+            if (listproduct.Count() == 0)
+            {
+                count = 0;
+            }
+            else {
+                count = (
+               from product in _context.Product
+               from cate in _context.Category
+               from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
+               where cate.Name == name
+               select product).Count();
+
+            }
+           
             ViewBag.name = name;
             ViewBag.total = (Int32)(Math.Ceiling((float)count/numpage));
             ViewBag.currentpage = page;
@@ -57,7 +67,6 @@ namespace WebMarket.Controllers
                join t in _context.Type
                on product.IdType equals t.Id
                from cate in _context.Category
-               from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                where cate.Name == name && t.Name == type
                from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                select new ProductVM

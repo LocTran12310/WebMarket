@@ -17,7 +17,7 @@ namespace WebMarket.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync(string name)
         {
-            var types = from t in _context.Type
+            var types =  from t in _context.Type
                         join c in _context.Category
                         on t.IdCategory equals c.Id
                         where c.Name == name

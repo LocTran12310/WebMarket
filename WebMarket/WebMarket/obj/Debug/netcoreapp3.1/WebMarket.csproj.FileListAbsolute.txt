@@ -451,3 +451,4 @@ D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\ob
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Empty\_RenderSellItems.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TopSelling\Default.cshtml.g.cs
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs

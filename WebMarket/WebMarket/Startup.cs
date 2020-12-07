@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Entities;
 
+
 namespace WebMarket
 {
     public class Startup
@@ -27,6 +28,14 @@ namespace WebMarket
         {
             services.AddControllersWithViews();
             services.AddDbContext<WebMarketContext>(option => option.UseSqlServer(Configuration.GetConnectionString("WebMarket")));
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +53,7 @@ namespace WebMarket
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
