@@ -26,9 +26,11 @@ namespace WebMarket.Controllers
                 from product in _context.Product
                 from cate in _context.Category
                 where cate.Name==name
+                from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                 select new ProductVM
                 {
                     Id = product.Id,
+                    Image = image.Image1,
                     Name = product.Name,
                     Price = product.Price,
                     Discount = product.Discount,
@@ -54,9 +56,11 @@ namespace WebMarket.Controllers
                on product.IdType equals t.Id
                from cate in _context.Category
                where cate.Name == name && t.Name == type
+               from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                select new ProductVM
                {
                    Id = product.Id,
+                   Image = image.Image1,
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
