@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -52,8 +53,19 @@
             <div class="product_list_header">
                 <form action="#" method="post" class="last">
                     <input type="hidden" name="cmd" value="_cart">
-                    <input type="hidden" name="display" value="1">
+                    <input type="hidden" name="display" value="1" />
                     <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                    <span class="count" id="cart_count">
+                        @using WebMarket.Helpers
+                        @{
+                            var data = Context.Session.Get<List<CartItem>>("GioHang");
+                            if (data == null)
+                            {
+                                data = new List<CartItem>();
+                            }
+                        }
+                        @(data.Sum(c => c.Quantity))
+                    </span>
                 </form>
             </div>
             <div class="clearfix"> </div>
@@ -208,8 +220,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
-            jQuery('#demo1').css('display: block');
-
+            $('#demo1').css('display: block');
             jQuery('#responsive').change(function () {
                 $('#responsive_wrapper').width(jQuery(this).val());
             });
