@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,8 @@ namespace WebMarket.Models
         public double? Price { get; set; }
         public double Discount { get; set; } = 0;
         public int Quantity { get; set; } = 0;
-        public double? TotalPrice => (((100 - Discount) * Price) / 100) * Quantity;
+        public double? NewPrice => (((100 - Discount) * Price) / 100);
+        public double? TotalPrice => NewPrice * Quantity;
 
     }
 }

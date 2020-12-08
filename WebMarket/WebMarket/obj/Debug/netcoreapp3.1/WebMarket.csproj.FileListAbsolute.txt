@@ -142,7 +142,6 @@ D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bi
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.MvcApplicationPartsAssemblyInfo.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Navigation\Default.cshtml.g.cs
-D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Empty\Index.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Type\Default.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\Index.cshtml.g.cs
 E:\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\appsettings.Development.json
@@ -448,7 +447,7 @@ D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\_ProductPartialView.cshtml.g.cs
-D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Empty\_RenderSellItems.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TopSelling\Default.cshtml.g.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\DetailProduct\Index.cshtml.g.cs

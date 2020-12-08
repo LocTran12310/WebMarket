@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Entities;
-
+using WebMarket.Secure;
 
 namespace WebMarket
 {
@@ -29,7 +29,7 @@ namespace WebMarket
             services.AddControllersWithViews();
             services.AddDbContext<WebMarketContext>(option => option.UseSqlServer(Configuration.GetConnectionString("WebMarket")));
             services.AddDistributedMemoryCache();
-
+            services.AddSingleton<DataProtectionPurposeStrings>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -63,7 +63,7 @@ namespace WebMarket
                
                 endpoints.MapControllerRoute(
                     name: "Categotry",
-                    pattern: "{controller=Empty}/{action=Index}/{name?}");
+                    pattern: "{controller=Home}/{action=Index}/{name?}");
             });
         }
     }

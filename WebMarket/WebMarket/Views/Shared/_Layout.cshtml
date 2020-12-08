@@ -13,6 +13,7 @@
         <script src="~/js/jquery-1.11.1.min.js"></script>
         <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        @RenderSection("css", false)
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -54,7 +55,7 @@
                 <form action="#" method="post" class="last">
                     <input type="hidden" name="cmd" value="_cart">
                     <input type="hidden" name="display" value="1" />
-                    <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                    <a class="w3view-cart"  href="~/Cart"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
                     <span class="count" id="cart_count">
                         @using WebMarket.Helpers
                         @{
@@ -212,6 +213,7 @@
         });
     </script>
     <!-- //main slider-banner -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

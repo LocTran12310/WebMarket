@@ -1,5 +1,88 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<WebMarket.Models.CartItem>
 @{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+   
 }
+@section css{ 
+    <link href="~/css/Cart.css" rel="stylesheet" />
+}
+
+    <div class="main">
+        <div class="cart-products">
+            <div class="cart-inner">
+                <h2 class="cart-products-title">GIỎ HÀNG CỦA BẠN</h2>
+                <div class="cart-products-inner">
+                    <ul class="cart-products__products">
+                        @using WebMarket.Helpers
+                        @{
+                            var data = Context.Session.Get<List<CartItem>>("GioHang");
+                            if (data == null)
+                            {
+                                data = new List<CartItem>();
+                            }
+                        }
+                        @if (data.Sum(c => c.Quantity) == 0)
+                        {
+                            <div class="empty">
+                                <p class="empty__note">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+                                <a href="../home.php" class="empty__btn">Tiếp tục mua sắm</a>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <li class="cart-products__product">
+                                    <div class="cart-products__inner">
+                                        <div class="cart-products__img">
+                                            <img src="~/images/img-products/@item.Image">
+                                        </div>
+                                        <div class="cart-products__content">
+                                            <div class="cart-products__desc">
+                                                <a href="#" name="xemganday" class="cart-products__name">@item.Name</a>
+                                                <p class="cart-products__actions cart-products__del" data-masp='@item.Id'>
+                                                    Delete
+                                                </p>
+                                            </div>
+                                            <div class="cart-products__details">
+                                                <div class="cart-products__prices">
+                                                    <p class="cart-products__real-prices">@item.TotalPrice đ</p>
+                                                </div>
+                                                <div class="cart-products__qty">
+                                                    <div class="qtty">
+                                                        <span class="qty-decrease" data-masp=>-</span>
+                                                        <input type="tel" onkeydown="" class="qty-input" value="@item.Quantity" data-masp='@item.Id'>
+                                                        <span class="qty-increase" data-masp=''>+</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </div>
+           
+              <div class="cart-total-prices">
+                
+                  <div class="cart-total-prices__inner">
+                    
+                      <div class="prices">
+                        
+                           <div class="prices__total">
+                            
+                                <span class="prices__text">Thành tiền</span>
+                                 <span class="prices__value--final">
+                                    @ViewBag.TongTien đ
+                                 </span>
+                            </div>
+                       </div>   
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!---->

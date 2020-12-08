@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebMarket.Controllers;
 
 namespace WebMarket.Entities
 {
@@ -25,6 +26,7 @@ namespace WebMarket.Entities
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Orderdetail> Orderdetail { get; set; }
         public virtual DbSet<Priceupdate> Priceupdate { get; set; }
+
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Productdetail> Productdetail { get; set; }
         public virtual DbSet<Provider> Provider { get; set; }
