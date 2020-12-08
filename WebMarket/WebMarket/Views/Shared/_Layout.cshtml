@@ -84,16 +84,26 @@
             <div class="w3ls_logo_products_left">
                 <h1><a href="index">super Market</a></h1>
             </div>
+            <!--search-->
             <div class="w3l_search">
                 <form action="#" method="post">
-                    <input type="search" name="Search" placeholder="Search for a Product..." required="">
+                    <input type="search" name="Search" id="search1" placeholder="Search for a Product..." required="">
                     <button type="submit" class="btn btn-default search" aria-label="Left Align">
                         <i class="fa fa-search" aria-hidden="true"> </i>
                     </button>
                     <div class="clearfix"></div>
                 </form>
             </div>
-
+            <!--search-->
+            <script>
+                $(document).ready(function () {
+                    $("#search1").on('input', function () {
+                        var b = new RegExp($(this).val(), 'g');
+                        $('.top_brand_left').show().not(function () {
+                            return b.test($(this).find('.name').text())
+                        }).hide();
+                    })
+                })</script>
             <div class="clearfix"> </div>
         </div>
     </div>
@@ -102,11 +112,13 @@
     @await Component.InvokeAsync("Navigation")
     <!-- //navigation -->
     <!--<partial name="_CookieConsentPartial" />-->
-
     @RenderSection("background", false)
 
 
+
     @RenderBody()
+  
+
     <!-- //footer -->
     <div class="footer">
         <div class="container">
@@ -177,6 +189,11 @@
             <div class="clearfix"> </div>
         </div>
     </div>
+
+
+
+   
+
     <!-- //footer -->
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

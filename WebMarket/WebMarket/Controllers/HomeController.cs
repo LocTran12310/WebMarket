@@ -23,6 +23,7 @@ namespace WebMarket.Controllers
         }
 
 
+        
         public IActionResult Index()
         {
             var backgrounds = _context.Background.ToList();
