@@ -18,7 +18,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html" class="act">Home</a></li>
+                    <li class="active"><a href="~/Home" class="act">Home</a></li>
                     <!-- Mega Menu -->
                     @foreach (var cate in ViewBag.categories)
                     {
@@ -31,7 +31,7 @@
                                             <h6><a href="~/Category/@cate.Name">All @cate.Name </a></h6>
                                             @foreach (var t in Model.Where(a => a.IdCategory == cate.Id))
                                             {
-                                                <li><a href="#">@t.Name</a></li>
+                                                <li><a  href="@Url.Action("ProductByType","Category",new { name =cate.Name ,type = @t.Name})">@t.Name</a></li>
                                             }
 
                                         </ul>

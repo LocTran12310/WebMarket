@@ -1,4 +1,4 @@
-USE [master]
+﻿USE [master]
 GO
 
 DROP DATABASE [WebMarket]
@@ -10,7 +10,8 @@ GO
 
 CREATE TABLE [category] (
 	ID integer NOT NULL,
-	Name integer NOT NULL UNIQUE,
+	Name nvarchar(50) NOT NULL UNIQUE,
+	image varchar(255)
   CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -18,9 +19,10 @@ CREATE TABLE [category] (
 
 )
 GO
+
 CREATE TABLE [type] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
+	name nvarchar(50) NOT NULL UNIQUE,
 	ID_category integer NOT NULL,
   CONSTRAINT [PK_TYPE] PRIMARY KEY CLUSTERED
   (
@@ -31,8 +33,8 @@ CREATE TABLE [type] (
 GO
 CREATE TABLE [provider] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
-	address varchar(50) NOT NULL,
+	name nvarchar(50) NOT NULL UNIQUE,
+	address nvarchar(50) NOT NULL,
 	phone varchar(11) NOT NULL,
   CONSTRAINT [PK_PROVIDER] PRIMARY KEY CLUSTERED
   (
@@ -43,7 +45,7 @@ CREATE TABLE [provider] (
 GO
 CREATE TABLE [product] (
 	ID integer NOT NULL,
-	name varchar(50) NOT NULL UNIQUE,
+	name nvarchar(50) NOT NULL UNIQUE,
 	price float,
 	description text,
 	ID_provider integer NOT NULL,
@@ -197,6 +199,16 @@ CREATE TABLE [cart] (
 
 )
 GO
+CREATE TABLE [background](
+		ID integer NOT NULL IDENTITY,
+		name varchar(50),
+		image varchar(255),
+		description varchar(255) 
+ )
+
+
+
+
 
 ALTER TABLE [type] WITH CHECK ADD CONSTRAINT [type_fk0] FOREIGN KEY ([ID_category]) REFERENCES [category]([ID])
 ON UPDATE CASCADE
@@ -295,4 +307,52 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [cart] CHECK CONSTRAINT [cart_fk1]
 GO
+insert into category values(1,'Category','')
+
+insert into dbo.type values (1,'Foods',1),(2,'Drinks',1),(3,'Fruits',1),(4,'Cakes',1)
+
+insert into dbo.provider values 
+(1,'Trương Văn Nam', 'TPHCM','123456789'),
+(2,'Trần Phước Lộc', 'TPHCM','123456789'),
+(3,'Trần Trung Hiếu', 'TPHCM','0352460179'),
+(4,'Nguyễn Càn Long', 'TPHCM','1111111111')
+
+
+
+
+insert into dbo.product values
+(1	,N'Bò Húc',	15000,	NULL,	1,	2,	0),
+(2	,N'CoCa',	10000,	NULL,	2,	2,	0),
+(3	,N'Nước Cam',15000,	NULL,	3,	2,	0),
+(4	,N'Nước Suối',5000,	NULL,	3,	2,	0),
+(5	,N'Pepsi',```15000,	NULL,	2,	2,	0),
+(6	,N'Trà Xanh',10000,	NULL,	1,	2,	0),
+(7	,N'Bánh Mì',15000,	NULL,	1,	1,	0),
+(8	,N'Cơm Gà',	35000,	NULL,	1,	1,	0),
+(9	,N'Cơm Sường',25000,NULL,	1,	1,	0),
+(10	,N'Hambuger',20000,	NULL,	1,	1,	0),
+(11	,N'Nem Chua',15000,	NULL,	1,	1,	0),
+(12	,N'Xúc Xích',20000,	NULL,	1,	1,	0),
+(13	,N'Cam'		,50000,	NULL,	1,	3,	0),
+(14	,N'ổi'		,45000,	NULL,	1,	3,	0),
+(15	,N'Xoài'	,60000,	NULL,	2,	3,	0)
+
+
+insert into dbo.image values
+(1,		1,	N'Bò Húc',	'bohuc.jpg'),
+(2,		2,	N'CoCa'	,		'coca.jpg'),
+(3,		3,	N'nuoc cam',	'nuoccam.jpg'),
+(4,		4,	N'nuoc suoi',	'nuocsuoi.jpg'),
+(5,		5,	N'Pepsi'		,'pepsi.jpg'),
+(6,		6,	N'traxanh',		'traxanh.jpg'),
+(7,		7,	N'banhmi'		,'banhmi.jpg'),
+(8,		8,	N'comga'		,'comga.jpg'),
+(9,		9,	N'comsuong',	'comsuong.jpg'),
+(10,	10,	N'hambuger',	'hambuger.jpg'),
+(11,	11,	N'nemchua',		'nemchua.jpg'),
+(12,	12,	N'xucxich',		'xucxich.jpg'),
+(13,	13,	N'cam',			'cam.jpg'),
+(14,	14,	N'oi',			'oi.jpg'),
+(15,	15,	N'xoai'	,		'xoai.jpg')
+
 
