@@ -17,8 +17,11 @@ namespace WebMarket.Controllers
         {
             _context = context;
         }
+
+      
         private int numpage = 6;
         [HttpGet("Category/{name}")]
+
         public IActionResult Index(string name ,int page=1)
         {
             var listproduct =
@@ -79,6 +82,9 @@ namespace WebMarket.Controllers
             ViewBag.currentpage = page;
             return View("Index",listproduct);
         }
-        
+
+       
     }
+  
+
 }
