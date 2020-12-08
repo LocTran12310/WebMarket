@@ -18,6 +18,7 @@ namespace WebMarket.Controllers
             _context = context;
         }
 
+     
       
         private int numpage = 6;
         [HttpGet("Category/{name}")]
