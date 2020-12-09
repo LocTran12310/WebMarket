@@ -51,9 +51,9 @@
                                                 </div>
                                                 <div class="cart-products__qty">
                                                     <div class="qtty">
-                                                        <span class="qty-decrease" data-masp=>-</span>
-                                                        <input type="tel" onkeydown="" class="qty-input" value="@item.Quantity" data-masp='@item.Id'>
-                                                        <span class="qty-increase" data-masp=''>+</span>
+                                                        <span class="qty-decrease">-</span>
+                                                        <input type="tel" class="qty-input" value="@item.Quantity" data-masp='@item.Id' min="1" max="100">
+                                                        <span class="qty-increase">+</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,7 +61,6 @@
                                     </div>
                                 </li>
                             }
-
                         }
                     </ul>
                 </div>
@@ -86,3 +85,6 @@
         </div>
     </div>
     <!---->
+@section Scripts{ 
+    <script src="~/js/cart-method.js"></script>
+}
