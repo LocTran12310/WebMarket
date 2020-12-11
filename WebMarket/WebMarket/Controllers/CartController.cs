@@ -33,6 +33,8 @@ namespace WebMarket.Controllers
 
         public IActionResult Index()
         {
+            double? TongTien = Carts.Sum(p => p.TotalPrice);
+            ViewBag.TongTien = TongTien;
             return View(Carts);
         }
         [TempData]
@@ -42,7 +44,7 @@ namespace WebMarket.Controllers
         public IActionResult AddToCart(int id, int quantity, string type = "Normal")
         {
             var myCart = Carts;
-            var item = myCart.Where(p => p.Id == id).SingleOrDefault();
+            var item = myCart.SingleOrDefault(p => p.Id == id);
 
             if (item == null)//chưa có
             {
@@ -73,5 +75,20 @@ namespace WebMarket.Controllers
             return Json(myCart);
         }
 
+        public IActionResult UpdateCart(int Id, int Quantity) {
+            var myCart = Carts;
+            var item = myCart.SingleOrDefault(p => p.Id == Id);
+                item.Quantity = Quantity;
+
+            return Json(myCart);
+        }
+        public IActionResult DeleteItem(int Id)
+        {
+            var myCart = Carts;
+            var item = myCart.SingleOrDefault(p => p.Id == Id);
+            myCart.Remove(item);
+
+            return Json(myCart);
+        }
     }
 }

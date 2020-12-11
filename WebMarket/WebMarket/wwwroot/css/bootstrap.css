@@ -3421,9 +3421,9 @@ tbody.collapse.in {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
-.dropup,
-.dropdown {
+.dropup,.dropdown {
   position: relative;
+  
 }
 .dropdown-toggle:focus {
   outline: 0;

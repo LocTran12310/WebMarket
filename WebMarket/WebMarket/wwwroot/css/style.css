@@ -1,4 +1,4 @@
-0/*--
+/*--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -46,6 +46,9 @@ span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
 }
 .my-cart-icon-affix i {
     background: #fe9126 !important;
+}
+.dropdown {
+    cursor: pointer !important;
 }
 .agile_top_brand_left_grid {
     position: relative;
@@ -177,11 +180,11 @@ button.w3l_search {
     font-size: 34px;
     margin-top: 7px;
 }
-button.w3view-cart {
+a.w3view-cart {
     background: transparent;
     border: none;
 }
-button.w3view-cart:focus{
+a.w3view-cart:focus{
 	outline:none;
 }
 .logo_products {
@@ -307,7 +310,7 @@ ul.multi-column-dropdown h6 {
 /*-- cart --*/
 /*-- cart-box --*/ 
 .w3view-cart {
-    background: #3399cc;
+    
     border: none;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;

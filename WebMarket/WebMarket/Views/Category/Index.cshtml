@@ -25,7 +25,7 @@
             <div class="products-right-grid">
                 <div class="products-right-grids">
                     <div class="sorting">
-                        <select id="country"  class="frm-field required sect">
+                        <select id="country" class="frm-field required sect">
                             <option value=" ">All</option>
                             <option value="1"><i class="fa fa-arrow-right" aria-hidden="true"></i>Theo thứ tự tăng dần</option>
                             <option value="2"><i class="fa fa-arrow-right" aria-hidden="true"></i>Theo thứ tự giảm dần</option>
@@ -34,15 +34,22 @@
                         </select>
                     </div>
                     <div class="clearfix"></div>
-               
+
                 </div>
             </div>
             <partial name="_ProductPartialView" model="Model" />
-        
-
+            
+          
         </div>
     </div>
 </div>
+
+
+
+
+
 @section Scripts{ 
     <script src="~/js/sort.js"></script>
+
+
 }

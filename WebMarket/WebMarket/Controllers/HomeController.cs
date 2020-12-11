@@ -14,16 +14,20 @@ namespace WebMarket.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly WebMarketContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, WebMarketContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
 
         
         public IActionResult Index()
         {
+            var backgrounds = _context.Background.ToList();
+            ViewBag.background = backgrounds;
             return View();
         }
         public IActionResult Privacy()

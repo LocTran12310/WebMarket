@@ -1,25 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Entities;
 using WebMarket.Models;
+using WebMarket.Secure;
 
 namespace WebMarket.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly WebMarketContext _context;
+        private readonly IDataProtector protector;
 
-       
-        public CategoryController(WebMarketContext context)
+        public CategoryController(WebMarketContext context, IDataProtectionProvider dataProtectionProvider,
+                              DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             _context = context;
+            this.protector = dataProtectionProvider.CreateProtector(
+               dataProtectionPurposeStrings.ProductIdRouteValue);
         }
-
      
+        public IActionResult Discount()
+        {
+            var Dis = (from product in _context.Product.Where(p => p.Discount >0)
+                             from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
+                             select new ProductVM
+                             {
+                                 Id = product.Id,
+                                 Image = image.Image1,
+                                 Name = product.Name,
+                                 Price = product.Price,
+                                 Discount = product.Discount,
+                                 NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
+                             }).ToList();
+
+           
+            return PartialView("~/Views/Category/_ProductPartialView.cshtml", Dis);
+        }
       
+
+
         private int numpage = 6;
         [HttpGet("Category/{name}")]
 
@@ -32,22 +55,24 @@ namespace WebMarket.Controllers
                  join type in _context.Type
                  on product.IdType equals type.Id
                  where type.IdCategory == cate.Id
-                from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
-                select new ProductVM
-                {
-                    Id = product.Id,
-                    Image = image.Image1,
-                    Name = product.Name,
-                    Price = product.Price,
-                    Discount = product.Discount,
-                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
-                }).ToList().Skip((page - 1) * numpage).Take(numpage);
+                 from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
+                 select new ProductVM
+                 {
+                     Id = product.Id,
+                     EncryptedId = protector.Protect(product.Id.ToString()),
+                     Image = image.Image1,
+                     Name = product.Name,
+                     Price = product.Price,
+                     Discount = product.Discount,
+                     NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
+                 }).ToList().Skip((page - 1) * numpage).Take(numpage);
             int count;
             if (listproduct.Count() == 0)
             {
                 count = 0;
             }
-            else {
+            else
+            {
                 count = (
                from product in _context.Product
                from cate in _context.Category
@@ -56,9 +81,9 @@ namespace WebMarket.Controllers
                select product).Count();
 
             }
-           
+
             ViewBag.name = name;
-            ViewBag.total = (Int32)(Math.Ceiling((float)count/numpage));
+            ViewBag.total = (Int32)(Math.Ceiling((float)count / numpage));
             ViewBag.currentpage = page;
             return View(listproduct);
         }
