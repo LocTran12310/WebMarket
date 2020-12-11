@@ -60,7 +60,7 @@
             success: function (data) {
                 deleteButton.remove();
                 $(".count").text(data.soLuong);
-                $('.prices__value--final').text(data.TongTien)+ ' đ');
+                $('.prices__value--final').text(data.TongTien+ ' đ');
             }
         });
     });

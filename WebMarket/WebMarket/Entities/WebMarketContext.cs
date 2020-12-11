@@ -54,7 +54,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .UseIdentityColumn();
 
                 entity.Property(e => e.IdCustomer).HasColumnName("ID_customer");
 
@@ -188,8 +188,8 @@ namespace WebMarket.Entities
                 entity.ToTable("customer");
 
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
+                    
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")

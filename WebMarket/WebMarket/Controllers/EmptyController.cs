@@ -9,6 +9,7 @@ using WebMarket.Entities;
 
 namespace WebMarket.Controllers
 {
+    
     public class EmptyController : Controller
     {
         private WebMarketContext _context;
