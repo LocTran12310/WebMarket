@@ -74,3 +74,7 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+WebMarket/bin/
+WebMarket/obj
+appsettings.json
+.vs

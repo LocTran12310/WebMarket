@@ -82,7 +82,7 @@ function UpdateQuantity() {
             dataType: "json",
             success: function (data) {
                 $(".count").text(data.soLuong);
-                $('.prices__value--final').text(data.tongTien + ' đ');
+                $('.prices__value--final').text(data.TongTien + ' đ');
             }
         });
     });
