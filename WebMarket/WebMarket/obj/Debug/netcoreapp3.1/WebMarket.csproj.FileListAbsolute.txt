@@ -300,3 +300,5 @@ D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebasset
 D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
+D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Offers.cshtml.g.cs
+D:\webFinal\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs

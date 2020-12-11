@@ -307,7 +307,7 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [cart] CHECK CONSTRAINT [cart_fk1]
 GO
-insert into category values(1,'Category','')
+insert into category values(1,'Goceries','p2.jpg'),(2,'Household','p3.jpg'),(3,'PersonalCare','p4.jpg'),(4,'packageFood','111.jpg')
 
 insert into dbo.type values (1,'Foods',1),(2,'Drinks',1),(3,'Fruits',1),(4,'Cakes',1)
 
@@ -325,7 +325,7 @@ insert into dbo.product values
 (2	,N'CoCa',	10000,	NULL,	2,	2,	0),
 (3	,N'Nước Cam',15000,	NULL,	3,	2,	0),
 (4	,N'Nước Suối',5000,	NULL,	3,	2,	0),
-(5	,N'Pepsi',```15000,	NULL,	2,	2,	0),
+(5	,N'Pepsi',15000,	NULL,	2,	2,	0),
 (6	,N'Trà Xanh',10000,	NULL,	1,	2,	0),
 (7	,N'Bánh Mì',15000,	NULL,	1,	1,	0),
 (8	,N'Cơm Gà',	35000,	NULL,	1,	1,	0),
@@ -356,3 +356,7 @@ insert into dbo.image values
 (15,	15,	N'xoai'	,		'xoai.jpg')
 
 
+INSERT INTO background(name,image,description) VALUES 
+('BG1','11.jpg','Buy Rice Products Are Now On Line With Us'),
+('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
+('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')

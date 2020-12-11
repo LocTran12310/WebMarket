@@ -38,7 +38,7 @@ namespace WebMarket.Controllers
             return View(Carts);
         }
         [TempData]
-        public string TotalQuantity { get; set; }
+        public string TotalQuantity { get; set; } 
 
         [HttpPost]
         public IActionResult AddToCart(int id, int quantity, string type = "Normal")
@@ -74,21 +74,27 @@ namespace WebMarket.Controllers
             }
             return Json(myCart);
         }
-
+        [HttpPost]
         public IActionResult UpdateCart(int Id, int Quantity) {
             var myCart = Carts;
             var item = myCart.SingleOrDefault(p => p.Id == Id);
-                item.Quantity = Quantity;
-
-            return Json(myCart);
+            int index = myCart.IndexOf(item);
+            myCart[index].Quantity = Quantity;
+            HttpContext.Session.Set("GioHang", myCart);
+            double? totalprice = Carts.Sum(p => p.TotalPrice);
+            int quantity = Carts.Sum(c => c.Quantity);
+            return Json(new { TongTien = totalprice, SoLuong = quantity });
         }
+        [HttpPost]
         public IActionResult DeleteItem(int Id)
         {
             var myCart = Carts;
             var item = myCart.SingleOrDefault(p => p.Id == Id);
             myCart.Remove(item);
-
-            return Json(myCart);
+            HttpContext.Session.Set("GioHang", myCart);
+            double? totalprice = Carts.Sum(p => p.TotalPrice);
+            int quantity = Carts.Sum(c => c.Quantity);
+            return Json(new { TongTien = totalprice, SoLuong = quantity   });
         }
     }
 }
