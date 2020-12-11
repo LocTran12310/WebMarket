@@ -92,7 +92,9 @@ namespace WebMarket.Controllers
             var item = myCart.SingleOrDefault(p => p.Id == Id);
             myCart.Remove(item);
             HttpContext.Session.Set("GioHang", myCart);
-            return Json(myCart);
+            double? totalprice = Carts.Sum(p => p.TotalPrice);
+            int quantity = Carts.Sum(c => c.Quantity);
+            return Json(new { TongTien = totalprice, SoLuong = quantity   });
         }
     }
 }

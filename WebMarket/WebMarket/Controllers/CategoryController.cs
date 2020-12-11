@@ -22,8 +22,29 @@ namespace WebMarket.Controllers
             this.protector = dataProtectionProvider.CreateProtector(
                dataProtectionPurposeStrings.ProductIdRouteValue);
         }
+       
 
+
+        [HttpPost]
+        public PartialViewResult Discount(int data)
+        {
+            var Dis = (from product in _context.Product.Where(p => p.Discount > 0)
+                       from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
+                       select new ProductVM
+                       {
+                           Id = product.Id,
+                           Image = image.Image1,
+                           Name = product.Name,
+                           Price = product.Price,
+                           Discount = product.Discount,
+                           NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
+                       }).ToList();
+            ViewBag.data = data;                     
+            return PartialView("_ProductPartialView", Dis);
+        }
       
+
+
         private int numpage = 6;
         [HttpGet("Category/{name}")]
 

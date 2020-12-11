@@ -56,7 +56,6 @@ namespace WebMarket.ViewComponents
 
             ViewBag.type2 = typess;
             ViewBag.offeritems = offeritems;
-
             return View(sellitems);
         }
     }
