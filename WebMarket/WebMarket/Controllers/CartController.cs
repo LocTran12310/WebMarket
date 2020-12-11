@@ -41,11 +41,10 @@ namespace WebMarket.Controllers
         public string TotalQuantity { get; set; } 
 
         [HttpPost]
-        public IActionResult AddToCart(int id, int quantity, string type = "Normal")
+        public IActionResult AddToCart(int id, int quantity)
         {
             var myCart = Carts;
             var item = myCart.SingleOrDefault(p => p.Id == id);
-
             if (item == null)//chưa có
             {
                 item = (from product in _context.Product.Where(p => p.Id == id)
@@ -65,14 +64,8 @@ namespace WebMarket.Controllers
                 item.Quantity += quantity;
             }
             HttpContext.Session.Set("GioHang", myCart);
-            if (type == "ajax")
-            {
-                return Json(new
-                {
-                    quantity = Carts.Sum(c => c.Quantity)
-                });
-            }
-            return Json(myCart);
+            quantity = Carts.Sum(c => c.Quantity);
+            return Json(new { myCart, quantity });
         }
         [HttpPost]
         public IActionResult UpdateCart(int Id, int Quantity) {
