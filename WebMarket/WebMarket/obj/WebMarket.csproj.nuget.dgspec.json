@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
   },
   "projects": {
@@ -19,6 +20,27 @@
         "configFilePaths": [
           "C:\\Users\\TAI TRAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+    "D:\\webFinal\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
+  },
+  "projects": {
+    "D:\\webFinal\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\webFinal\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "projectName": "WebMarket",
+        "projectPath": "D:\\webFinal\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "packagesPath": "C:\\Users\\Hieu Tran\\.nuget\\packages\\",
+        "outputPath": "D:\\webFinal\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Hieu Tran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+>>>>>>> 70e33b6827295c3ae24ec8a840db49934adaeb24
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

@@ -8,7 +8,6 @@
     UpdateQuantity();
     let num = parseInt($(".qty-input").val());
     $(".qty-increase").click(function () {
-       
         num += 1;
         var input = $(this).parent().find('.qty-input');
         input.val(num);
@@ -25,7 +24,6 @@
                 $('.prices__value--final').text(res.tongTien + ' đ');
             }
         });
-        
     });
     $(".qty-decrease").click(function () {
         
@@ -49,18 +47,28 @@
     
     
     $('.cart-products__del').click(function () {
-        let deleteButton = $(this).parent().parent().parent().parent();
+        let deleteButton = $(this).parent().parent().parent();
+        let id = $(this).data("masp");
         $.ajax({
             type: "POST",
             url: "Cart/DeleteItem",
             data: {
-                "Id": $(this).data("masp"),
+                "Id": id,
             },
             dataType: "json",
             success: function (data) {
-                deleteButton.remove();
+                $('.' + id).remove();
+                   deleteButton.remove();
                 $(".count").text(data.soLuong);
+<<<<<<< HEAD
                 $('.prices__value--final').text(data.TongTien+ ' đ');
+=======
+                $('.prices__value--final').text(data.tongTien + ' đ');
+                if (data.soLuong == 0) {
+                    var string = "<h2>Your shopping cart contains: <span> 0 Products </span> </h2>";
+                    $(".checkout-right").html(string);
+                }
+>>>>>>> 70e33b6827295c3ae24ec8a840db49934adaeb24
             }
         });
     });
@@ -78,8 +86,13 @@ function UpdateQuantity() {
             dataType: "json",
             success: function (data) {
                 $(".count").text(data.soLuong);
+<<<<<<< HEAD
                 $('.prices__value--final').text(data.TongTien + ' đ');
+=======
+                $('.prices__value--final').text(data.tongTien + ' đ');
+>>>>>>> 70e33b6827295c3ae24ec8a840db49934adaeb24
             }
         });
     });
 }
+

@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<WebMarket.Models.ProductVM>
-@using Microsoft.AspNetCore.Http;
-@using WebMarket.Helpers
+<h1>@ViewBag.data</h1>
 <div class="agile_top_brands_grids">
     @foreach (var item in Model)
     {
-
-        
-
-
         <div class="col-md-4 top_brand_left" style=" margin-bottom :20px">
             <div class="hover14 column">
                 <div class="agile_top_brand_left_grid">
@@ -74,7 +69,8 @@
     }
     <div class="clearfix"> </div>
 </div>
-<nav class="numbering" aria-label="...">
+
+@*<nav class="numbering" aria-label="...">
     <ul class="pagination paging">
         @{
             int totalpage = ViewBag.total;
@@ -99,6 +95,6 @@
             }
         }
     </ul>
-</nav>
+</nav>*@
 
 <script src="~/js/cart.js"></script>

@@ -26,6 +26,15 @@ namespace WebMarket.Controllers
         
         public IActionResult Index()
         {
+            var typess = (from type in _context.Type
+                          from Category in _context.Category.Where(i => i.Id == type.IdCategory).Take(1)
+                          select new ProductVM
+                          {
+                              type1 = type.Name,
+
+                          }).ToList();
+            ViewBag.type2 = typess;
+
             var backgrounds = _context.Background.ToList();
             ViewBag.background = backgrounds;
             return View();
@@ -39,6 +48,16 @@ namespace WebMarket.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        public IActionResult Offers()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
         }
     }
 }
