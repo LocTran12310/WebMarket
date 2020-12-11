@@ -1,10 +1,4 @@
 ﻿$(document).ready(function () {
-    $(".err").click(function () {
-        Swal.fire({
-            icon: 'error',
-            title: 'Giỏ hàng rỗng',
-        })
-    });
     UpdateQuantity();
     let num = parseInt($(".qty-input").val());
     $(".qty-increase").click(function () {
@@ -82,7 +76,7 @@ function UpdateQuantity() {
             dataType: "json",
             success: function (data) {
                 $(".count").text(data.soLuong);
-                $('.prices__value--final').text(data.tongTien + ' đ');
+                $('.prices__value--final').text(data.TongTien + ' đ');
             }
         });
     });

@@ -455,3 +455,6 @@ E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebassets\WebMark
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Index.cshtml.g.cs
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Login.cshtml.g.cs
+E:\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Register.cshtml.g.cs

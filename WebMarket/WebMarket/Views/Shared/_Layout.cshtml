@@ -10,7 +10,9 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link href="~/css/font-awesome.css" rel="stylesheet">
         <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
-        <script src="~/js/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
         <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
         @RenderSection("css", false)
@@ -45,8 +47,8 @@
             </div>
             <div class="agile-login">
                 <ul>
-                    <li><a href="registered.html"> Create Account </a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="~/Customer/Register"> Create Account </a></li>
+                    <li><a href="~/Customer/Login">Login</a></li>
                     <li><a href="contact.html">Help</a></li>
 
                 </ul>

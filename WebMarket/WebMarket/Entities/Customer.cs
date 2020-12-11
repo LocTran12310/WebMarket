@@ -8,7 +8,6 @@ namespace WebMarket.Entities
         public Customer()
         {
             Account = new HashSet<Account>();
-            Cart = new HashSet<Cart>();
             Order = new HashSet<Order>();
         }
 
@@ -22,7 +21,6 @@ namespace WebMarket.Entities
         public int Status { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }
-        public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<Order> Order { get; set; }
     }
 }
