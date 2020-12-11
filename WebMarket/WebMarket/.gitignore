@@ -76,5 +76,8 @@ _[Ss]cripts
 *.dot[Cc]over
 WebMarket/bin/
 WebMarket/obj
-appsettings.json
+WebMarket/appsettings.json
 .vs
+bin
+obj
+appsettings.json
