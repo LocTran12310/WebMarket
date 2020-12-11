@@ -77,8 +77,8 @@ function UpdateQuantity() {
             },
             dataType: "json",
             success: function (data) {
-                $(".nb-pds").html(data.Count);
-                $('.prices__value--final').html(number_format(data.TongTien) + ' đ');
+                $(".count").text(data.soLuong);
+                $('.prices__value--final').text(data.TongTien + ' đ');
             }
         });
     });

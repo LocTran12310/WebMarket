@@ -94,20 +94,18 @@ namespace WebMarket.Controllers
                 };
 
                 _context.Customer.Add(cus);
-                _context.SaveChanges();
                 var lastRow = _context.Customer.OrderByDescending(c => c.Id).Take(1).SingleOrDefault();
                 id = lastRow.Id;
+                var acc = new Account
+                {
+                    Username = res.account.UserName,
+                    Password = res.account.PassWord,
+                    Type = 0,
+                    IdCustomer = id,
+                };
+                _context.Account.Add(acc);
+                _context.SaveChanges();
             }
-
-            var acc = new Account
-            {
-                Username = res.account.UserName,
-                Password = res.account.PassWord,
-                Type = 0,
-                IdCustomer = id,
-            };
-            _context.Account.Add(acc);
-            _context.SaveChanges();
             return View("Login");
         }
     }
