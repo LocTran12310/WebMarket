@@ -3,7 +3,20 @@
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
-
+@section background {
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">@ViewBag.name</li>
+                <li class="active">@Model.type1</li>
+                <li class="active">@Model.Name</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+}a
 
 <div class="products">
     <div class="container">
@@ -31,7 +44,7 @@
                 <div class="w3agile_description">
                     <h4>Description :</h4>
                     <p>
-                       @Model.Description
+                        @Model.Description
                     </p>
                 </div>
                 <div class="snipcart-item block">

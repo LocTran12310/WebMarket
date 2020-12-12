@@ -62,6 +62,7 @@ namespace WebMarket.Controllers
                  {
                      Id = product.Id,
                      EncryptedId = protector.Protect(product.Id.ToString()),
+                     type1 =type.Name,
                      Image = image.Image1,
                      Name = product.Name,
                      Price = product.Price,
@@ -119,8 +120,29 @@ namespace WebMarket.Controllers
             ViewBag.currentpage = page;
             return View("Index",listproduct);
         }
+        [HttpGet("Category/{name}/{type}/{id}")]
+        public IActionResult Detail(string name,string type,string id)
+        {
+            string decryptedId = protector.Unprotect(id);
+            int decryptedIntId = Convert.ToInt32(decryptedId);
+            ViewBag.name = name;
 
-       
+            var product = (from p in _context.Product.Where(p => p.Id == decryptedIntId)
+                           from image in _context.Image.Where(i => i.IdProduct == p.Id).Take(1)
+                           select new ProductVM
+                           {
+                               Id = p.Id,
+                               EncryptedId = protector.Protect(p.Id.ToString()),
+                               type1=type,
+                               Image = image.Image1,
+                               Name = p.Name,
+                               Price = p.Price,
+                               Discount = p.Discount,
+                               NewPrice = (Double)((100 - p.Discount) * p.Price) / 100
+                           }).SingleOrDefault();
+            return View(product);
+        }
+
     }
   
 

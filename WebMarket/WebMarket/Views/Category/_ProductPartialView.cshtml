@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<WebMarket.Models.ProductVM>
-<h1>@ViewBag.data</h1>
+
 <div class="agile_top_brands_grids">
     @foreach (var item in Model)
     {
+       
         <div class="col-md-4 top_brand_left" style=" margin-bottom :20px">
             <div class="hover14 column">
                 <div class="agile_top_brand_left_grid">
@@ -14,7 +15,7 @@
                             <div class="snipcart-item block" data-id="@item.Id">
                                 <div class="snipcart-thumb" style="height:200px;">
                                     @{
-                                        <a href="~/DetailProduct/@item.EncryptedId" style="height:150px;"><img title=" " alt="@item.Name" src="~/images/img-products/@item.Image" width="150px" height="150px" class="img-responsive"></a>
+                                        <a href="~/Category/@ViewBag.name/@item.type1/@item.EncryptedId" style="height:150px;"><img title=" " alt="@item.Name" src="~/images/img-products/@item.Image" width="150px" height="150px" class="img-responsive"></a>
                                     }
 
                                     <p>@item.Name</p>
