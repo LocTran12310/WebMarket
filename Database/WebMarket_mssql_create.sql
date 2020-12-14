@@ -4,12 +4,11 @@ GO
 DROP DATABASE [WebMarket]
 CREATE DATABASE [WebMarket]
 GO
+use WebMarket
 
-USE [WebMarket]
-GO
 
 CREATE TABLE [category] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	Name nvarchar(50) NOT NULL UNIQUE,
 	image varchar(255)
   CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
@@ -21,7 +20,7 @@ CREATE TABLE [category] (
 GO
 
 CREATE TABLE [type] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	name nvarchar(50) NOT NULL UNIQUE,
 	ID_category integer NOT NULL,
   CONSTRAINT [PK_TYPE] PRIMARY KEY CLUSTERED
@@ -32,9 +31,9 @@ CREATE TABLE [type] (
 )
 GO
 CREATE TABLE [provider] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	name nvarchar(50) NOT NULL UNIQUE,
-	address nvarchar(50) NOT NULL,
+	address nvarchar(255) NOT NULL,
 	phone varchar(11) NOT NULL,
   CONSTRAINT [PK_PROVIDER] PRIMARY KEY CLUSTERED
   (
@@ -44,7 +43,7 @@ CREATE TABLE [provider] (
 )
 GO
 CREATE TABLE [product] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	name nvarchar(50) NOT NULL UNIQUE,
 	price float,
 	description text,
@@ -59,7 +58,7 @@ CREATE TABLE [product] (
 )
 GO
 CREATE TABLE [productdetail] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
 	entry_date datetime NOT NULL,
@@ -73,7 +72,7 @@ CREATE TABLE [productdetail] (
 )
 GO
 CREATE TABLE [warehouse] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_productdetail integer NOT NULL,
 	ID_admin integer NOT NULL,
   CONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED
@@ -84,11 +83,11 @@ CREATE TABLE [warehouse] (
 )
 GO
 CREATE TABLE [admin] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	username varchar(50) NOT NULL UNIQUE,
 	password varchar(50) NOT NULL,
-	name varchar(50) NOT NULL,
-	address varchar(50) NOT NULL,
+	name nvarchar(50) NOT NULL,
+	address nvarchar(255) NOT NULL,
 	phone varchar(11) NOT NULL,
 	type integer NOT NULL,
   CONSTRAINT [PK_ADMIN] PRIMARY KEY CLUSTERED
@@ -99,7 +98,7 @@ CREATE TABLE [admin] (
 )
 GO
 CREATE TABLE [image] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_product integer NOT NULL,
 	name varchar(50) NOT NULL,
 	image varchar(255) NOT NULL,
@@ -111,7 +110,7 @@ CREATE TABLE [image] (
 )
 GO
 CREATE TABLE [orderdetail] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_order integer NOT NULL,
 	ID_product integer NOT NULL,
 	ID_priceupdate integer NOT NULL,
@@ -125,18 +124,18 @@ CREATE TABLE [orderdetail] (
 )
 GO
 CREATE TABLE [order] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
 	ID_admin integer NOT NULL,
 	order_date datetime NOT NULL,
 	delivery_date datetime NOT NULL,
-	address varchar(50) NOT NULL,
-	name varchar(50),
+	address nvarchar(255) NOT NULL,
+	name nvarchar(50),
 	payment_type varchar(50) NOT NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
 	status integer,
-	note varchar(50),
+	note nvarchar(50),
   CONSTRAINT [PK_ORDER] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -145,9 +144,9 @@ CREATE TABLE [order] (
 )
 GO
 CREATE TABLE [customer] (
-	ID integer NOT NULL,
-	name varchar(50) NOT NULL,
-	address varchar(50),
+	ID integer NOT NULL IDENTITY,
+	name nvarchar(50) NOT NULL,
+	address nvarchar(255),
 	phone varchar(11) NOT NULL,
 	date_of_birth datetime NOT NULL,
 	image varchar(50),
@@ -161,7 +160,7 @@ CREATE TABLE [customer] (
 )
 GO
 CREATE TABLE [account] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	username varchar(50) NOT NULL UNIQUE,
 	password varchar(50),
 	type integer NOT NULL,
@@ -174,25 +173,13 @@ CREATE TABLE [account] (
 )
 GO
 CREATE TABLE [priceupdate] (
-	ID integer NOT NULL,
+	ID integer NOT NULL IDENTITY,
 	ID_product integer NOT NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
 	date_update datetime NOT NULL,
 	date_end datetime NOT NULL,
   CONSTRAINT [PK_PRICEUPDATE] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-CREATE TABLE [cart] (
-	ID integer NOT NULL,
-	ID_product integer NOT NULL,
-	ID_customer integer NOT NULL,
-	quantity integer NOT NULL,
-  CONSTRAINT [PK_CART] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
@@ -297,63 +284,53 @@ GO
 ALTER TABLE [priceupdate] CHECK CONSTRAINT [priceupdate_fk1]
 GO
 
-ALTER TABLE [cart] WITH CHECK ADD CONSTRAINT [cart_fk0] FOREIGN KEY ([ID_product]) REFERENCES [product]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [cart] CHECK CONSTRAINT [cart_fk0]
-GO
-ALTER TABLE [cart] WITH CHECK ADD CONSTRAINT [cart_fk1] FOREIGN KEY ([ID_customer]) REFERENCES [customer]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [cart] CHECK CONSTRAINT [cart_fk1]
-GO
-insert into category values(1,'Goceries','p2.jpg'),(2,'Household','p3.jpg'),(3,'PersonalCare','p4.jpg'),(4,'packageFood','111.jpg')
+insert into category(Name,image) values('Goceries','p2.jpg'),('Household','p3.jpg'),('PersonalCare','p4.jpg'),('packageFood','111.jpg')
 
-insert into dbo.type values (1,'Foods',1),(2,'Drinks',1),(3,'Fruits',1),(4,'Cakes',1)
+insert into dbo.type(name,ID_category) values ('Foods',1),('Drinks',1),('Fruits',1),('Cakes',1)
 
-insert into dbo.provider values 
-(1,'Trương Văn Nam', 'TPHCM','123456789'),
-(2,'Trần Phước Lộc', 'TPHCM','123456789'),
-(3,'Trần Trung Hiếu', 'TPHCM','0352460179'),
-(4,'Nguyễn Càn Long', 'TPHCM','1111111111')
+insert into dbo.provider(name,address,phone) values 
+('Trương Văn Nam', 'TPHCM','123456789'),
+('Trần Phước Lộc', 'TPHCM','123456789'),
+('Trần Trung Hiếu', 'TPHCM','0352460179'),
+('Nguyễn Càn Long', 'TPHCM','1111111111')
 
 
 
 
-insert into dbo.product values
-(1	,N'Bò Húc',	15000,	NULL,	1,	2,	0),
-(2	,N'CoCa',	10000,	NULL,	2,	2,	0),
-(3	,N'Nước Cam',15000,	NULL,	3,	2,	0),
-(4	,N'Nước Suối',5000,	NULL,	3,	2,	0),
-(5	,N'Pepsi',15000,	NULL,	2,	2,	0),
-(6	,N'Trà Xanh',10000,	NULL,	1,	2,	0),
-(7	,N'Bánh Mì',15000,	NULL,	1,	1,	0),
-(8	,N'Cơm Gà',	35000,	NULL,	1,	1,	0),
-(9	,N'Cơm Sường',25000,NULL,	1,	1,	0),
-(10	,N'Hambuger',20000,	NULL,	1,	1,	0),
-(11	,N'Nem Chua',15000,	NULL,	1,	1,	0),
-(12	,N'Xúc Xích',20000,	NULL,	1,	1,	0),
-(13	,N'Cam'		,50000,	NULL,	1,	3,	0),
-(14	,N'ổi'		,45000,	NULL,	1,	3,	0),
-(15	,N'Xoài'	,60000,	NULL,	2,	3,	0)
+insert into dbo.product(name,price,description,ID_provider,ID_type,discount) values
+(N'Bò Húc',	15000,	NULL,	1,	2,	10),
+(N'CoCa',	10000,	NULL,	2,	2,	0),
+(N'Nước Cam',15000,	NULL,	3,	2,	0),
+(N'Nước Suối',5000,	NULL,	3,	2,	0),
+(N'Pepsi',15000,	NULL,	2,	2,	0),
+(N'Trà Xanh',10000,	NULL,	1,	2,	10),
+(N'Bánh Mì',15000,	NULL,	1,	1,	20),
+(N'Cơm Gà',	35000,	NULL,	1,	1,	0),
+(N'Cơm Sường',25000,NULL,	1,	1,	20),
+(N'Hambuger',20000,	NULL,	1,	1,	0),
+(N'Nem Chua',15000,	NULL,	1,	1,	20),
+(N'Xúc Xích',20000,	NULL,	1,	1,	0),
+(N'Cam'		,50000,	NULL,	1,	3,	10),
+(N'ổi'		,45000,	NULL,	1,	3,	0),
+(N'Xoài'	,60000,	NULL,	2,	3,	0)
 
 
-insert into dbo.image values
-(1,		1,	N'Bò Húc',	'bohuc.jpg'),
-(2,		2,	N'CoCa'	,		'coca.jpg'),
-(3,		3,	N'nuoc cam',	'nuoccam.jpg'),
-(4,		4,	N'nuoc suoi',	'nuocsuoi.jpg'),
-(5,		5,	N'Pepsi'		,'pepsi.jpg'),
-(6,		6,	N'traxanh',		'traxanh.jpg'),
-(7,		7,	N'banhmi'		,'banhmi.jpg'),
-(8,		8,	N'comga'		,'comga.jpg'),
-(9,		9,	N'comsuong',	'comsuong.jpg'),
-(10,	10,	N'hambuger',	'hambuger.jpg'),
-(11,	11,	N'nemchua',		'nemchua.jpg'),
-(12,	12,	N'xucxich',		'xucxich.jpg'),
-(13,	13,	N'cam',			'cam.jpg'),
-(14,	14,	N'oi',			'oi.jpg'),
-(15,	15,	N'xoai'	,		'xoai.jpg')
+insert into dbo.image(ID_product,name,image) values
+(1,	N'Bò Húc',	'bohuc.jpg'),
+(2,	N'CoCa'	,		'coca.jpg'),
+(3,	N'nuoc cam',	'nuoccam.jpg'),
+(4,	N'nuoc suoi',	'nuocsuoi.jpg'),
+(5,	N'Pepsi'		,'pepsi.jpg'),
+(6,	N'traxanh',		'traxanh.jpg'),
+(7,	N'banhmi'		,'banhmi.jpg'),
+(8,	N'comga'		,'comga.jpg'),
+(9,	N'comsuong',	'comsuong.jpg'),
+(10,N'hambuger',	'hambuger.jpg'),
+(11,N'nemchua',		'nemchua.jpg'),
+(12,N'xucxich',		'xucxich.jpg'),
+(13,N'cam',			'cam.jpg'),
+(14,N'oi',			'oi.jpg'),
+(15,N'xoai'	,		'xoai.jpg')
 
 
 INSERT INTO background(name,image,description) VALUES 

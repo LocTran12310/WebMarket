@@ -13,6 +13,7 @@ using System.Security.Claims;
 
 namespace WebMarket.Controllers
 {
+
     [Authorize]
     public class CustomerController : Controller
     {
@@ -56,14 +57,12 @@ namespace WebMarket.Controllers
                 new Claim(ClaimTypes.Name,customer.Name),
                 new Claim(ClaimTypes.Email, customer.Email),
                 new Claim("MaKH", customer.Id.ToString()),
-                new Claim(ClaimTypes.Role, "Admin"),
-                new Claim(ClaimTypes.Role, "QuanTriHeThong"),
-                new Claim(ClaimTypes.Role, "BanHang")
             };
             var userIdentity = new ClaimsIdentity(claims, "login");
             // create principal
             var principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
+            ViewBag.Error = "aaa";
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()
@@ -80,7 +79,6 @@ namespace WebMarket.Controllers
         [AllowAnonymous, HttpPost]
         public async Task<IActionResult> Register(RegisterVM res)
         {
-            int id=1;
             if (res.account.PassWord == res.account.PasswordConfirm)
             {
                 var cus = new Customer()
@@ -92,10 +90,10 @@ namespace WebMarket.Controllers
                     Email = res.account.UserName,
                     Status = 0,
                 };
-
                 _context.Customer.Add(cus);
-                var lastRow = _context.Customer.OrderByDescending(c => c.Id).Take(1).SingleOrDefault();
-                id = lastRow.Id;
+                _context.SaveChanges();
+                int lastRow = _context.Customer.OrderByDescending(c => c.Id).Select(c=>c.Id).First();
+                int id = (lastRow!=null) ? lastRow : 1;
                 var acc = new Account
                 {
                     Username = res.account.UserName,

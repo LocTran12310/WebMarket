@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebMarket.Entities
 {
@@ -10,11 +8,9 @@ namespace WebMarket.Entities
         public Customer()
         {
             Account = new HashSet<Account>();
-            Cart = new HashSet<Cart>();
             Order = new HashSet<Order>();
         }
-        
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -25,7 +21,6 @@ namespace WebMarket.Entities
         public int Status { get; set; }
 
         public virtual ICollection<Account> Account { get; set; }
-        public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<Order> Order { get; set; }
     }
 }

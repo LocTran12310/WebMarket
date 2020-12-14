@@ -40,9 +40,15 @@ namespace WebMarket
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
+                    options.LoginPath = "/Admin/Login";
+                    options.AccessDeniedPath = "/Customer/AccessDenied";
+                })
+                .AddCookie(options =>
+                {
                     options.LoginPath = "/Customer/Login";
                     options.AccessDeniedPath = "/Customer/AccessDenied";
                 });
+             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,9 +73,12 @@ namespace WebMarket
 
             app.UseEndpoints(endpoints =>
             {
-               
                 endpoints.MapControllerRoute(
-                    name: "Categotry",
+                     name: "areas",
+                     pattern: "{area:exists}/{controller=Login}/{action=Index}/{id?}"
+                   );
+                endpoints.MapControllerRoute(
+                    name: "default",
                     pattern: "{controller=Home}/{action=Index}/{name?}");
             });
         }

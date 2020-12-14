@@ -1,0 +1,10 @@
+﻿@model WebMarket.Models.AccountVM
+<form asp-action="Login" asp-controller="Admin">
+    <input asp-for="UserName" type="" placeholder="Email Address" required=" ">
+    <input asp-for="PassWord" type="password" placeholder="Password" required=" ">
+    <div class="error">@ViewBag.Error</div>
+    <div class="forgot">
+        <a href="#">Forgot Password?</a>
+    </div>
+    <input type="submit" value="Login">
+</form>
