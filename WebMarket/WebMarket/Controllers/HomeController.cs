@@ -22,8 +22,6 @@ namespace WebMarket.Controllers
             _context = context;
         }
 
-
-        
         public IActionResult Index()
         {
             var typess = (from type in _context.Type
@@ -49,7 +47,6 @@ namespace WebMarket.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
 
         public IActionResult Offers()
         {

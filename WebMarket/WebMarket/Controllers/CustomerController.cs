@@ -1,19 +1,17 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebMarket.Entities;
+using WebMarket.Helpers;
 using WebMarket.Models;
-using System.Security.Claims;
+
 
 namespace WebMarket.Controllers
 {
-    [Authorize]
     public class CustomerController : Controller
     {
 
@@ -25,6 +23,12 @@ namespace WebMarket.Controllers
 
         public IActionResult Index()
         {
+            int data = HttpContext.Session.Get<int>("KhachHang");
+            if (data == null ||data == 0)
+            {
+                return View("Login");
+            }
+            ViewBag.id = data;
             var customer = _context.Customer.Select(p => new CustomerVM
             {
                 Id = p.Id,
@@ -36,12 +40,12 @@ namespace WebMarket.Controllers
             });
             return View(customer);
         }
-        [AllowAnonymous, HttpGet]
+      
         public IActionResult Login()
         {
             return View();
         }
-        [AllowAnonymous, HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Login(AccountVM acc)
         {
             var AccCus = _context.Account.SingleOrDefault(a => a.Username == acc.UserName && a.Password == acc.PassWord);
@@ -51,36 +55,25 @@ namespace WebMarket.Controllers
                 return View();
             }
             var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.IdCustomer);
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name,customer.Name),
-                new Claim(ClaimTypes.Email, customer.Email),
-                new Claim("MaKH", customer.Id.ToString()),
-                new Claim(ClaimTypes.Role, "Admin"),
-                new Claim(ClaimTypes.Role, "QuanTriHeThong"),
-                new Claim(ClaimTypes.Role, "BanHang")
-            };
-            var userIdentity = new ClaimsIdentity(claims, "login");
-            // create principal
-            var principal = new ClaimsPrincipal(userIdentity);
-            await HttpContext.SignInAsync(principal);
+            HttpContext.Session.Set("KhachHang", customer.Id);
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            HttpContext. Session.Remove("KhachHang");
             return RedirectToAction("Login");
         }
 
-        [AllowAnonymous, HttpGet]
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        [AllowAnonymous, HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterVM res)
         {
-            if (res.account.PassWord == res.account.PasswordConfirm)
+            var idAcc = _context.Account.SingleOrDefault(a => a.Username == res.account.UserName);
+            if (idAcc == null )
             {
                 var cus = new Customer()
                 {
@@ -104,8 +97,13 @@ namespace WebMarket.Controllers
                 };
                 _context.Account.Add(acc);
                 _context.SaveChanges();
+                return View("Login");
             }
-            return View("Login");
+            else
+            {
+                ViewBag.error = "* Email đã tồn tại";
+                return View();
+            } 
         }
     }
 }

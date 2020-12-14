@@ -40,8 +40,8 @@ namespace WebMarket
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.LoginPath = "/Customer/Login";
-                    options.AccessDeniedPath = "/Customer/AccessDenied";
+                    options.LoginPath = "/Admin/Login";
+                    options.AccessDeniedPath = "/Admin/AccessDenied";
                 });
         }
 
@@ -67,10 +67,14 @@ namespace WebMarket
 
             app.UseEndpoints(endpoints =>
             {
-               
                 endpoints.MapControllerRoute(
-                    name: "Categotry",
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
+                endpoints.MapControllerRoute(
+                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{name?}");
+                
             });
         }
     }
