@@ -20,7 +20,6 @@ namespace WebMarket.Entities
         public virtual DbSet<Background> Background { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Orderdetail> Orderdetail { get; set; }
         public virtual DbSet<Priceupdate> Priceupdate { get; set; }
@@ -46,7 +45,7 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5729A632E83")
+                    .HasName("UQ__account__F3DBC5721B690907")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -78,7 +77,7 @@ namespace WebMarket.Entities
                 entity.ToTable("admin");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admin__F3DBC5726E72CDB5")
+                    .HasName("UQ__admin__F3DBC5726FC6E59D")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -131,8 +130,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Image)
                     .HasColumnName("image")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -145,18 +143,18 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__737584F681E1FFF0")
+                    .HasName("UQ__category__72E12F1B52CCCB4F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Image)
                     .HasColumnName("image")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
+                    .HasColumnName("name")
                     .HasMaxLength(50);
             });
 
@@ -182,8 +180,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Image)
                     .HasColumnName("image")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -197,33 +194,6 @@ namespace WebMarket.Entities
                     .IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
-            });
-
-            modelBuilder.Entity<Image>(entity =>
-            {
-                entity.ToTable("image");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.IdProduct).HasColumnName("ID_product");
-
-                entity.Property(e => e.Image1)
-                    .IsRequired()
-                    .HasColumnName("image")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IdProductNavigation)
-                    .WithMany(p => p.Image)
-                    .HasForeignKey(d => d.IdProduct)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("image_fk0");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -358,7 +328,7 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1BC062E1AE")
+                    .HasName("UQ__product__72E12F1BDA59BA24")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -372,6 +342,11 @@ namespace WebMarket.Entities
                 entity.Property(e => e.IdProvider).HasColumnName("ID_provider");
 
                 entity.Property(e => e.IdType).HasColumnName("ID_type");
+
+                entity.Property(e => e.Image)
+                    .IsRequired()
+                    .HasColumnName("image")
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -427,7 +402,7 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B846A1337")
+                    .HasName("UQ__provider__72E12F1B365426A2")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -454,7 +429,7 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1B63DFE1C0")
+                    .HasName("UQ__type__72E12F1B21BAAA1C")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");

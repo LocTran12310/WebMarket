@@ -9,11 +9,11 @@ function showModel() {
         var id = product.attr("data-id");
         var name = product.find("p").text();
         var img = product.find("img").attr("src");
-        var price = product.find("h4").text();
+        var price = product.find("h4").html();
         var modal = $(".modal-body");
         modal.find("img").attr("src", img)
         modal.find(".modal-item-name").text(name);
-        modal.find(".modal-item-price").text(price);
+        modal.find(".modal-item-price").html(price);
         modal.attr("data-id", id);
     })
     addToCart();

@@ -23,7 +23,6 @@ namespace WebMarket.ViewComponents
                         where c.Name == name
                         select t;
             ViewBag.namecate = name;
-           
             return View(types);
         }
     }

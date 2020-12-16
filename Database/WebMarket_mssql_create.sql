@@ -9,8 +9,8 @@ use WebMarket
 
 CREATE TABLE [category] (
 	ID integer NOT NULL IDENTITY,
-	Name nvarchar(50) NOT NULL UNIQUE,
-	image varchar(255)
+	name nvarchar(50) NOT NULL UNIQUE,
+	image nvarchar(100)
   CONSTRAINT [PK_CATEGORY] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -46,6 +46,7 @@ CREATE TABLE [product] (
 	ID integer NOT NULL IDENTITY,
 	name nvarchar(50) NOT NULL UNIQUE,
 	price float,
+	image nvarchar(100) NOT NULL,
 	description text,
 	ID_provider integer NOT NULL,
 	ID_type integer NOT NULL,
@@ -97,18 +98,6 @@ CREATE TABLE [admin] (
 
 )
 GO
-CREATE TABLE [image] (
-	ID integer NOT NULL IDENTITY,
-	ID_product integer NOT NULL,
-	name varchar(50) NOT NULL,
-	image varchar(255) NOT NULL,
-  CONSTRAINT [PK_IMAGE] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
 CREATE TABLE [orderdetail] (
 	ID integer NOT NULL IDENTITY,
 	ID_order integer NOT NULL,
@@ -149,7 +138,7 @@ CREATE TABLE [customer] (
 	address nvarchar(255),
 	phone varchar(11) NOT NULL,
 	date_of_birth datetime NOT NULL,
-	image varchar(50),
+	image nvarchar(100),
 	email varchar(50) NOT NULL,
 	status integer NOT NULL,
   CONSTRAINT [PK_CUSTOMER] PRIMARY KEY CLUSTERED
@@ -189,7 +178,7 @@ GO
 CREATE TABLE [background](
 		ID integer NOT NULL IDENTITY,
 		name varchar(50),
-		image varchar(255),
+		image nvarchar(100),
 		description varchar(255) 
  )
 
@@ -233,11 +222,7 @@ ALTER TABLE [warehouse] CHECK CONSTRAINT [warehouse_fk1]
 GO
 
 
-ALTER TABLE [image] WITH CHECK ADD CONSTRAINT [image_fk0] FOREIGN KEY ([ID_product]) REFERENCES [product]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [image] CHECK CONSTRAINT [image_fk0]
-GO
+
 
 ALTER TABLE [orderdetail] WITH CHECK ADD CONSTRAINT [orderdetail_fk0] FOREIGN KEY ([ID_order]) REFERENCES [order]([ID])
 ON UPDATE CASCADE
@@ -289,51 +274,37 @@ insert into category(Name,image) values('Goceries','p2.jpg'),('Household','p3.jp
 insert into dbo.type(name,ID_category) values ('Foods',1),('Drinks',1),('Fruits',1),('Cakes',1)
 
 insert into dbo.provider(name,address,phone) values 
-('Trương Văn Nam', 'TPHCM','123456789'),
-('Trần Phước Lộc', 'TPHCM','123456789'),
-('Trần Trung Hiếu', 'TPHCM','0352460179'),
-('Nguyễn Càn Long', 'TPHCM','1111111111')
+(N'Trương Văn Nam', 'TPHCM','123456789'),
+(N'Trần Phước Lộc', 'TPHCM','123456789'),
+(N'Trần Trung Hiếu', 'TPHCM','0352460179'),
+(N'Nguyễn Càn Long', 'TPHCM','1111111111')
 
 
 
 
-insert into dbo.product(name,price,description,ID_provider,ID_type,discount) values
-(N'Bò Húc',	15000,	NULL,	1,	2,	10),
-(N'CoCa',	10000,	NULL,	2,	2,	0),
-(N'Nước Cam',15000,	NULL,	3,	2,	0),
-(N'Nước Suối',5000,	NULL,	3,	2,	0),
-(N'Pepsi',15000,	NULL,	2,	2,	0),
-(N'Trà Xanh',10000,	NULL,	1,	2,	10),
-(N'Bánh Mì',15000,	NULL,	1,	1,	20),
-(N'Cơm Gà',	35000,	NULL,	1,	1,	0),
-(N'Cơm Sường',25000,NULL,	1,	1,	20),
-(N'Hambuger',20000,	NULL,	1,	1,	0),
-(N'Nem Chua',15000,	NULL,	1,	1,	20),
-(N'Xúc Xích',20000,	NULL,	1,	1,	0),
-(N'Cam'		,50000,	NULL,	1,	3,	10),
-(N'ổi'		,45000,	NULL,	1,	3,	0),
-(N'Xoài'	,60000,	NULL,	2,	3,	0)
+insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
+(N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
+(N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
+(N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),
+(N'Nước Suối',5000,'nuocsuoi.jpg',	NULL,	3,	2,	0),
+(N'Pepsi',15000,'pepsi.jpg',NULL,	2,	2,	0),
+(N'Trà Xanh',10000,'traxanh.jpg',	NULL,	1,	2,	10),
+(N'Bánh Mì',15000,'banhmi.jpg',	NULL,	1,	1,	20),
+(N'Cơm Gà',	35000,'comga.jpg',	NULL,	1,	1,	0),
+(N'Cơm Sường',25000,'comsuong.jpg',NULL,	1,	1,	20),
+(N'Hambuger',20000,'hambuger.jpg',	NULL,	1,	1,	0),
+(N'Nem Chua',15000,'nemchua.jpg',	NULL,	1,	1,	20),
+(N'Xúc Xích',20000,'xucxich.jpg',	NULL,	1,	1,	0),
+(N'Cam'		,50000,'cam.jpg',	NULL,	1,	3,	10),
+(N'ổi'		,45000,'oi.jpg',	NULL,	1,	3,	0),
+(N'Xoài'	,60000,'xoai.jpg',	NULL,	2,	3,	0)
 
 
-insert into dbo.image(ID_product,name,image) values
-(1,	N'Bò Húc',	'bohuc.jpg'),
-(2,	N'CoCa'	,		'coca.jpg'),
-(3,	N'nuoc cam',	'nuoccam.jpg'),
-(4,	N'nuoc suoi',	'nuocsuoi.jpg'),
-(5,	N'Pepsi'		,'pepsi.jpg'),
-(6,	N'traxanh',		'traxanh.jpg'),
-(7,	N'banhmi'		,'banhmi.jpg'),
-(8,	N'comga'		,'comga.jpg'),
-(9,	N'comsuong',	'comsuong.jpg'),
-(10,N'hambuger',	'hambuger.jpg'),
-(11,N'nemchua',		'nemchua.jpg'),
-(12,N'xucxich',		'xucxich.jpg'),
-(13,N'cam',			'cam.jpg'),
-(14,N'oi',			'oi.jpg'),
-(15,N'xoai'	,		'xoai.jpg')
 
 
 INSERT INTO background(name,image,description) VALUES 
 ('BG1','11.jpg','Buy Rice Products Are Now On Line With Us'),
 ('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
+
+insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)

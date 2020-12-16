@@ -1,0 +1,66 @@
+﻿@model WebMarket.Entities.Product
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control d-lg-none" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required="Not null" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" required="Not null" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" required="Not null" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input name="file" id="imgInp" class="form-control" type="file" />
+                <img id="blah" src="" width="150px" height="150px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="IdProvider" class="control-label"></label>
+                <select asp-for="IdProvider" class="form-control" asp-items="ViewBag.IdProvider"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdType" class="control-label"></label>
+                <select asp-for="IdType" class="form-control" asp-items="ViewBag.IdType"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts{
+    <script src="~/js/readURL.js"></script>
+}

@@ -31,21 +31,20 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             return View();
         }
-        [AllowAnonymous, HttpPost]
+        [AllowAnonymous, HttpPost("Admin/Login")]
         public async Task<IActionResult> Login(AccountVM acc)
         {
-            var AccCus = _context.Account.SingleOrDefault(a => a.Username == acc.UserName && a.Password == acc.PassWord);
-            if (AccCus == null)
+            var AdminInfor = _context.Admin.SingleOrDefault(a => a.Username == acc.UserName && a.Password == acc.PassWord);
+            if (AdminInfor == null)
             {
                 ViewBag.Error = "Account not exsit";
                 return View();
             }
-            var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.IdCustomer);
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,customer.Name),
-                new Claim(ClaimTypes.Email, customer.Email),
-                new Claim("MaKH", customer.Id.ToString()),
+                new Claim(ClaimTypes.Name,AdminInfor.Name),
+                new Claim(ClaimTypes.Email, AdminInfor.Username),
+                new Claim("Ma", AdminInfor.Id.ToString()),
                 new Claim(ClaimTypes.Role, "Admin"),
             };
             var userIdentity = new ClaimsIdentity(claims, "login");
@@ -54,6 +53,7 @@ namespace WebMarket.Areas.Admin.Controllers
             await HttpContext.SignInAsync(principal);
             return RedirectToAction("Index");
         }
+        [HttpGet("Admin/Logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();

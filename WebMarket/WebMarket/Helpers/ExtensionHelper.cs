@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -23,23 +24,19 @@ namespace WebMarket.Helpers
             var value = session.GetString(key);
             return value == null ? default : JsonSerializer.Deserialize<T>(value);
         }
-        public static string RemoveDiacritics(this string text,int id)
+        public static string UploadFile(IFormFile file,string folder="")
         {
-            if (string.IsNullOrWhiteSpace(text))
-                return text;
-            string newtext="";
-            for(int i=0; i < text.Length; i++)
+            if (file == null || file.Length == 0)
+                return "error";
+            else
             {
-                if(text[i]!=' ')
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images",folder, file.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
                 {
-                    newtext += text[i];
+                    file.CopyTo(stream);
                 }
+                return file.FileName;
             }
-            newtext += id;
-            newtext = newtext.Normalize(NormalizationForm.FormD);
-            var chars = newtext.Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark).ToArray();
-            return new string(chars).Normalize(NormalizationForm.FormC);
-
         }
     }
 }

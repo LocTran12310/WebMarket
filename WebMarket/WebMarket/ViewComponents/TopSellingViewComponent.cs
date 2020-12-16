@@ -22,12 +22,11 @@ namespace WebMarket.ViewComponents
         public IViewComponentResult Invoke()
         {
       
-            var sellitems = (from product in _context.Product.Where(p => p.Discount >= 0)
-                             from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)                          
+            var sellitems = (from product in _context.Product.Where(p => p.Discount >= 0)                 
                              select new ProductVM
                              {
                                  Id = product.Id,
-                                 Image = image.Image1,
+                                 Image = product.Image,
                                  Name = product.Name,
                                  Price = product.Price,
                                  Discount = product.Discount,
@@ -35,11 +34,10 @@ namespace WebMarket.ViewComponents
                              }).ToList();
 
             var offeritems = (from product in _context.Product.Where(p => p.Discount > 0)
-                              from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                               select new ProductVM
                               {
                                   Id = product.Id,
-                                  Image = image.Image1,
+                                  Image = product.Image,
                                   Name = product.Name,
                                   Price = product.Price,
                               }).ToList();
@@ -51,9 +49,6 @@ namespace WebMarket.ViewComponents
                                 type1 = type.Name ,
                               
                           }).ToList();
-
-
-
             ViewBag.type2 = typess;
             ViewBag.offeritems = offeritems;
             return View(sellitems);

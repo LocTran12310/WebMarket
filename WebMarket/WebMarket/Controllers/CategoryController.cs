@@ -29,11 +29,10 @@ namespace WebMarket.Controllers
         public PartialViewResult Discount(int data)
         {
             var Dis = (from product in _context.Product.Where(p => p.Discount > 0)
-                       from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                        select new ProductVM
                        {
                            Id = product.Id,
-                           Image = image.Image1,
+                           Image = product.Image,
                            Name = product.Name,
                            Price = product.Price,
                            Discount = product.Discount,
@@ -42,12 +41,8 @@ namespace WebMarket.Controllers
             ViewBag.data = data;                     
             return PartialView("_ProductPartialView", Dis);
         }
-      
-
-
         private int numpage = 6;
         [HttpGet("Category/{name}")]
-
         public IActionResult Index(string name ,int page=1)
         {
             var listproduct =
@@ -57,12 +52,12 @@ namespace WebMarket.Controllers
                  join type in _context.Type
                  on product.IdType equals type.Id
                  where type.IdCategory == cate.Id
-                 from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                  select new ProductVM
                  {
                      Id = product.Id,
                      EncryptedId = protector.Protect(product.Id.ToString()),
-                     Image = image.Image1,
+                     type1 =type.Name,
+                     Image = product.Image,
                      Name = product.Name,
                      Price = product.Price,
                      Discount = product.Discount,
@@ -78,12 +73,9 @@ namespace WebMarket.Controllers
                 count = (
                from product in _context.Product
                from cate in _context.Category
-               from Image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                where cate.Name == name
                select product).Count();
-
             }
-
             ViewBag.name = name;
             ViewBag.total = (Int32)(Math.Ceiling((float)count / numpage));
             ViewBag.currentpage = page;
@@ -99,11 +91,12 @@ namespace WebMarket.Controllers
                on product.IdType equals t.Id
                from cate in _context.Category
                where cate.Name == name && t.Name == type
-               from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                select new ProductVM
                {
                    Id = product.Id,
-                   Image = image.Image1,
+                   EncryptedId = protector.Protect(product.Id.ToString()),
+                   type1 = type,
+                   Image = product.Image,
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
@@ -119,8 +112,27 @@ namespace WebMarket.Controllers
             ViewBag.currentpage = page;
             return View("Index",listproduct);
         }
+        [HttpGet("Category/{name}/{type}/Detail/{id}")]
+        public ActionResult Detail(string name,string type,string id)
+        {
+            string decryptedId = protector.Unprotect(id);
+            int decryptedIntId = Convert.ToInt32(decryptedId);
+            ViewBag.name = name;
+            var product = (from p in _context.Product.Where(p => p.Id == decryptedIntId)
+                           select new ProductVM
+                           {
+                               Id = p.Id,
+                               EncryptedId = protector.Protect(p.Id.ToString()),
+                               type1=type,
+                               Image = p.Image,
+                               Name = p.Name,
+                               Price = p.Price,
+                               Discount = p.Discount,
+                               NewPrice = (Double)((100 - p.Discount) * p.Price) / 100
+                           }).SingleOrDefault();
+            return View(product);
+        }
 
-       
     }
   
 

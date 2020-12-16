@@ -48,10 +48,9 @@ namespace WebMarket.Controllers
             if (item == null)//chưa có
             {
                 item = (from product in _context.Product.Where(p => p.Id == id)
-                        from image in _context.Image.Where(i => i.IdProduct == product.Id).Take(1)
                         select new CartItem { 
                             Id = product.Id,
-                            Image=image.Image1,
+                            Image = product.Image,
                             Name = product.Name,
                             Price = product.Price.Value,
                             Discount = product.Discount,
