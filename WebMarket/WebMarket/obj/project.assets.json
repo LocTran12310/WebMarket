@@ -8170,26 +8170,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\truon\\.nuget\\packages\\": {}
+    "C:\\Users\\Hieu Tran\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "projectUniqueName": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
       "projectName": "WebMarket",
-      "projectPath": "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
-      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
-      "outputPath": "E:\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+      "projectPath": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "packagesPath": "C:\\Users\\Hieu Tran\\.nuget\\packages\\",
+      "outputPath": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Hieu Tran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

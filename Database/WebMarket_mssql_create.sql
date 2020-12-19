@@ -60,6 +60,7 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
+	ID_warehouse integer
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
 	entry_date datetime NOT NULL,
@@ -74,7 +75,6 @@ CREATE TABLE [productdetail] (
 GO
 CREATE TABLE [warehouse] (
 	ID integer NOT NULL IDENTITY,
-	ID_productdetail integer NOT NULL,
 	ID_admin integer NOT NULL,
   CONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED
   (
