@@ -29,9 +29,8 @@
 				date: true,
 				maxDate:true
 			},
-			"account.Username": {
+			"account.UserName": {
 				required: true,
-				email: true,
 				minlength: 10,
 			},
 			"account.PassWord": {
@@ -63,8 +62,7 @@
 			"customer.Date": {
 				required: "* Bắt buộc nhập Ngày Sinh ",
 			},
-			"account.Username": {
-				email:"* Vui lòng nhập địa chỉ Email",
+			"account.UserName": {
 				required: "* Vui lòng nhập địa chỉ Email",
 				minlength: "* Tối Thiểu 10 ký tự",
 			},

@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿
+@using WebMarket.Helpers
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,20 +47,33 @@
                 <p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
             </div>
             <div class="agile-login">
-                <ul>
-                    <li><a href="~/Customer/Register"> Create Account </a></li>
-                    <li><a href="~/Customer/Login">Login</a></li>
-                    <li><a href="contact.html">Help</a></li>
+                @{
+                    var customer = Context.Session.Get<int>("KhachHang");
+                    if (customer == 0)
+                    {
+                        <ul>
+                            <li><a href="~/Customer/Register"> Create Account </a></li>
+                            <li><a href="~/Customer/Login">Login</a></li>
+                            <li><a href="contact.html">Help</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="~/Customer/MyProfile"> My Profile </a></li>
+                            <li><a href="~/Customer/Logout">Logout</a></li>
+                            <li><a href="contact.html">Help</a></li>
+                        </ul>
+                    }
+                }
 
-                </ul>
             </div>
             <div class="product_list_header">
                 <form action="#" method="post" class="last">
                     <input type="hidden" name="cmd" value="_cart">
                     <input type="hidden" name="display" value="1" />
-                    <a class="w3view-cart"  href="~/Cart"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
+                    <a class="w3view-cart" href="~/Cart"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
                     <span class="count" id="cart_count">
-                        @using WebMarket.Helpers
                         @{
                             var data = Context.Session.Get<List<CartItem>>("GioHang");
                             if (data == null)
@@ -119,7 +133,7 @@
 
 
     @RenderBody()
-  
+
 
     <!-- //footer -->
     <div class="footer">
@@ -194,16 +208,16 @@
 
 
 
-   
+
 
     <!-- //footer -->
     <environment include="Development">
-       
+
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
-       
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"

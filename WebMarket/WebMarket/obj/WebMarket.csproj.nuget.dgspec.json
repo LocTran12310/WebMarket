@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
+    "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {}
   },
   "projects": {
-    "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {
+    "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "projectUniqueName": "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
         "projectName": "WebMarket",
-        "projectPath": "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+        "projectPath": "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
         "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
-        "outputPath": "E:\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+        "outputPath": "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.4, )"

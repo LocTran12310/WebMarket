@@ -1,68 +1,148 @@
-﻿@model IEnumerable<WebMarket.Models.CustomerVM>
+﻿@model WebMarket.Entities.Customer
 
 @{
     ViewData["Title"] = "Index";
 }
-@ViewBag.id
-<h2>Index</h2>
+<style>
+    body {
+        background: #EEF2F7;
+    }
+    .customer-info, .customer-action {
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+        margin-top: 50px;
+        background: white;
+        border-radius: 5px;
+    }
+    .customer-info .info-user{
+        padding-left:20px;
+    }
+    .customer-info .image-user {
+        padding-top:30px;
+        text-align: center;
+    }
+    .customer-info .image-user img {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: block;
+        margin: auto;
+    }
+    .customer-info .info {
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <a asp-action="Logout">Logout</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        margin-left: 80px;
+    }
+    .customer-action {
+        padding:0 50px;
+    }
+    .customer-action .menu-action {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: row;
+        vertical-align: middle;
+        justify-content: space-around;
+    }
+    .content-action{
+        margin-top:20px;
+        padding-bottom:10px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class=" customer-info">
+                <div class="image-user">
+                    <img src="@Model.Image" />
+                    <h3>@Model.Name</h3>
+                    <h5>@Model.Email</h5>
+                </div>
+                <hr />
+                <div class="info-user">
+                    <div>
+                        <p>Name:<span class="info">@Model.Name</span></p>
+                    </div>
+                    <hr />
+                    <div>
+                        <p>DateofBirth: <span class="info">@Model.DateOfBirth</span></p>
+
+                    </div>
+                    <hr />
+                    <div>
+                        <p>Address:<span class="info">@Model.Address</span></p>
+
+                    </div>
+                    <hr />
+                    <div>
+                        <p>Phone: <span class="info">@Model.Phone</span></p>
+
+                    </div>
+                    <hr />
+                    <div>
+                        <p>Email:<span class="info">@Model.Email</span></p>
+
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 ">
+            <div class="customer-action">
+                <div class="menu-action">
+                    <div class="edit-action">
+                        Edit Profiles
+                    </div>
+                    <div class="check-action">
+                        Check Bill
+                    </div>
+                    <div class="history-action">
+                        Bill History
+                    </div>
+                </div>
+                <div class="content-action">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Phone" class="control-label"></label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="DateOfBirth" class="control-label"></label>
+                            <input asp-for="DateOfBirth" class="form-control" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Image" class="control-label"></label>
+                            <input asp-for="Image" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

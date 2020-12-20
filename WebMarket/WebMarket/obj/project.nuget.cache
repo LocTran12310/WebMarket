@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "a7Q/Lb7ohEYX3zFVQgpLpt2vwRKo1Nj6JiTSTWAG8v3gbM8nhjQvgdnT/rb0oxm5wiizMqWxNuCnIOUjGhrg6g==",
+  "dgSpecHash": "C7K0qxlnd3diueYW31m12Ed/PVtz1koH23w7gWlCg4XzUVjVTTrI1WMSe48ri0sYzoINTHhXsLVT4J4e/3fpvw==",
   "success": true,
-  "projectFilePath": "E:\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+  "projectFilePath": "C:\\Users\\truon\\Desktop\\Web\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\truon\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\3.1.4\\microsoft.aspnetcore.authentication.google.3.1.4.nupkg.sha512",
     "C:\\Users\\truon\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\truon\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\truon\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",

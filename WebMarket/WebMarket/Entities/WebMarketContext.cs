@@ -45,12 +45,10 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5721B690907")
+                    .HasName("UQ__account__F3DBC572E411FC4D")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.IdCustomer).HasColumnName("ID_customer");
 
                 entity.Property(e => e.Password)
                     .HasColumnName("password")
@@ -64,12 +62,6 @@ namespace WebMarket.Entities
                     .HasColumnName("username")
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.IdCustomerNavigation)
-                    .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.IdCustomer)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("account_fk0");
             });
 
             modelBuilder.Entity<Admin>(entity =>
@@ -77,7 +69,7 @@ namespace WebMarket.Entities
                 entity.ToTable("admin");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admin__F3DBC5726FC6E59D")
+                    .HasName("UQ__admin__F3DBC572FBD454E9")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -143,7 +135,7 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__72E12F1B52CCCB4F")
+                    .HasName("UQ__category__72E12F1BB02E06AB")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -162,7 +154,9 @@ namespace WebMarket.Entities
             {
                 entity.ToTable("customer");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")
@@ -180,7 +174,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Image)
                     .HasColumnName("image")
-                    .HasMaxLength(100);
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -188,12 +182,17 @@ namespace WebMarket.Entities
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Phone)
-                    .IsRequired()
                     .HasColumnName("phone")
                     .HasMaxLength(11)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Customer)
+                    .HasForeignKey<Customer>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("customer_fk0");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -328,7 +327,7 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1BDA59BA24")
+                    .HasName("UQ__product__72E12F1B299D8A2A")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -402,7 +401,7 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B365426A2")
+                    .HasName("UQ__provider__72E12F1B50BB01A8")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -429,7 +428,7 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1B21BAAA1C")
+                    .HasName("UQ__type__72E12F1B73E3D726")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");

@@ -1,9 +1,14 @@
 ﻿
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebMarket.Entities;
 using WebMarket.Helpers;
@@ -12,6 +17,8 @@ using WebMarket.Models;
 
 namespace WebMarket.Controllers
 {
+    [Authorize]
+    [AllowAnonymous]
     public class CustomerController : Controller
     {
 
@@ -24,25 +31,17 @@ namespace WebMarket.Controllers
         public IActionResult Index()
         {
             int data = HttpContext.Session.Get<int>("KhachHang");
-            if (data == null ||data == 0)
+            if (data == null )
             {
                 return View("Login");
             }
-            ViewBag.id = data;
-            var customer = _context.Customer.Select(p => new CustomerVM
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Address = p.Address,
-                Phone = p.Phone,
-                Date = p.DateOfBirth,
-                Email = p.Email,
-            });
+            var customer = _context.Customer.Find(data);
             return View(customer);
         }
-      
+
         public IActionResult Login()
         {
+            ViewBag.Status = TempData["Message"];
             return View();
         }
         [HttpPost]
@@ -54,48 +53,50 @@ namespace WebMarket.Controllers
                 ViewBag.Error = "Account not exsit";
                 return View();
             }
-            var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.IdCustomer);
+            var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.Id);
             HttpContext.Session.Set("KhachHang", customer.Id);
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()
         {
-            HttpContext. Session.Remove("KhachHang");
+            HttpContext.Session.Remove("KhachHang");
             return RedirectToAction("Login");
         }
 
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Status = TempData["Message"];
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM res)
+        public IActionResult Register(RegisterVM res)
         {
+            
             var idAcc = _context.Account.SingleOrDefault(a => a.Username == res.account.UserName);
-            if (idAcc == null )
+            if (idAcc == null)
             {
-                var cus = new Customer()
-                {
-                    Name = res.customer.Name,
-                    Address = res.customer.Address,
-                    Phone = res.customer.Phone,
-                    DateOfBirth = res.customer.Date,
-                    Email = res.account.UserName,
-                    Status = 0,
-                };
-                _context.Customer.Add(cus);
-                _context.SaveChanges();
-                int lastRow = _context.Customer.OrderByDescending(c => c.Id).Select(c=>c.Id).First();
-                int id = (lastRow!=null) ? lastRow : 1;
                 var acc = new Account
                 {
                     Username = res.account.UserName,
                     Password = res.account.PassWord,
                     Type = 0,
-                    IdCustomer = id,
                 };
                 _context.Account.Add(acc);
+                _context.SaveChanges();
+                int lastRow = _context.Account.OrderByDescending(a => a.Id).Select(a => a.Id).First();
+                var cus = new Customer()
+                {
+                    Id = lastRow,
+                    Name = res.customer.Name,
+                    Address = res.customer.Address,
+                    Phone = res.customer.Phone,
+                    DateOfBirth = res.customer.Date,
+                    Email = res.account.UserName,
+                    Image="default.png",
+                    Status = 0,
+                };
+                _context.Customer.Add(cus);
                 _context.SaveChanges();
                 return View("Login");
             }
@@ -103,7 +104,67 @@ namespace WebMarket.Controllers
             {
                 ViewBag.error = "* Email đã tồn tại";
                 return View();
-            } 
+            }
         }
+        public IActionResult LoginGmail(string type)
+        {
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponseRegister") };
+            if (type == "login")
+            {
+                properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponseLogin") };
+            }
+           
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+        [Route("google-response")]
+        public async Task<IActionResult> GoogleResponseRegister()
+        {
+            
+            var info = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var acc = new Account
+            {
+                Username = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                Type = 1,
+            };
+            var account = _context.Account.Where(a => a.Username == acc.Username).SingleOrDefault();
+            if (account != null)
+            {
+                TempData["Message"] = "* Email đã tồn tại";
+                return RedirectToAction("Register");
+            }
+            _context.Account.Add(acc);
+            _context.SaveChanges();
+            int lastRow = _context.Account.OrderByDescending(a => a.Id).Select(a => a.Id).First();
+            var userInfo = new Customer() {
+                Id = lastRow,
+                Name = info.Principal.FindFirst(ClaimTypes.Name).Value,
+                Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                Image = info.Principal.FindFirstValue("picture"),
+                Status = 0,
+            };
+            _context.Customer.Add(userInfo);
+            _context.SaveChanges();
+            return RedirectToAction("Login");
+        }
+        public async Task<IActionResult> GoogleResponseLogin( )
+        {
+
+            var info = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var acc = new Account
+            {
+                Username = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                Type = 1,
+            };
+            var account = _context.Account.Where(a => a.Username == acc.Username).SingleOrDefault();
+            if (account== null)
+            {
+                TempData["Message"] ="* Email khong tồn tại";
+                return RedirectToAction("Login");
+            }
+            var customer = _context.Customer.SingleOrDefault(c => c.Id == account.Id);
+            HttpContext.Session.Set("KhachHang", customer.Id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

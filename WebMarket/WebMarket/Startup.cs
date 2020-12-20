@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,8 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebMarket.Entities;
 using WebMarket.Secure;
@@ -42,6 +45,17 @@ namespace WebMarket
                 {
                     options.LoginPath = "/Admin/Login";
                     options.AccessDeniedPath = "/Admin/AccessDenied";
+                })
+                .AddGoogle(options => 
+                {
+                    options.ClientId = "491121016030-rm8qkusguio7p85llrcankohq9u1k1e8.apps.googleusercontent.com";
+                    options.ClientSecret = "gAr9iBOTPBGyXmq0_3GCseZv";
+                    options.Events.OnCreatingTicket = (context) =>
+                    {
+                        var picture = context.User.GetProperty("picture").GetString();
+                        context.Identity.AddClaim(new Claim("picture", picture));
+                        return Task.CompletedTask;
+                    };
                 });
         }
 

@@ -9,8 +9,7 @@ namespace WebMarket.Entities
         public string Username { get; set; }
         public string Password { get; set; }
         public int Type { get; set; }
-        public int IdCustomer { get; set; }
 
-        public virtual Customer IdCustomerNavigation { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }
