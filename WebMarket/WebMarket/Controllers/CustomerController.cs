@@ -17,8 +17,7 @@ using WebMarket.Models;
 
 namespace WebMarket.Controllers
 {
-    [Authorize]
-    [AllowAnonymous]
+    
     public class CustomerController : Controller
     {
 
@@ -60,6 +59,7 @@ namespace WebMarket.Controllers
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Remove("KhachHang");
+            await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
 

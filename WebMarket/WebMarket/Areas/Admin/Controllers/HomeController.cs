@@ -12,7 +12,7 @@ using WebMarket.Models;
 namespace WebMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class HomeController : Controller
     {
 
@@ -26,7 +26,9 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             return View();
         }
+        [Authorize]
         [AllowAnonymous, HttpGet("Admin/Login")]
+
         public IActionResult Login()
         {
             return View();

@@ -44,7 +44,7 @@ namespace WebMarket
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/Admin/Login";
-                    options.AccessDeniedPath = "/Admin/AccessDenied";
+                    options.AccessDeniedPath = "/Admin/Login";
                 })
                 .AddGoogle(options => 
                 {
