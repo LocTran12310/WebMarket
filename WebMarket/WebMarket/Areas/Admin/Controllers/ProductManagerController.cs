@@ -19,10 +19,55 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int cate=0 ,int ty=0)
         {
-            var products = _context.Product.Include(p => p.IdTypeNavigation).Include(p => p.IdProviderNavigation);   
-            return View(products);
+            Category c = new Category()
+            {
+                Id = 0,
+                Name = "All Categories",
+            };
+            Type t = new Type()
+            {
+                Id = 0,
+                Name = "All Types",
+            };
+            var products = (from product in _context.Product
+                            join type in _context.Type
+                            on product.IdType equals type.Id
+                            join category in _context.Category
+                            on type.IdCategory equals category.Id
+                            select product);
+            if (cate != 0)
+            {
+                products = (from product in _context.Product
+                                join type in _context.Type
+                                on product.IdType equals type.Id
+                                join category in _context.Category
+                                on type.IdCategory equals category.Id
+                                where category.Id == cate 
+                                select product);
+                if (ty != 0)
+                {
+                     products = (from product in _context.Product
+                                    join type in _context.Type
+                                    on product.IdType equals type.Id
+                                    join category in _context.Category
+                                    on type.IdCategory equals category.Id
+                                    where category.Id == cate && type.Id == ty
+                                    select product);
+                }
+            }
+            var pro = products.Include(p => p.IdTypeNavigation).Include(c => c.IdProviderNavigation).ToList();
+            var categories = _context.Category.ToList();
+            categories.Insert(0, c);
+            
+            var types = _context.Type.Where(t=>t.IdCategory==cate).ToList();
+            types.Insert(0, t);
+            ViewBag.IdCategory = new SelectList(categories, "Id", "Name");
+            ViewBag.IdType = new SelectList(types, "Id", "Name");
+            ViewBag.cate = cate;
+            ViewBag.ty = ty;
+            return View(pro);
         }
         [HttpGet]
         public IActionResult Create()

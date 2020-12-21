@@ -61,7 +61,7 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
-	ID_warehouse integer
+	ID_warehouse integer,
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
 	entry_date datetime NOT NULL,
@@ -283,7 +283,7 @@ insert into dbo.provider(name,address,phone) values
 
 
 insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
-(N'Kem tươi Paysan Breton dạng xịt chai 250g', 119000, 'https://lh3.googleusercontent.com/08F7M0oT0_UpGcPmgOK5K9hPqxs76J5VwQMYIBj0gb7EWEcZA-VHK58V01nHESP4edUHDiNG0nC4A-8lzlyH=w185',N'Kem tươi Paysan Breton dạng xịt chai 250g dùng để trang trí mặt bánh và nhiều món ăn, đồ uống khác, dùng như một lớp phủ đặc biệt cho bề mặt bánh, món tráng miệng hay trái cây. Kem có nguồn gốc động vật, được làm từ sữa bò tươi độ béo vừa phải (20%). Vị ngậy, thơm của kem sữa và tan trong miệng. Whipped Cream không chứa đường (do được tách ra từ sữa bò tươi nguyên chất). Bảo quản ở ngăn mát tủ lạnh. Sau khi sử dụng xong cần lau sạch miệng hộp, đậy kín nắp.', 1, 2, 14),
+
 (N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
 (N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
 (N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),

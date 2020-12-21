@@ -1,0 +1,153 @@
+﻿@model IEnumerable<WebMarket.Entities.Productdetail>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+<style>
+    body {
+        background: #EEF2F7;
+    }
+
+    .customer-info, .customer-action, .form-create {
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+        margin-top: 50px;
+        background: white;
+        border-radius: 5px;
+    }
+
+    .customer-info .info-user {
+        padding-left: 20px;
+    }
+
+    .customer-info .image-user {
+        padding:19px 15px;
+        display:flex;
+    }
+
+    .customer-info .image-user img {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: block;
+    }
+
+    .customer-info .info {
+        margin-left: 80px;
+    }
+
+    .customer-action {
+        padding: 0 50px;
+    }
+ 
+    .content-action {
+        margin-top: 20px;
+        padding-bottom: 10px;
+    }
+    .form-create{
+        padding:15px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class=" customer-info ">
+            <div class="image-user">
+                <img src="~/images/img-products/@ViewBag.product.Image" alt="@ViewBag.product.Name" />
+                <div>
+                    <h3>@ViewBag.product.Name</h3>
+                    <h5>@ViewBag.product.Price</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-create">
+            <form asp-action="Create" asp-controller="ProductDetail" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input name="Id" class="form-control d-lg-none" />
+                        <input name="IdProduct" class="form-control d-lg-none" value="@ViewBag.product.Id"/>
+                        <div class="form-group">
+                            <label name="Quantity" class="control-label">Số lượng:</label>
+                            <input name="Quantity" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label name="Exp" class="control-label">Hạn sử dụng:</label>
+                            <input type="date" name="Exp" class="form-control" />
+                        </div>
+                    </div>
+                    <div  class="col-md-6">
+                        <div class="form-group">
+                            <label name="EntryDate" class="control-label">Ngày nhập hàng: </label>
+                            <input type="date" name="EntryDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label name="Mfg" class="control-label">Ngày sản xuất:</label>
+                            <input type="date" name="Mfg" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                
+                    <input type="submit" value="Save" class="btn btn-default" />
+            
+            </form>
+        </div>
+      
+    </div>
+</div>
+<div class="row ">
+    <div class="customer-action col-md-12">
+        <div class="content-action">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdProduct)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EntryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mfg)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Exp)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdProduct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mfg)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Exp)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

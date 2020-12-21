@@ -9,6 +9,7 @@
     <Folder Include="Entities\" />
     <Folder Include="wwwroot\css\Admin\" />
     <Folder Include="wwwroot\images\img-customer\" />
+    <Folder Include="wwwroot\images\img-banner\" />
   </ItemGroup>
 
   <ItemGroup>
