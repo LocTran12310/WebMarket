@@ -3,15 +3,30 @@
 @{
     ViewData["Title"] = "Login";
 }
-@ViewBag.cus
+@section css{
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <style>
+        label.error {
+            color: orangered;
+            font-size:14px;
+            font-family:'Times New Roman', Times, serif
+        }
+
+        .btn-user {
+            margin-top: 20px;
+            font-size: 1rem;
+            border-radius: 10rem;
+            padding: 0.75rem 1rem;
+            background-color: red;
+            color:white;
+        }
+    </style>
+}
 <!-- register -->
-<style>
-    label.error{
-        color:red
-    }
-</style>
+
 <div class="register">
     <div class="container">
+        @ViewBag.Status
         <h2>Register Here</h2>
         <div class="login-form-grids">
             <h5>profile information</h5>
@@ -22,7 +37,6 @@
                 <br /><label asp-for="customer.Date"> Date of birth</label>
                 <input asp-for="customer.Date" type="date" placeholder="Date of birth...">
                 <h6>Login information</h6>
-                <label class="error">@ViewBag.error</label>
                 <input asp-for="account.UserName" type="email" placeholder="Email Address">
                 <input asp-for="account.PassWord" type="password" placeholder="Password">
                 <input asp-for="account.PasswordConfirm" type="password" placeholder="Password Confirmation">
@@ -33,10 +47,12 @@
                 </div>
                 <input type="submit" value="Register">
             </form>
+            <hr />
+            <a href="@Url.Action("LoginGmail","Customer",new { type="register"})" class="btn btn-google btn-user btn-block">
+                <i class="fab fa-google fa-fw"></i> Register with Google
+            </a>
         </div>
-        <div class="register-home">
-            <a href="~/Home">Home</a>
-        </div>
+
     </div>
 </div>
 <!-- //register -->

@@ -61,6 +61,7 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
+	ID_warehouse integer
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
 	entry_date datetime NOT NULL,
@@ -75,7 +76,6 @@ CREATE TABLE [productdetail] (
 GO
 CREATE TABLE [warehouse] (
 	ID integer NOT NULL IDENTITY,
-	ID_productdetail integer NOT NULL,
 	ID_admin integer NOT NULL,
   CONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED
   (
@@ -134,12 +134,12 @@ CREATE TABLE [order] (
 )
 GO
 CREATE TABLE [customer] (
-	ID integer NOT NULL IDENTITY,
+	ID integer NOT NULL ,
 	name nvarchar(50) NOT NULL,
 	address nvarchar(255),
-	phone varchar(11) NOT NULL,
-	date_of_birth datetime NOT NULL,
-	image nvarchar(100),
+	phone varchar(11) ,
+	date_of_birth datetime,
+	image nvarchar(255),
 	email varchar(50) NOT NULL,
 	status integer NOT NULL,
   CONSTRAINT [PK_CUSTOMER] PRIMARY KEY CLUSTERED
@@ -153,8 +153,7 @@ CREATE TABLE [account] (
 	ID integer NOT NULL IDENTITY,
 	username varchar(50) NOT NULL UNIQUE,
 	password varchar(50),
-	type integer NOT NULL,
-	ID_customer integer NOT NULL,
+	type integer NOT NULL
   CONSTRAINT [PK_ACCOUNT] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -253,10 +252,10 @@ ALTER TABLE [order] CHECK CONSTRAINT [order_fk1]
 GO
 
 
-ALTER TABLE [account] WITH CHECK ADD CONSTRAINT [account_fk0] FOREIGN KEY ([ID_customer]) REFERENCES [customer]([ID])
+ALTER TABLE [customer] WITH CHECK ADD CONSTRAINT [customer_fk0] FOREIGN KEY ([ID]) REFERENCES [account]([ID])
 ON UPDATE CASCADE
 GO
-ALTER TABLE [account] CHECK CONSTRAINT [account_fk0]
+ALTER TABLE [customer] CHECK CONSTRAINT [customer_fk0]
 GO
 
 ALTER TABLE [priceupdate] WITH CHECK ADD CONSTRAINT [priceupdate_fk0] FOREIGN KEY ([ID_product]) REFERENCES [product]([ID])
@@ -310,3 +309,7 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+select * from account
+select * from customer
+DELETE FROM account;
+DELETE FROM customer;

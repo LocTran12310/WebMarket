@@ -108,6 +108,7 @@ namespace WebMarket.Controllers
                         where t.Name == type
                         select product).Count();
             ViewBag.name = name;
+            ViewBag.type = type;
             ViewBag.total = (Int32)(Math.Ceiling((float)count / numpage));
             ViewBag.currentpage = page;
             return View("Index",listproduct);

@@ -19,10 +19,31 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string category="0")
         {
-            var types = _context.Type.Include(c=>c.IdCategoryNavigation).AsNoTracking();
-            return View(types);
+            var cate = _context.Category.ToList();
+            
+            Category s = new Category()
+            {
+                Id = 0,
+                Name = "All Type",
+            };
+            cate.Insert(0, s);
+            ViewBag.IdCategory = new SelectList(cate, "Id", "Name");
+            ViewBag.val = category;
+            if (category != "0")
+            {
+                
+                var types = _context.Type
+                    .Include(c => c.IdCategoryNavigation)
+                    .Where(t => t.IdCategory == Int32.Parse(category));
+                return View(types);
+            }
+            else
+            {
+                var types = _context.Type.Include(c => c.IdCategoryNavigation).AsNoTracking();
+                return View(types);
+            }
         }
 
         [HttpGet]
