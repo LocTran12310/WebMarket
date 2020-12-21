@@ -17,5 +17,9 @@ namespace WebMarket.Models
         public double? NewPrice => (((100 - Discount) * Price) / 100);
         public double? TotalPrice => NewPrice * Quantity;
 
+        internal double? Sum(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

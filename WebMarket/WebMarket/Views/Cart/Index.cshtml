@@ -8,7 +8,7 @@
     <link href="~/css/Cart.css" rel="stylesheet" />
 }
 <div class="checkout">
-    <div class="container"> 
+    <div class="container">
         <div class="checkout-right">
             @using WebMarket.Helpers
             @{
@@ -49,22 +49,32 @@
                     }
                 </table>
             }
-        </div> 
-        <div class="checkout-left"> 
-            <div class="checkout-left-basket"> <h4>Continue to basket</h4> 
+        </div>
+        <div class="checkout-left">
+            <div class="checkout-left-basket">
+                <h4>Continue to basket</h4>
                 @{ foreach (var item1 in Model)
-                    { 
-                        <ul> 
+                    {
+                        <ul>
                             <li class="@item1.Id">@item1.Name <i>-</i> <span> @item1.NewPrice</span></li>
-                        </ul> 
-                    } 
+                        </ul>
+                    }
                 }
-            <span class="prices__text">Thành tiền</span> 
-            <span class="prices__value--final"> @ViewBag.TongTien đ </span> 
-            </div> 
-            
-            <div class="clearfix"> </div> 
+                <span class="prices__text">Thành tiền</span>
+                <span class="prices__value--final"> @ViewBag.TongTien đ </span>
+            </div>
+
+            <div class="clearfix"> </div>
+            @{
+                if (ViewBag.TongTien > 0)
+                {
+                    <a href="@Url.Action("Index" , "Thanhtoan" )">Thanh Toán</a>
+                }
+            }
+
+
         </div>
     </div>
 </div>
-@section Scripts{<script src="~/js/cart-method.js"></script> }
+@section Scripts{
+    <script src="~/js/cart-method.js"></script> }

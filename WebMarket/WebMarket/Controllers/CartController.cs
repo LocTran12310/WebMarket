@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebMarket.Entities;
 using WebMarket.Helpers;
 using WebMarket.Models;
-
+using CartItem = WebMarket.Models.CartItem;
 namespace WebMarket.Controllers
 {
     public class CartController : Controller
@@ -31,14 +32,16 @@ namespace WebMarket.Controllers
             }
         }
 
-        public IActionResult Index()
+        public IActionResult Index(CartItem cart)
         {
             double? TongTien = Carts.Sum(p => p.TotalPrice);
             ViewBag.TongTien = TongTien;
+            var name = cart.Name;
+            ViewBag.data = HttpContext.Session.GetString("name");
             return View(Carts);
         }
         [TempData]
-        public string TotalQuantity { get; set; } 
+        public string TotalQuantity { get; set; }
 
         [HttpPost]
         public IActionResult AddToCart(int id, int quantity)
@@ -48,7 +51,8 @@ namespace WebMarket.Controllers
             if (item == null)//chưa có
             {
                 item = (from product in _context.Product.Where(p => p.Id == id)
-                        select new CartItem { 
+                        select new CartItem
+                        {
                             Id = product.Id,
                             Image = product.Image,
                             Name = product.Name,
@@ -67,7 +71,8 @@ namespace WebMarket.Controllers
             return Json(new { myCart, quantity });
         }
         [HttpPost]
-        public IActionResult UpdateCart(int Id, int Quantity) {
+        public IActionResult UpdateCart(int Id, int Quantity)
+        {
             var myCart = Carts;
             var item = myCart.SingleOrDefault(p => p.Id == Id);
             int index = myCart.IndexOf(item);
@@ -86,7 +91,7 @@ namespace WebMarket.Controllers
             HttpContext.Session.Set("GioHang", myCart);
             double? totalprice = Carts.Sum(p => p.TotalPrice);
             int quantity = Carts.Sum(c => c.Quantity);
-            return Json(new { TongTien = totalprice, SoLuong = quantity   });
+            return Json(new { TongTien = totalprice, SoLuong = quantity });
         }
     }
 }
