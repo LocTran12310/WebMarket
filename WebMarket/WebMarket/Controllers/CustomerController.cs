@@ -54,6 +54,7 @@ namespace WebMarket.Controllers
             }
             var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.Id);
             HttpContext.Session.Set("KhachHang", customer.Id);
+          
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()

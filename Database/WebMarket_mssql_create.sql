@@ -1,8 +1,9 @@
-﻿USE [master]
+﻿
+USE [master]
 GO
 
 DROP DATABASE [WebMarket]
-
+GO
 CREATE DATABASE [WebMarket]
 GO
 use WebMarket
@@ -61,7 +62,7 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
-	ID_warehouse integer
+	ID_warehouse integer NOT NULL,
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
 	entry_date datetime NOT NULL,
@@ -116,12 +117,14 @@ GO
 CREATE TABLE [order] (
 	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
-	ID_admin integer NOT NULL,
+	ID_admin integer NULL,
 	order_date datetime NOT NULL,
-	delivery_date datetime NOT NULL,
+	delivery_date datetime,
 	address nvarchar(255) NOT NULL,
-	name nvarchar(50),
-	payment_type varchar(50) NOT NULL,
+	name nvarchar(50) NOT NULL,
+	phone nvarchar(11) NOT NULL,
+	email nvarchar(50) NULL,
+	payment_type varchar(50) NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
 	status integer,
@@ -210,11 +213,7 @@ GO
 ALTER TABLE [productdetail] CHECK CONSTRAINT [productdetail_fk0]
 GO
 
-ALTER TABLE [warehouse] WITH CHECK ADD CONSTRAINT [warehouse_fk0] FOREIGN KEY ([ID_productdetail]) REFERENCES [productdetail]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [warehouse] CHECK CONSTRAINT [warehouse_fk0]
-GO
+
 ALTER TABLE [warehouse] WITH CHECK ADD CONSTRAINT [warehouse_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
 ON UPDATE CASCADE
 GO
@@ -283,7 +282,6 @@ insert into dbo.provider(name,address,phone) values
 
 
 insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
-(N'Kem tươi Paysan Breton dạng xịt chai 250g', 119000, 'https://lh3.googleusercontent.com/08F7M0oT0_UpGcPmgOK5K9hPqxs76J5VwQMYIBj0gb7EWEcZA-VHK58V01nHESP4edUHDiNG0nC4A-8lzlyH=w185',N'Kem tươi Paysan Breton dạng xịt chai 250g dùng để trang trí mặt bánh và nhiều món ăn, đồ uống khác, dùng như một lớp phủ đặc biệt cho bề mặt bánh, món tráng miệng hay trái cây. Kem có nguồn gốc động vật, được làm từ sữa bò tươi độ béo vừa phải (20%). Vị ngậy, thơm của kem sữa và tan trong miệng. Whipped Cream không chứa đường (do được tách ra từ sữa bò tươi nguyên chất). Bảo quản ở ngăn mát tủ lạnh. Sau khi sử dụng xong cần lau sạch miệng hộp, đậy kín nắp.', 1, 2, 14),
 (N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
 (N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
 (N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),
@@ -309,7 +307,3 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
-select * from account
-select * from customer
-DELETE FROM account;
-DELETE FROM customer;
