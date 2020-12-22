@@ -51,14 +51,14 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
+                                <td class="id-cate">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
-                                <td >
-                                    <img  class="preview" src="~/images/@item.Image" width="150px" height="150px" />
+                                <td class="img-cate" >
+                                    <a href="@Url.Action("Index","ProductManager",new { cate=item.Id})" target="_blank"> <img class="preview" src="~/images/@item.Image" width="150px" height="150px" /></a>
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
+                                <td class="name-cate">
+                                    <a href="@Url.Action("Index","ProductManager",new { cate=item.Id})" target="_blank">@Html.DisplayFor(modelItem => item.Name)</a>
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -74,6 +74,7 @@
 </div>
 <!-- /.container-fluid -->
 @section Scripts{
+   
     <!-- Page level plugins -->
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>

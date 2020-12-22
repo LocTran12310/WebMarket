@@ -32,9 +32,12 @@ namespace WebMarket.Areas.Admin.Controllers
                 Mfg = detail.Mfg,
                 Exp = detail.Exp
             };
+            var product = _context.Product.Find(detail.IdProduct);
+            product.QuantityStock += detail.Quantity;
+            _context.Product.Update(product);
             _context.Add(newdetail);
             _context.SaveChanges();
-            return RedirectToAction("Index", new { id = detail.IdProduct });
+            return RedirectToAction("Index",new { id= detail.IdProduct});
         }
     }
 }

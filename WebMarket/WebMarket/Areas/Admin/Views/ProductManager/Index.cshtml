@@ -19,7 +19,7 @@
         }
     </style>
 }
-
+@ViewBag.cateId
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -42,69 +42,13 @@
                 <label class="control-label"></label>
                 <select name="category" class="form-control category " asp-items="ViewBag.IdCategory" style="width:auto!important"></select>
             </div>
-            <div class="form-group md-3 pl-4">
-                <label class="control-label"></label>
-                <select name="type" class="form-control type " asp-items="ViewBag.IdType" style="width:auto!important; display:none"></select>
+            <div class="form-group md-3 pl-4 type-select">
+
+
             </div>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdTypeNavigation)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Discount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdProviderNavigation.Name)
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
-                                <td>
-                                    <img class="preview" src="~/images/img-products/@item.Image" width="150px" height="150px" />
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdTypeNavigation.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Discount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IdProviderNavigation.Name)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Index" asp-controller="ProductDetail" asp-route-id="@item.Id">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+            @Html.Partial("_filterajax", Model);
         </div>
     </div>
 </div>
@@ -118,34 +62,46 @@
 }
 
 <script>
-    $(".category").val(@ViewBag.cate)
-    if (@ViewBag.cate != 0) {
-        $(".type").css("display", "block");
-    }
-    $(".type").val(@ViewBag.ty)
-    $(".category").change(function () {
-        var val = $(this).val();
-        $.post("@Url.Action("Index","ProductManager")", { cate:  val})
-        .done(function (res)
-        {
-
-            document.open();
-            document.write(res);
-            document.close();
+    $(document).ready(function () {
+        addselected(@ViewBag.cateId, @ViewBag.typeId);
+        $(".category").change(function () {
+            var val = $(this).val();
+            getcate(val);
+            if (val != 0) {
+                getSelectType(val);
+            }
+            else {
+                $(".type-select").html("");
+            }
         })
+        function getcate(valcate = 0, valtype = 0) {
+            $.get("@Url.Action("filterajax","ProductManager")", { cate: valcate, ty: valtype})
+            .done(function (res)
+            {
+                $(".card-body").html(res)
+                
+            })
+        }
+        function getSelectType(val,ty) {
+            $.get("@Url.Action("selectajax","ProductManager")", { cate: val })
+            .done(function (res) {
+                $(".type-select").html(res);
+                $(".type option[value='" + ty + "']").attr("selected", "selected");
+                $(".type").change(function () {
+                    var valcate = $(".category").val();
+                    var val = $(this).val();
+                    getcate(valcate, val);
+                })
+            })
+        }
+        function addselected(cate, ty) {
+            $(".category option[value='" + cate + "']").attr("selected", "selected");
+            if (cate != 0) {
+                getSelectType(cate,ty);
 
-    })
-    $(".type").change(function () {
-        var valcate = $(".category").val();
-        var val = $(this).val();
-        $.post("@Url.Action("Index","ProductManager")", { cate: valcate,ty:  val})
-        .done(function (res)
-        {
+            }
+        }
 
-            document.open();
-            document.write(res);
-            document.close();
-        })
     })
 </script>
 

@@ -47,8 +47,11 @@
                 <select asp-for="IdProvider" class="form-control" asp-items="ViewBag.IdProvider"></select>
             </div>
             <div class="form-group">
-                <label asp-for="IdType" class="control-label"></label>
-                <select asp-for="IdType" class="form-control" asp-items="ViewBag.IdType"></select>
+                <label  class="control-label"></label>
+                <select  class="form-control category" asp-items="ViewBag.IdCategory"></select>
+            </div>
+            <div class="form-group type-select">
+                
             </div>
 
             <div class="form-group">
@@ -62,5 +65,22 @@
     <a asp-action="Index">Back to List</a>
 </div>
 @section Scripts{
+    <script>
+    $(document).ready(function () {
+         $(".category").change(function () {
+            var val = $(this).val();
+            if (val == 0) {
+                $(".type-select").html("");
+            }
+            getSelectType(val);
+        })
+        function getSelectType(val) {
+            $.get("@Url.Action("selectajax","ProductManager")", { cate: val })
+            .done(function (res) {
+                $(".type-select").html(res);
+            })
+        }
+    })
+    </script>
     <script src="~/js/readURL.js"></script>
 }

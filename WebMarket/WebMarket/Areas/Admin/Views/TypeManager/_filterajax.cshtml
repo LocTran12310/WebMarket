@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebMarket.Entities.Type>
+
+<div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Categories Tables</h6>
+    <a href="@Url.Action("Create")" class="btn btn-success">Add New</a>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Button</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Index","ProductManager",new { cate=item.IdCategory,ty = item.Id})" target="_blank"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Index","ProductManager",new { cate=item.IdCategory})" target="_blank"> @Html.DisplayFor(modelItem => item.IdCategoryNavigation.Name)</a>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
