@@ -49,16 +49,11 @@ namespace WebMarket.Controllers
             ord.Name = customer.Name;
             ord.Address = customer.Address;
             ord.OrderDate = DateTime.Now;
+            ord.Phone = customer.Phone;
             ord.IdAdmin = 1;
             ord.IdCustomer = id;
-
-
-
-
             _context.Order.Add(ord);
             _context.SaveChanges();
-
-
             return View();
             
         }

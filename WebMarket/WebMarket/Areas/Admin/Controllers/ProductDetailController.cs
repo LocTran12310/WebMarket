@@ -34,7 +34,7 @@ namespace WebMarket.Areas.Admin.Controllers
             };
             _context.Add(newdetail);
             _context.SaveChanges();
-            return RedirectToAction("Index",detail.IdProduct);
+            return RedirectToAction("Index", new { id = detail.IdProduct });
         }
     }
 }
