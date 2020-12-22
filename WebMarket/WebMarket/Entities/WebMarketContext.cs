@@ -45,7 +45,7 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5720A72BC4B")
+                    .HasName("UQ__account__F3DBC57286196C5C")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -69,7 +69,7 @@ namespace WebMarket.Entities
                 entity.ToTable("admin");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admin__F3DBC572199E709E")
+                    .HasName("UQ__admin__F3DBC572CA2DE7FF")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -107,14 +107,18 @@ namespace WebMarket.Entities
 
             modelBuilder.Entity<Background>(entity =>
             {
-                entity.ToTable("background");
+                entity.HasNoKey();
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.ToTable("background");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Image)
                     .HasColumnName("image")
@@ -131,7 +135,7 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__72E12F1B2008F186")
+                    .HasName("UQ__category__72E12F1B2359B0CB")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -323,7 +327,7 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1BE1C7CA80")
+                    .HasName("UQ__product__72E12F1B6EC07D49")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -350,6 +354,14 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
+                entity.Property(e => e.QuantitySold)
+                    .HasColumnName("quantity_sold")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.QuantityStock)
+                    .HasColumnName("quantity_stock")
+                    .HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.IdProviderNavigation)
                     .WithMany(p => p.Product)
                     .HasForeignKey(d => d.IdProvider)
@@ -375,7 +387,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Exp)
                     .HasColumnName("EXP")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
 
                 entity.Property(e => e.IdProduct).HasColumnName("ID_product");
 
@@ -383,7 +395,7 @@ namespace WebMarket.Entities
 
                 entity.Property(e => e.Mfg)
                     .HasColumnName("MFG")
-                    .HasColumnType("datetime");
+                    .HasColumnType("date");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
@@ -399,7 +411,7 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B14E73F77")
+                    .HasName("UQ__provider__72E12F1BBC0F9BFF")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -426,7 +438,7 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1B99E55F23")
+                    .HasName("UQ__type__72E12F1B0A5809A1")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");

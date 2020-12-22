@@ -57,6 +57,8 @@
                 <div>
                     <h3>@ViewBag.product.Name</h3>
                     <h5>@ViewBag.product.Price</h5>
+                    <label>Số lượng tồn kho:</label>
+                    <input type ="number" readonly value="@ViewBag.product.QuantityStock" style="width:100px"/>
                 </div>
             </div>
         </div>
@@ -67,24 +69,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <input name="Id" class="form-control d-lg-none" />
-                        <input name="IdProduct" class="form-control d-lg-none" value="@ViewBag.product.Id"/>
+                        <input name="IdProduct" class="form-control d-lg-none" value="@ViewBag.product.Id" />
                         <div class="form-group">
                             <label name="Quantity" class="control-label">Số lượng:</label>
                             <input name="Quantity" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label name="Exp" class="control-label">Hạn sử dụng:</label>
-                            <input type="date" name="Exp" class="form-control" />
+                            <label name="Mfg" class="control-label">Ngày sản xuất:</label>
+                            <input type="date" w name="Mfg" class="form-control" />
                         </div>
                     </div>
-                    <div  class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label name="EntryDate" class="control-label">Ngày nhập hàng: </label>
-                            <input type="date" name="EntryDate" class="form-control" />
+                            <input type="datetime-local" name="EntryDate" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label name="Mfg" class="control-label">Ngày sản xuất:</label>
-                            <input type="date" name="Mfg" class="form-control" />
+                            <label name="Exp" class="control-label">Hạn sử dụng:</label>
+                            <input type="date" name="Exp" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -134,10 +136,10 @@
                                 @Html.DisplayFor(modelItem => item.EntryDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Mfg)
+                                @Html.DisplayFor(modelItem => item.Mfg.Date, "{0:MM/dd/yyyy}")
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Exp)
+                                @Html.DisplayFor(modelItem => item.Exp.Date, "{0:MM/dd/yyyy}")
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
