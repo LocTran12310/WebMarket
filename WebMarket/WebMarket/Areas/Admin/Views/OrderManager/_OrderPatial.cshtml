@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebMarket.Entities.Orderdetail>
+
+<div class="row">
+    <div>
+        <div>@ViewBag.order.Name</div>
+        <label>Order Date:</label>
+        <div>@ViewBag.order.OrderDate</div>
+        <label>Email:</label>
+        <div>@ViewBag.order.Email</div>
+        <label>Address:</label>
+        <div>@ViewBag.order.Address</div>
+    </div>
+</div>
+@{
+    foreach (var item in Model)
+    {
+        
+    }
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebMarket.Entities.Order>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+<style>
+    .link:hover{
+        background-color:aqua;
+        color:black;
+
+
+
+    }
+
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(".link").click(function () {
+            var id = $(this).attr("data-id");
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Detail" , "OrderManager")',
+                data: { id: id },
+                success: function (res) {
+                    $(".details").html(res);
+                }
+            });
+        });
+    });
+</script>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-2 order-left" style="border:1px solid black;">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <div  data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:90px;width:auto;">
+                                      @item.Name
+                        </div>                      
+                        <br />
+                    }
+                }
+            </div>
+            <div class="col-md-10" style="border:1px solid black;">
+                <div class="details">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+

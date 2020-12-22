@@ -13,7 +13,6 @@
 
 <div class="container" id="thanhtoan">
     <div class="py-5 text-center">
-
         <h2>Thanh Toán </h2>
         <p class="lead">Thông tin của bạn</p>
     </div>
@@ -73,7 +72,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com" value="@Model.Email">
+                    <input type="email" asp-for="Email" class="form-control" id="email" placeholder="you@example.com" value="@Model.Email">
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="address">Địa chỉ </label>
+                    <label for="Phone">Điện thoại </label>
                     <input asp-for="Phone" class="form-control" id="Phone" placeholder="Nhap so dt" value="@Model.Phone" required>
                     <div class="invalid-feedback">
                         Please enter your shipping address.

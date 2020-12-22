@@ -7,7 +7,7 @@ GO
 CREATE DATABASE [WebMarket]
 GO
 use WebMarket
-
+GO
 
 CREATE TABLE [category] (
 	ID integer NOT NULL IDENTITY,
@@ -107,6 +107,7 @@ CREATE TABLE [orderdetail] (
 	ID_priceupdate integer NOT NULL,
 	quantity float NOT NULL,
 	discount float NOT NULL,
+	newprice float NULL,
   CONSTRAINT [PK_ORDERDETAIL] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -307,3 +308,5 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+
+select * from product

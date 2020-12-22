@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <!-- Custom styles for this template-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link href="~/css/Admin/sb-admin-2.min.css" rel="stylesheet" />
     @RenderSection("Styles", false)
 </head>
@@ -66,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Hóa Đơn mua hàng</h6>
-                        <a class="collapse-item" href="buttons.html">Hóa Đơn chưa xác nhận</a>
+                        <a class="collapse-item" href="@Url.Action("Index","OrderManager")">Hóa Đơn chưa xác nhận</a>
                         <a class="collapse-item" href="cards.html">Hóa đơn đang giao</a>
                         <a class="collapse-item" href="cards.html">Hóa đơn hoàn thành</a>
                     </div>
@@ -84,7 +85,7 @@
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Kho hàng:</h6>
-                        <a class="collapse-item" href="@Url.Action("Index","ProductManager")">Products</a>
+                        <a class="collapse-item" href="@Url.Action("Index","ProductManager")" ">Products</a>
                         <a class="collapse-item" href="@Url.Action("Index","TypeManager")">Type Products</a>
                         <a class="collapse-item" href="@Url.Action("Index","CategoryManager")">Category</a>
                         <a class="collapse-item" href="@Url.Action("Index","ProviderManager")">Provider</a>
