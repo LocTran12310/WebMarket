@@ -13,7 +13,6 @@ namespace WebMarket.Entities
         public double Discount { get; set; }
 
         public virtual Order IdOrderNavigation { get; set; }
-        public virtual Priceupdate IdPriceupdateNavigation { get; set; }
         public virtual Product IdProductNavigation { get; set; }
     }
 }

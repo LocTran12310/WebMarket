@@ -1,12 +1,13 @@
-﻿
-USE [master]
+﻿USE [master]
 GO
 
 DROP DATABASE [WebMarket]
 GO
+
 CREATE DATABASE [WebMarket]
 GO
 use WebMarket
+GO
 
 
 CREATE TABLE [category] (
@@ -53,6 +54,9 @@ CREATE TABLE [product] (
 	ID_provider integer NOT NULL,
 	ID_type integer NOT NULL,
 	discount float NOT NULL,
+	quantity_stock integer DEFAULT 0,
+	quantity_sold integer DEFAULT 0,
+	status nvarchar(10) NOT NULL CHECK (status IN('Disable', 'Visible')) DEFAULT 'Visible',
   CONSTRAINT [PK_PRODUCT] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -62,12 +66,12 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
-	ID_warehouse integer NOT NULL,
+	ID_warehouse integer,
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
-	entry_date datetime NOT NULL,
-	MFG datetime NOT NULL,
-	EXP datetime NOT NULL,
+	entry_date DATETIME NOT NULL,
+	MFG DATE NOT NULL,
+	EXP DATE NOT NULL,
   CONSTRAINT [PK_PRODUCTDETAIL] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -117,14 +121,12 @@ GO
 CREATE TABLE [order] (
 	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
-	ID_admin integer NULL,
+	ID_admin integer NOT NULL,
 	order_date datetime NOT NULL,
-	delivery_date datetime,
+	delivery_date datetime NOT NULL,
 	address nvarchar(255) NOT NULL,
-	name nvarchar(50) NOT NULL,
-	phone nvarchar(11) NOT NULL,
-	email nvarchar(50) NULL,
-	payment_type varchar(50) NULL,
+	name nvarchar(50),
+	payment_type varchar(50) NOT NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
 	status integer,
@@ -169,14 +171,17 @@ CREATE TABLE [priceupdate] (
 	ID_product integer NOT NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
-	date_update datetime NOT NULL,
-	date_end datetime NOT NULL,
+	date_update datetime NOT NULL GENERATED ALWAYS AS ROW START,
+	date_end datetime NOT NULL GENERATED ALWAYS AS ROW END,
+	PERIOD FOR SYSTEM_TIME (date_update, date_end),
+	
   CONSTRAINT [PK_PRICEUPDATE] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
-)
+)WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.priceupdate));
+GO
 GO
 CREATE TABLE [background](
 		ID integer NOT NULL IDENTITY,
@@ -213,7 +218,7 @@ GO
 ALTER TABLE [productdetail] CHECK CONSTRAINT [productdetail_fk0]
 GO
 
-
+GO
 ALTER TABLE [warehouse] WITH CHECK ADD CONSTRAINT [warehouse_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
 ON UPDATE CASCADE
 GO
@@ -282,6 +287,7 @@ insert into dbo.provider(name,address,phone) values
 
 
 insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
+
 (N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
 (N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
 (N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),
@@ -307,3 +313,12 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+select * from account
+select * from customer
+DELETE FROM account;
+DELETE FROM customer;
+
+use WebMarket
+SELECT * from productdetail
+
+Select * from product
