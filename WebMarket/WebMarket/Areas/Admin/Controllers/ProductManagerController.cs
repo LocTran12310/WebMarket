@@ -151,12 +151,13 @@ namespace WebMarket.Areas.Admin.Controllers
             var product = _context.Product.SingleOrDefault(p => p.Id == id);
             var providers = _context.Provider.ToList();
             var types = _context.Type.ToList();
+            
             ViewBag.IdProvider = new SelectList(providers, "Id", "Name");
             ViewBag.IdType = new SelectList(types, "Id", "Name");
             return View(product);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product, IFormFile file)
+        public async Task<IActionResult> Edit(Product product,double old_price ,IFormFile file)
         {
             string image = Helpers.ExtensionHelper.UploadFile(file, "img-products");
             if (image != "error")
@@ -165,26 +166,30 @@ namespace WebMarket.Areas.Admin.Controllers
             }
 
             var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
-            var price = _context.Product.SingleOrDefault(p => p.Id == product.Id);
 
-            if (product.Price != price.Price)
+            if (product.Price != old_price)
             {
-                var updatedetail = new Priceupdate()
+                var data = _context.Priceupdate.SingleOrDefault(p => p.IdProduct == product.Id);
+                if(data != null)
                 {
-                    IdProduct = product.Id,
-                    IdAdmin = Int32.Parse(user),
-                    Price = (double)price.Price,
-                    Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
-                    DateUpdate = default,
-                    DateEnd = default,
-                };
-                _context.Update(updatedetail);
-                _context.SaveChanges();
+                    _context.Database.ExecuteSqlCommand("UPDATE [priceupdate] SET priceupdated=" + product.Price + "WHERE ID_product = " + product.Id);
+                }
+                else
+                {
+                    var updatedetail = new Priceupdate()
+                    {
+                        IdProduct = product.Id,
+                        IdAdmin = Int32.Parse(user),
+                        Price = (double)old_price,
+                        Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                        DateUpdate = default,
+                        DateEnd = default,
+                    };
+                    _context.Priceupdate.Add(updatedetail);
+                }
+                
             }
-
-
-            _context.Update(product);
-            
+            _context.Update(product); 
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

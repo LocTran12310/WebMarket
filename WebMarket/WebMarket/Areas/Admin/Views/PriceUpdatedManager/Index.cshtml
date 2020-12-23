@@ -3,61 +3,89 @@
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
+@section Styles{
+    <!-- Custom styles for this page -->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="~/js/preview.js" type="text/javascript"></script>
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Product Price Update History Tables</h6>
+    </div>
+    
+    <div class="card-body">
+        <form asp-action="PriceUpdateByProduct" method="post">
+            <label>From</label>
+            <input type="hidden" value="@ViewBag.id" />
+            <input type="date" name="dateFrom" value="@ViewBag.date1" />
+            <label>To</label>
+            <input type="date" name="dateTo" value="@ViewBag.date2"/>
+            <input type="submit" value="Filter" />
+        </form>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Ngày Cập Nhật Giá
+                        </th>
+                        <th>
+                            Ngày Cập KT
+                        </th>
+                        <th>
+                            Tên Sản Phẩm
+                        </th>
+                        <th>
+                            Giá trước khi cập nhật
+                        </th>
+                        <th>
+                            Giá sau khi cập nhật
+                        </th>
+                        <th>
+                            Tên Người Cập Nhật
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateUpdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEnd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdProductNavigation.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Priceupdated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdAdminNavigation.Name)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Ngày Cập Nhật Giá
-            </th>
-            <th>
-                Ngày Cập KT
-            </th>
-            <th>
-                Tên Sản Phẩm
-            </th>
-            <th>
-                Giá trước khi cập nhật
-            </th>
-            <th>
-                Giá sau khi cập nhật
-            </th>
-            <th>
-                Tên Người Cập Nhật
-            </th>
-            <th>
-                Button
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateUpdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdProductNavigation.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Priceupdated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAdminNavigation.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+@section Scripts{
+    <!-- Page level plugins -->
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/js/Admin/demo/datatables-demo.js"></script>
+}
+<script>
+    $('#dataTable').DataTable({
+        paging: true
+    });
+</script>
+

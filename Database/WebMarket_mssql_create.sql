@@ -309,11 +309,4 @@ INSERT INTO background(name,image,description) VALUES
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
-Insert into priceupdate (ID_product,ID_admin,price,priceupdated) VALUES(
-	1, 1, 15000, 14000
-)
-
-UPDATE priceupdate 
-SET price = 1300
-WHERE ID_product = 1 
 
