@@ -52,6 +52,9 @@
         .done(function (res)
         {
             $(".table-data").html(res)
+            $('#dataTable').DataTable({
+                paging: true
+            });
         })
     })
 </script>

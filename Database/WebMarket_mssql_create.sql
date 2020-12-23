@@ -218,7 +218,7 @@ GO
 ALTER TABLE [productdetail] CHECK CONSTRAINT [productdetail_fk0]
 GO
 
-GO
+
 ALTER TABLE [warehouse] WITH CHECK ADD CONSTRAINT [warehouse_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
 ON UPDATE CASCADE
 GO
@@ -287,7 +287,6 @@ insert into dbo.provider(name,address,phone) values
 
 
 insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
-
 (N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
 (N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
 (N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),
@@ -313,12 +312,3 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
-select * from account
-select * from customer
-DELETE FROM account;
-DELETE FROM customer;
-
-use WebMarket
-SELECT * from productdetail
-
-Select * from product

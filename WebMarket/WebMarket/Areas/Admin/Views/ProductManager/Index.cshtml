@@ -64,8 +64,6 @@
 <script>
     $(document).ready(function () {
         addselected(@ViewBag.cateId, @ViewBag.typeId);
-
-
         $(".category").change(function () {
             var val = $(this).val();
             getcate(val);
@@ -81,6 +79,7 @@
             .done(function (res)
             {
                 $(".card-body").html(res)
+                
             })
         }
         function getSelectType(val,ty) {

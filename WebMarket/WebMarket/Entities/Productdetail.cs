@@ -6,7 +6,7 @@ namespace WebMarket.Entities
     public partial class Productdetail
     {
         public int Id { get; set; }
-        public int? IdWarehouse { get; set; }
+        public int IdWarehouse { get; set; }
         public int IdProduct { get; set; }
         public int Quantity { get; set; }
         public DateTime EntryDate { get; set; }

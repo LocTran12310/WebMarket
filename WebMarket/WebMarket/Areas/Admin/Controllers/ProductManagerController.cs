@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebMarket.Entities;
 using WebMarket.Helpers;
+using Type = WebMarket.Entities.Type;
 
 namespace WebMarket.Areas.Admin.Controllers
 {
@@ -76,7 +78,7 @@ namespace WebMarket.Areas.Admin.Controllers
         
         public IActionResult selectajax(int cate = 0)
         {
-            Type t = new Type()
+            var t = new Type()
             {
                 Id = 0,
                 Name = "All Types",
@@ -90,10 +92,18 @@ namespace WebMarket.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            var newcate = new Category()
+            {
+                Id = 0,
+                Name = "All Categories",
+            };
             var providers = _context.Provider.ToList();
             var types = _context.Type.ToList();
+            var cate = _context.Category.ToList();
+            cate.Insert(0,newcate);
             ViewBag.IdProvider = new SelectList(providers, "Id", "Name");
             ViewBag.IdType = new SelectList(types, "Id", "Name");
+            ViewBag.IdCategory = new SelectList(cate, "Id", "Name");
             return View();
         }
 
@@ -117,6 +127,22 @@ namespace WebMarket.Areas.Admin.Controllers
             };
             _context.Product.Add(newproduct);
             _context.SaveChanges();
+            int lastRow = _context.Product.OrderByDescending(a => a.Id).Select(a => a.Id).First();
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+            if (product.Discount > 0)
+            {
+                var updatedetail = new Priceupdate()
+                {
+                    IdProduct = lastRow,
+                    IdAdmin = Int32.Parse(user),
+                    Price =(double) product.Price,
+                    Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                    DateUpdate = DateTime.Now,
+                };
+                _context.Priceupdate.Add(updatedetail);
+                _context.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -138,7 +164,18 @@ namespace WebMarket.Areas.Admin.Controllers
             {
                 product.Image = image;
             }
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+            var updatedetail = new Priceupdate()
+            {
+                IdProduct = product.Id,
+                IdAdmin = Int32.Parse(user),
+                Price = (double)product.Price,
+                Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                DateUpdate = DateTime.Now,
+            };
+            
             _context.Update(product);
+            _context.Add(updatedetail);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

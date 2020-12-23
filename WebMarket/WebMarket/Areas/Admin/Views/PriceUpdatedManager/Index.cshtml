@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebMarket.Entities.Priceupdate>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày Cập Nhật Giá
+            </th>
+            <th>
+                Tên Sản Phẩm
+            </th>
+            <th>
+                Giá trước khi cập nhật
+            </th>
+            <th>
+                Giá sau khi cập nhật
+            </th>
+            <th>
+                Tên Người Cập Nhật
+            </th>
+            <th>
+                Button
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProductNavigation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priceupdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAdminNavigation.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

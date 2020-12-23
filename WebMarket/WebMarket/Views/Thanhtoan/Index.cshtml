@@ -73,7 +73,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com" value="@Model.Email">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="you@example.com" value="@Model.Email">
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
@@ -81,22 +81,20 @@
 
                 <div class="mb-3">
                     <label for="address">Địa chỉ </label>
-                    <input asp-for="Address" class="form-control" id="address" placeholder="address" value="@Model.Address" required>
+                    <input asp-for="Address" class="form-control" placeholder="address" value="@Model.Address" required="">
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="address">Địa chỉ </label>
-                    <input asp-for="Phone" class="form-control" id="Phone" placeholder="Nhap so dt" value="@Model.Phone" required>
+                    <input asp-for="Phone" class="form-control"placeholder="Nhap so dt" value="@Model.Phone" required="">
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>
                 </div>
-
-
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block " type="submit">Thanh Toán</button>
+                <input class="btn btn-primary btn-lg btn-block " type="submit">Thanh Toán</input>
                 <hr class="mb-4">
             </form>
         </div>

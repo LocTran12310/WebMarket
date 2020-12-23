@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebMarket.Entities;
@@ -11,6 +12,7 @@ using WebMarket.Helpers;
 namespace WebMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoryManagerController : Controller
     {
         private WebMarketContext _context;
