@@ -129,19 +129,18 @@ namespace WebMarket.Areas.Admin.Controllers
             _context.SaveChanges();
             int lastRow = _context.Product.OrderByDescending(a => a.Id).Select(a => a.Id).First();
             var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
-            if (product.Discount > 0)
+            var updatedetail = new Priceupdate()
             {
-                var updatedetail = new Priceupdate()
-                {
-                    IdProduct = lastRow,
-                    IdAdmin = Int32.Parse(user),
-                    Price =(double) product.Price,
-                    Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
-                    DateUpdate = DateTime.Now,
-                };
-                _context.Priceupdate.Add(updatedetail);
-                _context.SaveChanges();
-            }
+                IdProduct = lastRow,
+                IdAdmin = Int32.Parse(user),
+                Price =(double) product.Price,
+                Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                DateUpdate = default,
+                DateEnd = default,
+            };
+            _context.Priceupdate.Add(updatedetail);
+
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -164,18 +163,28 @@ namespace WebMarket.Areas.Admin.Controllers
             {
                 product.Image = image;
             }
+
             var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
-            var updatedetail = new Priceupdate()
+            var price = _context.Product.SingleOrDefault(p => p.Id == product.Id);
+
+            if (product.Price != price.Price)
             {
-                IdProduct = product.Id,
-                IdAdmin = Int32.Parse(user),
-                Price = (double)product.Price,
-                Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
-                DateUpdate = DateTime.Now,
-            };
-            
+                var updatedetail = new Priceupdate()
+                {
+                    IdProduct = product.Id,
+                    IdAdmin = Int32.Parse(user),
+                    Price = (double)price.Price,
+                    Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                    DateUpdate = default,
+                    DateEnd = default,
+                };
+                _context.Update(updatedetail);
+                _context.SaveChanges();
+            }
+
+
             _context.Update(product);
-            _context.Add(updatedetail);
+            
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

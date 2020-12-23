@@ -1,12 +1,11 @@
 ﻿USE [master]
 GO
 
-DROP DATABASE [WebMarket]
+IF DB_ID('WebMarket') IS NOT NULL DROP DATABASE [WebMarket] 
 GO
-
 CREATE DATABASE [WebMarket]
 GO
-use WebMarket
+USE WebMarket
 GO
 
 
@@ -167,21 +166,18 @@ CREATE TABLE [account] (
 )
 GO
 CREATE TABLE [priceupdate] (
-	ID integer NOT NULL IDENTITY,
+	ID integer NOT NULL IDENTITY PRIMARY KEY CLUSTERED,
 	ID_product integer NOT NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
-	date_update datetime NOT NULL GENERATED ALWAYS AS ROW START,
-	date_end datetime NOT NULL GENERATED ALWAYS AS ROW END,
-	PERIOD FOR SYSTEM_TIME (date_update, date_end),
-	
-  CONSTRAINT [PK_PRICEUPDATE] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
+	priceupdated float NOT NULL,
+	date_update DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
+	date_end DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
+	PERIOD FOR SYSTEM_TIME (date_update, date_end)
 
-)WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.priceupdate));
+)WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.pricehistory, DATA_CONSISTENCY_CHECK = ON));
 GO
+
 GO
 CREATE TABLE [background](
 		ID integer NOT NULL IDENTITY,
@@ -312,3 +308,12 @@ INSERT INTO background(name,image,description) VALUES
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+
+Insert into priceupdate (ID_product,ID_admin,price,priceupdated) VALUES(
+	1, 1, 15000, 14000
+)
+
+UPDATE priceupdate 
+SET price = 1300
+WHERE ID_product = 1 
+

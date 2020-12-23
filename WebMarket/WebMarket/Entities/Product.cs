@@ -8,6 +8,7 @@ namespace WebMarket.Entities
         public Product()
         {
             Orderdetail = new HashSet<Orderdetail>();
+            Priceupdate = new HashSet<Priceupdate>();
             Productdetail = new HashSet<Productdetail>();
         }
 
@@ -26,6 +27,7 @@ namespace WebMarket.Entities
         public virtual Provider IdProviderNavigation { get; set; }
         public virtual Type IdTypeNavigation { get; set; }
         public virtual ICollection<Orderdetail> Orderdetail { get; set; }
+        public virtual ICollection<Priceupdate> Priceupdate { get; set; }
         public virtual ICollection<Productdetail> Productdetail { get; set; }
     }
 }

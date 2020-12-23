@@ -11,6 +11,9 @@
                 Ngày Cập Nhật Giá
             </th>
             <th>
+                Ngày Cập KT
+            </th>
+            <th>
                 Tên Sản Phẩm
             </th>
             <th>
@@ -33,6 +36,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEnd)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdProductNavigation.Name)

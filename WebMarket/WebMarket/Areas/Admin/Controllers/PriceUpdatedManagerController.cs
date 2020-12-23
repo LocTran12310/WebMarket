@@ -21,8 +21,11 @@ namespace WebMarket.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var priceUpdateList = _context.Priceupdate.Include(a=>a.IdAdminNavigation).Include(p=>p.IdProductNavigation);
-            return View(priceUpdateList);
+            var dateFrom = "2000-12-23 09:06:05.5026713";
+            var dateTo = "2030-12-23 09:06:05.5026713";
+            var queryables = _context.Priceupdate.FromSqlRaw("SELECT * FROM dbo.priceupdate FOR SYSTEM_TIME ALL").AsNoTracking().OrderByDescending(od=> od.DateUpdate).ToList();
+            return View(queryables);
+            
         }
     }
 }
