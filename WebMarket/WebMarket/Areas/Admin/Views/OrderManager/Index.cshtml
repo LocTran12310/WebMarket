@@ -4,14 +4,10 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    .link:hover{
-        background-color:aqua;
-        color:black;
-
-
-
+    .link:hover {
+        background-color: aqua;
+        color: black;
     }
-
 </style>
 
 <script>
@@ -24,32 +20,72 @@
                 url: '@Url.Action("Detail" , "OrderManager")',
                 data: { id: id },
                 success: function (res) {
-                    $(".details").html(res);
+                    $("#details").html(res);
                 }
             });
         });
     });
 </script>
-    <div class="container-fluid" >
+
+@section css {
+    <link href="~/css/Admin/orderDetail.css" rel="stylesheet" />
+}
+
+<script>
+    $(document).ready(function () {
+        $('.link').click(function () {
+            $('.link').removeClass("active1");
+            $(this).addClass("active1");
+        });
+    });</script>
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
         <div class="row">
-            <div class="col-md-2 order-left" style="border:1px solid black;">
-                @{
-                    foreach (var item in Model)
-                    {
-                        <div  data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:90px;width:auto;">
-                                      @item.Name
-                        </div>                      
-                        <br />
-                    }
-                }
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-size:16px;color:black;">Hóa đơn chưa xử lý</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="nav nav-pills flex-column">
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    <li class="nav-item active">
+                                    <div data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:70px">
+                                        <i class=" far fa-file-alt "></i>
+                                        <span style="font-size:13px;font-family:400">@item.Name</span>
+                                        <span class="badge bg-primary float-right">@item.OrderDate</span>
+                                    </div>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
-            <div class="col-md-10" style="border:1px solid black;">
-                <div class="details">
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card card-primary card-outline" id="">
+                    <div class="card-header">
+                        <h3 class="card-title">Chi tiết hóa đơn</h3>
+                    </div>
+                    <div class="card-body p-sm-3">
+                        <div class=" mailbox-messages">
+                                <div  id="details" >
+                                   
+                                </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
+    </section>
 
-    </div>
 
 

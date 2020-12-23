@@ -30,9 +30,12 @@ namespace WebMarket.Areas.Admin.Controllers
        
         public ActionResult Detail(int id)
         {
+
+           
             var detail = _context.Orderdetail.Include(od => od.IdOrderNavigation).Include(od => od.IdProductNavigation).Where(od=> od.IdOrder == id).ToList();
             var order = _context.Order.SingleOrDefault(o=>o.Id ==id);
             ViewBag.order = order;
+         
             return this.PartialView("_OrderPatial" , detail);
 
         }

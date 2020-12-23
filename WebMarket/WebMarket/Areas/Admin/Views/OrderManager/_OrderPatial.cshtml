@@ -1,19 +1,170 @@
 ﻿@model IEnumerable<WebMarket.Entities.Orderdetail>
 
-<div class="row">
-    <div>
-        <div>@ViewBag.order.Name</div>
-        <label>Order Date:</label>
-        <div>@ViewBag.order.OrderDate</div>
-        <label>Email:</label>
-        <div>@ViewBag.order.Email</div>
-        <label>Address:</label>
-        <div>@ViewBag.order.Address</div>
-    </div>
-</div>
-@{
-    foreach (var item in Model)
-    {
+<style>
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 1000px;
         
     }
-}
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+  
+
+    h1 {
+        margin: 0 0 0.25em;
+    }
+    /* Reset Select */
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        outline: 0;
+        box-shadow: none;
+        border: 0 !important;
+        background: #2c3e50;
+        background-image: none;
+    }
+        /* Remove IE arrow */
+        select::-ms-expand {
+            display: none;
+        }
+    /* Custom Select */
+    .select {
+        position: relative;
+        display: flex;
+        line-height: 3;
+        background: #2c3e50;
+        overflow: hidden;
+        border-radius: .25em;
+    }
+
+    select {
+        flex: 1;
+        padding: 0 .5em;
+        color: #fff;
+        cursor: pointer;
+    }
+    /* Arrow */
+    .select::after {
+        content: '\25BC';
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 1em;
+        background: #34495e;
+        cursor: pointer;
+        pointer-events: none;
+        -webkit-transition: .25s all ease;
+        -o-transition: .25s all ease;
+        transition: .25s all ease;
+    }
+    /* Transition */
+    .select:hover::after {
+        color: #f39c12;
+    }
+
+</style>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <table >
+            <tr><td><span style="color:black;">Họ tên:</span>@ViewBag.order.Name</td></tr>
+            <tr><td><span style="color:black;">Ngày Đặt:</span>@ViewBag.order.OrderDate</td></tr>
+            <tr><td><span style="color:black;">Email :</span>@ViewBag.order.Email</td></tr>
+            <tr><td><span style="color:black;">Địa chỉ:</span>@ViewBag.order.Address</td></tr>
+            <tr><td><span style="color:black;">SĐT:</span>@ViewBag.order.Phone</td></tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table >
+            <tr><td><span style="color:black;">Phương thức thanh toán :</span>@ViewBag.order.PaymentType</td></tr>
+            <tr><td><span style="color:black;">ShipCost</span>@ViewBag.order.ShipCost</td></tr>
+
+            <tr><td>
+    <span style="color:black;">Trạng Thái :</span>
+    <div class="select">
+        <select name="slct" id="slct">
+            @{
+                if (@ViewBag.order.Status == null)
+                {
+                    <option value="@ViewBag.order.Status">Chưa xử lý</option>
+                }
+            }
+
+            <option value="1">Hoàn Tất</option>
+            <option value="2">Đang giao</option>
+            <option value="3">Hủy</option>
+
+        </select>
+        </div>
+</td></tr>
+           
+        </table>
+    </div>
+
+</div>
+<hr/>-------------------
+<div class="row">
+        <table class="styled-table ">
+            <thead>
+                <tr>
+                    <td>Tên sản phẩm</td>
+                    <td>Số lượng</td>
+                    <td>Giá tiền</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdProductNavigation.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Newprice</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+            <table>
+                <tr>Tổng Tiền</tr>
+                <tr></tr>              
+            </table>
+    </div>
+</div>
+
+
