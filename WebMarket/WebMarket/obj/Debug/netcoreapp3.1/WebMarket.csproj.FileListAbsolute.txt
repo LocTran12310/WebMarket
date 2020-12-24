@@ -181,7 +181,6 @@ C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Raz
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductManager\_selectajax.cshtml.g.cs
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TypeManager\_filterajax.cshtml.g.cs
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PriceUpdatedManager\Index.cshtml.g.cs
-D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfoInputs.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfo.cs
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.RazorAssemblyInfo.cache
@@ -365,8 +364,15 @@ D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\ob
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebassets\WebMarket.StaticWebAssets.Manifest.cache
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\staticwebassets\WebMarket.StaticWebAssets.xml
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
-D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
-D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.MvcApplicationPartsAssemblyInfo.cache
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\ClosedXML.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.MvcApplicationPartsAssemblyInfo.cache
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\EPPlus.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache

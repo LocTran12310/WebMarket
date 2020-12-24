@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebMarket.Entities
 {
@@ -17,7 +16,6 @@ namespace WebMarket.Entities
         public double Price { get; set; }
         public double Priceupdated { get; set; }
         public DateTime DateUpdate { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateEnd { get; set; }
 
         public virtual Admin IdAdminNavigation { get; set; }

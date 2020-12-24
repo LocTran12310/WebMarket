@@ -50,7 +50,7 @@ CREATE TABLE [product] (
 	price float,
 	image nvarchar(100) NOT NULL,
 	description text,
-	ID_provider integer NOT NULL,
+	ID_provider integer NULL,
 	ID_type integer NOT NULL,
 	discount float NOT NULL,
 	quantity_stock integer DEFAULT 0,
@@ -107,7 +107,7 @@ CREATE TABLE [orderdetail] (
 	ID integer NOT NULL IDENTITY,
 	ID_order integer NOT NULL,
 	ID_product integer NOT NULL,
-	ID_priceupdate integer NOT NULL,
+	ID_priceupdate integer NULL,
 	quantity float NOT NULL,
 	discount float NOT NULL,
   CONSTRAINT [PK_ORDERDETAIL] PRIMARY KEY CLUSTERED
@@ -120,7 +120,7 @@ GO
 CREATE TABLE [order] (
 	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
-	ID_admin integer NOT NULL,
+	ID_admin integer NULL,
 	order_date datetime NOT NULL,
 	delivery_date datetime NOT NULL,
 	address nvarchar(255) NOT NULL,
@@ -128,8 +128,9 @@ CREATE TABLE [order] (
 	payment_type varchar(50) NOT NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
-	status integer,
+	status integer default 0,
 	note nvarchar(50),
+	total_price float,
   CONSTRAINT [PK_ORDER] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -171,8 +172,8 @@ CREATE TABLE [priceupdate] (
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
 	priceupdated float NOT NULL,
-	date_update DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
-	date_end DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
+	date_update DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+	date_end DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
 	PERIOD FOR SYSTEM_TIME (date_update, date_end)
 
 )WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.pricehistory, DATA_CONSISTENCY_CHECK = ON));
@@ -199,6 +200,7 @@ GO
 
 ALTER TABLE [product] WITH CHECK ADD CONSTRAINT [product_fk0] FOREIGN KEY ([ID_provider]) REFERENCES [provider]([ID])
 ON UPDATE CASCADE
+ON DELETE SET NULL
 GO
 ALTER TABLE [product] CHECK CONSTRAINT [product_fk0]
 GO

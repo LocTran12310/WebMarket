@@ -34,7 +34,7 @@ namespace WebMarket.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-H2E7HOP;Initial Catalog=WebMarket;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=TAITRAN\\SQLEXPRESS01;Initial Catalog=WebMarket;Integrated Security=True");
             }
         }
 
@@ -45,7 +45,7 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5727747FBAA")
+                    .HasName("UQ__account__F3DBC5722EC70E88")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -69,7 +69,7 @@ namespace WebMarket.Entities
                 entity.ToTable("admin");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admin__F3DBC5720CEF4732")
+                    .HasName("UQ__admin__F3DBC572337F48DC")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -135,7 +135,7 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__72E12F1B005B7E1D")
+                    .HasName("UQ__category__72E12F1BC7B7CC81")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -296,12 +296,8 @@ namespace WebMarket.Entities
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.DateEnd).HasColumnName("date_end");
-                entity.Property(e => e.DateEnd).HasComputedColumnSql("GENERATED ALWAYS AS ROW START");
 
                 entity.Property(e => e.DateUpdate).HasColumnName("date_update");
-                entity.Property(e => e.DateUpdate).HasDefaultValueSql("('9999-12-31 23:59:59.9999999')");
-
-                entity.Property(e => e.IdAdmin).HasColumnName("ID_admin");
 
                 entity.Property(e => e.IdAdmin).HasColumnName("ID_admin");
 
@@ -329,7 +325,7 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1B79B4DC63")
+                    .HasName("UQ__product__72E12F1B70C7100F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -419,7 +415,7 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B14908A2E")
+                    .HasName("UQ__provider__72E12F1B0405BA9F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -446,7 +442,7 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1BEDA4DD0C")
+                    .HasName("UQ__type__72E12F1BEB822255")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");

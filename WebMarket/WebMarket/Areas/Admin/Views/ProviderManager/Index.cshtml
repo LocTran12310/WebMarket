@@ -4,12 +4,40 @@
     Layout = "_Layout";
     ViewData["Title"] = "Create";
 }
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" style="font-weight: 700;">Provider</h1>
+    <a asp-action="ImportExcel" asp-controller="ProviderManager" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <img src="https://img.icons8.com/color/48/000000/export-excel.png" style="height:20px; width:20px" /> Import from Excel
+    </a>
+    <a asp-action="WriteDataToExcel" asp-controller="ProviderManager" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <img src="https://img.icons8.com/color/48/000000/export-excel.png" style="height:20px; width:20px" /> Generate Excel
+    </a>
 
-<h2>Create</h2>
+</div>
+<div style="flex">
+    <div>
+        <a asp-action="Create" class="btn btn-success btn-icon-split d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-3">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Create New</span>
+        </a>
+    </div>
+    <div>
+        <form asp-action="ImportExcel" asp-controller="ProviderManager" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Upload File:</label>
+                <input type="file" id="file" name="file" />
+                <input type="submit" value="Upload File" />
+            </div>
+        </form>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+
+
+
 <table class="table">
     <thead>
         <tr>

@@ -17,7 +17,7 @@ namespace WebMarket.Entities
         public double? Price { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public int IdProvider { get; set; }
+        public int? IdProvider { get; set; }
         public int IdType { get; set; }
         public double Discount { get; set; }
         public int? QuantityStock { get; set; }
