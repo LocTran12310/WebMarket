@@ -96,7 +96,6 @@
 <div class="row">
     <div class="col-md-6">
         <table >
-
             <tr><td><span style="color:black;">Họ tên:</span>@ViewBag.order.Name</td></tr>
             <tr><td><span style="color:black;">Ngày Đặt:</span>@ViewBag.order.OrderDate</td></tr>
             <tr><td><span style="color:black;">Email :</span>@ViewBag.order.Email</td></tr>
@@ -110,18 +109,20 @@
             <tr><td><span style="color:black;">ShipCost</span>@ViewBag.order.ShipCost</td></tr>
 
             <tr><td>
+
     <span style="color:black;">Trạng Thái :</span>
-    <div class="select">
-        <form method="post" asp-action="Status" asp-controller="OrderManager" >
-            <select name="slct" id="slct" >
+    <form method="post" asp-action="StatusChange" asp-controller="OrderManager">
+        <input type="hidden" name="Id_order" value="@ViewBag.order.Id"/>
+        <div class="select">
+            <select name="status_order" >
                 <option value="0">Chưa xử lý</option>
                 <option value="1">Hoàn Tất</option>
                 <option value="2">Đang giao</option>
                 <option value="3">Hủy</option>
             </select>
-                <button type="submit"  class="btn-primary"></button>
-        </form>
-</div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Change Status"></input>
+    </form>
 </td></tr>
            
         </table>
@@ -167,3 +168,6 @@
 </div>
 
 
+<script>
+    $('.status_order  option[value="@ViewBag.order.Status"]').css("display", "none");
+</script>

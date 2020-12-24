@@ -130,7 +130,7 @@ CREATE TABLE [order] (
 	payment_type varchar(50) NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
-	status integer,
+	status integer default 0,
 	note nvarchar(50),
   CONSTRAINT [PK_ORDER] PRIMARY KEY CLUSTERED
   (
@@ -139,6 +139,7 @@ CREATE TABLE [order] (
 
 )
 GO
+
 CREATE TABLE [customer] (
 	ID integer NOT NULL ,
 	name nvarchar(50) NOT NULL,
@@ -182,6 +183,7 @@ CREATE TABLE [priceupdate] (
 
 )
 GO
+
 CREATE TABLE [background](
 		ID integer NOT NULL IDENTITY,
 		name varchar(50),
@@ -312,4 +314,4 @@ INSERT INTO background(name,image,description) VALUES
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
-select * from product
+select * from [order]
