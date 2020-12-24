@@ -51,7 +51,7 @@ CREATE TABLE [product] (
 	price float,
 	image nvarchar(100) NOT NULL,
 	description text,
-	ID_provider integer NOT NULL,
+	ID_provider integer NULL,
 	ID_type integer NOT NULL,
 	discount float NOT NULL,
 	quantity_stock integer DEFAULT 0,
@@ -122,7 +122,7 @@ GO
 CREATE TABLE [order] (
 	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
-	ID_admin integer ,
+	ID_admin integer NULL,
 	order_date datetime NOT NULL,
 	delivery_date datetime NULL,
 	address nvarchar(255) NOT NULL,
@@ -204,6 +204,7 @@ GO
 
 ALTER TABLE [product] WITH CHECK ADD CONSTRAINT [product_fk0] FOREIGN KEY ([ID_provider]) REFERENCES [provider]([ID])
 ON UPDATE CASCADE
+ON DELETE SET NULL
 GO
 ALTER TABLE [product] CHECK CONSTRAINT [product_fk0]
 GO
