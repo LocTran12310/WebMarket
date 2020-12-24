@@ -615,7 +615,6 @@ D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win-
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfoInputs.cache
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.AssemblyInfo.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csproj.CoreCompileInputs.cache
@@ -676,3 +675,13 @@ D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.gen
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Thanhtoan\Index.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\OrderManager\Index.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\OrderManager\_OrderPatial.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\BannerManager\Create.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\BannerManager\Edit.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\BannerManager\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PriceUpdatedManager\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductDetail\Edit.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductDetail\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductManager\_filterajax.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductManager\_selectajax.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TypeManager\_filterajax.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache

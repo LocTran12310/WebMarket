@@ -8,6 +8,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Entities\" />
     <Folder Include="wwwroot\images\img-customer\" />
+    <Folder Include="wwwroot\images\img-banner\" />
   </ItemGroup>
 
   <ItemGroup>

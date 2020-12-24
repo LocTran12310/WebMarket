@@ -1,6 +1,6 @@
 ﻿this.imagePreview = function () {
     /* CONFIG */
-    xOffset = 150;
+    xOffset = 300;
     yOffset = 30;
     // these 2 variable determine popup's distance from the cursor
     // you might want to adjust to get the right result
@@ -10,7 +10,7 @@
         this.t = this.title;
         this.title = "";
         var c = (this.t != "") ? "<br/>" + this.t : "";
-        $(".container-fluid").append("<p id='preview'><img src='" + this.src + "' alt='Image preview' />" + c + "</p>");
+        $(".container-fluid").append("<p id='preview'><img src='" + this.src + "' alt='Image preview' width='250px' height='250px'/>" + c + "</p>");
         $("#preview")
             .css("top", (e.pageY - xOffset) + "px")
             .css("left", (e.pageX + yOffset) + "px")

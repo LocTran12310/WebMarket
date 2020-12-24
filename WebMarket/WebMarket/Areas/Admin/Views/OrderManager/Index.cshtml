@@ -14,7 +14,7 @@
     $(document).ready(function () {
         $(".link").click(function () {
             var id = $(this).attr("data-id");
-            console.log(id);
+            //console.log(id);
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Detail" , "OrderManager")',
@@ -54,11 +54,13 @@
                                 foreach (var item in Model)
                                 {
                                     <li class="nav-item active">
-                                    <div data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:70px">
-                                        <i class=" far fa-file-alt "></i>
-                                        <span style="font-size:13px;font-family:400">@item.Name</span>
-                                        <span class="badge bg-primary float-right">@item.OrderDate</span>
-                                    </div>
+                                        <div data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:70px">
+                                            <i class=" far fa-file-alt "style=" font-size: 22px;"></i>
+                                            <span style="font-size:20px;font-family:400">@item.Name</span>
+                                            <span class="badge  float-right">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</span>
+                                          
+                                            <i class="badge float-right">@item.Status</i>
+                                        </div>
                                     </li>
 
                                 }
@@ -74,6 +76,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Chi tiết hóa đơn</h3>
                     </div>
+
                     <div class="card-body p-sm-3">
                         <div class=" mailbox-messages">
                                 <div  id="details" >

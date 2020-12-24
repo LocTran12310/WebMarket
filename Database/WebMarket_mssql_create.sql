@@ -53,6 +53,8 @@ CREATE TABLE [product] (
 	ID_provider integer NOT NULL,
 	ID_type integer NOT NULL,
 	discount float NOT NULL,
+	quantity_stock integer,
+	quantity_sold integer
   CONSTRAINT [PK_PRODUCT] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -170,8 +172,9 @@ CREATE TABLE [priceupdate] (
 	ID_product integer NOT NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
+	priceupdated float NOT NULL,
 	date_update datetime NOT NULL,
-	date_end datetime NOT NULL,
+	date_end datetime ,
   CONSTRAINT [PK_PRICEUPDATE] PRIMARY KEY CLUSTERED
   (
   [ID] ASC

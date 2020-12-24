@@ -29,17 +29,21 @@ namespace WebMarket.Controllers
 
         public IActionResult Index()
         {
-            int data = HttpContext.Session.Get<int>("KhachHang");
-            if (data == null )
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+            var role = @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
+            ViewBag.role = role;
+            if (user == null || role !="Customer")
             {
-                return View("Login");
+                var admin = _context.Admin.Find(Int32.Parse(user));
+                return View(admin);
             }
-            var customer = _context.Customer.Find(data);
+            var customer = _context.Customer.Find(Int32.Parse(user));
             return View(customer);
         }
 
         public IActionResult Login()
         {
+           
             ViewBag.Status = TempData["Message"];
             return View();
         }
@@ -59,7 +63,7 @@ namespace WebMarket.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Remove("KhachHang");
+            
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
@@ -163,7 +167,17 @@ namespace WebMarket.Controllers
                 return RedirectToAction("Login");
             }
             var customer = _context.Customer.SingleOrDefault(c => c.Id == account.Id);
-            HttpContext.Session.Set("KhachHang", customer.Id);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name,customer.Name),
+                new Claim(ClaimTypes.Email, customer.Email),
+                new Claim("Ma", customer.Id.ToString()),
+                new Claim(ClaimTypes.Role, "Customer"),
+            };
+            var userIdentity = new ClaimsIdentity(claims, "login");
+            // create principal
+            var principal = new ClaimsPrincipal(userIdentity);
+            await HttpContext.SignInAsync(principal);
             return RedirectToAction("Index");
         }
 

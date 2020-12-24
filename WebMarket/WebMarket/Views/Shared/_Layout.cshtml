@@ -50,8 +50,10 @@
             </div>
             <div class="agile-login">
                 @{
-                    var customer = Context.Session.Get<int>("KhachHang");
-                    if (customer == 0)
+                    var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma");
+                    string id = (user == null ? string.Empty : user.Value);
+                    
+                    if (id == "" )
                     {
                         <ul>
                             <li><a href="~/Customer/Register"> Create Account </a></li>

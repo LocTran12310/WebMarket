@@ -21,7 +21,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdCategory" class="control-label"></label>
-                <select asp-for="IdCategory" class="form-control" asp-items="ViewBag.IdCategory"></select>
+                <div style="display:flex">
+                    <select asp-for="IdCategory" class="form-control" asp-items="ViewBag.IdCategory" required></select>
+                    <a href="~/Admin/CategoryManager" target="_blank" style="margin-left: 20px; margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
                 <span asp-validation-for="IdCategory" class="text-danger"></span>
             </div>
             <div class="form-group">

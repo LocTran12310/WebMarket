@@ -24,6 +24,7 @@ namespace WebMarket.Entities
         public double? ShipCost { get; set; }
         public int? Status { get; set; }
         public string Note { get; set; }
+        public double? TotalPrice { get; set; }
 
         public virtual Admin IdAdminNavigation { get; set; }
         public virtual Customer IdCustomerNavigation { get; set; }

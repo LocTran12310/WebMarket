@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebMarket.Entities;
@@ -11,6 +12,7 @@ using WebMarket.Helpers;
 namespace WebMarket.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoryManagerController : Controller
     {
         private WebMarketContext _context;
@@ -66,7 +68,17 @@ namespace WebMarket.Areas.Admin.Controllers
         }
         public IActionResult Delete(int id)
         {
+            var products = (from product in _context.Product
+                           join type in _context.Type
+                           on product.IdType equals type.Id
+                           join cate in _context.Category
+                           on type.IdCategory equals cate.Id
+                           where cate.Id == id
+                           select product).ToList();
+            var types = _context.Type.Where(t => t.IdCategory == id).ToList();
             var category = _context.Category.SingleOrDefault(c => c.Id == id);
+            _context.Product.RemoveRange(products);
+            _context.Type.RemoveRange(types);
             _context.Category.Remove(category);
             _context.SaveChanges();
             return RedirectToAction("Index");

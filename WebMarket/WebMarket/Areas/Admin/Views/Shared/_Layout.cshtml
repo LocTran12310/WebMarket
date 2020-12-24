@@ -19,6 +19,7 @@
     <!-- Custom styles for this template-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link href="~/css/Admin/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     @RenderSection("Styles", false)
 </head>
 
@@ -93,6 +94,20 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Banner -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","BannerManager")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản lý Banner</span>
+                </a>
+            </li>
+            <!-- Nav Item - Warehouse -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","PriceUpdatedManager")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản lý cập nhật giá bán</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 

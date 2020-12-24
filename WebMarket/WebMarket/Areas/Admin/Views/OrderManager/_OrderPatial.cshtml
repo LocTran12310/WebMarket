@@ -96,6 +96,7 @@
 <div class="row">
     <div class="col-md-6">
         <table >
+
             <tr><td><span style="color:black;">Họ tên:</span>@ViewBag.order.Name</td></tr>
             <tr><td><span style="color:black;">Ngày Đặt:</span>@ViewBag.order.OrderDate</td></tr>
             <tr><td><span style="color:black;">Email :</span>@ViewBag.order.Email</td></tr>
@@ -111,20 +112,16 @@
             <tr><td>
     <span style="color:black;">Trạng Thái :</span>
     <div class="select">
-        <select name="slct" id="slct">
-            @{
-                if (@ViewBag.order.Status == null)
-                {
-                    <option value="@ViewBag.order.Status">Chưa xử lý</option>
-                }
-            }
-
-            <option value="1">Hoàn Tất</option>
-            <option value="2">Đang giao</option>
-            <option value="3">Hủy</option>
-
-        </select>
-        </div>
+        <form method="post" asp-action="Status" asp-controller="OrderManager" >
+            <select name="slct" id="slct" >
+                <option value="0">Chưa xử lý</option>
+                <option value="1">Hoàn Tất</option>
+                <option value="2">Đang giao</option>
+                <option value="3">Hủy</option>
+            </select>
+                <button type="submit"  class="btn-primary"></button>
+        </form>
+</div>
 </td></tr>
            
         </table>
@@ -136,6 +133,7 @@
         <table class="styled-table ">
             <thead>
                 <tr>
+                    <td>Hình ảnh</td>
                     <td>Tên sản phẩm</td>
                     <td>Số lượng</td>
                     <td>Giá tiền</td>
@@ -147,6 +145,7 @@
                     foreach (var item in Model)
                     {
                         <tr>
+                            <td><img src="~/images/img-products/@item.IdProductNavigation.Image" style="display:block;max-height:90px;max-width:90px;width:auto;height:auto;" /></td>
                             <td>@item.IdProductNavigation.Name</td>
                             <td>@item.Quantity</td>
                             <td>@item.Newprice</td>
@@ -158,11 +157,11 @@
         </table>
     </div>
 <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-8">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
             <table>
-                <tr>Tổng Tiền</tr>
-                <tr></tr>              
+                <tr>Tổng Tiền :</tr>
+                <tr>@ViewBag.order.TotalPrice</tr>              
             </table>
     </div>
 </div>

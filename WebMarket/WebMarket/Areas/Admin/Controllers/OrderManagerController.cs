@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebMarket.Entities;
 using WebMarket.Helpers;
@@ -30,14 +31,25 @@ namespace WebMarket.Areas.Admin.Controllers
        
         public ActionResult Detail(int id)
         {
-
-           
+         
+      
             var detail = _context.Orderdetail.Include(od => od.IdOrderNavigation).Include(od => od.IdProductNavigation).Where(od=> od.IdOrder == id).ToList();
             var order = _context.Order.SingleOrDefault(o=>o.Id ==id);
+           
             ViewBag.order = order;
-         
+
             return this.PartialView("_OrderPatial" , detail);
 
         }
+       
+           public IActionResult Status()
+        {
+                Order ord = new Order();
+                ord.Status = 1;
+                _context.Update(ord);
+                _context.SaveChanges();
+                return RedirectToAction("Status", "OrderManager");
+        }
+
     }
 }

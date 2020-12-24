@@ -22,7 +22,7 @@ namespace WebMarket.Controllers
         public IActionResult Index()
         {
 
-            int customer = HttpContext.Session.Get<int>("KhachHang");
+            int customer = Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
             var cart=HttpContext.Session.Get<List<CartItem>>("GioHang");
             if (cart != null)
             {
@@ -42,10 +42,11 @@ namespace WebMarket.Controllers
         [HttpPost]
         public IActionResult Pay(Customer customer)
         {
-            int id = HttpContext.Session.Get<int>("KhachHang");
+            int id =Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
             var cart = HttpContext.Session.Get<List<CartItem>>("GioHang");
+            double? TongTien = cart.Sum(p => p.TotalPrice);
+        
 
-            
             Order ord = new Order();
             ord.Name = customer.Name;
             ord.Address = customer.Address;
@@ -54,13 +55,16 @@ namespace WebMarket.Controllers
             ord.IdCustomer = id;
             ord.Email = customer.Email;
             ord.Phone = customer.Phone;
+            ord.TotalPrice = TongTien;
             _context.Order.Add(ord);
             _context.SaveChanges();
 
             int lastOrder = _context.Order.OrderByDescending(a => a.Id).Select(a => a.Id).First();
             List<Orderdetail> lorderdetail = new List<Orderdetail>();
+            
             foreach (var item in cart)
             {
+                //var priceupdated = _context.Priceupdate.Where(p => p.IdProduct == item.Id).LastOrDefault();
                 var orderdetail = new Orderdetail
                 {
                     IdOrder = lastOrder,
@@ -68,8 +72,10 @@ namespace WebMarket.Controllers
                     Quantity = item.Quantity,
                     Discount = item.Discount,
                     Newprice = item.NewPrice,
+                    
                 };
                 _context.Orderdetail.Add(orderdetail);
+
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Cart");

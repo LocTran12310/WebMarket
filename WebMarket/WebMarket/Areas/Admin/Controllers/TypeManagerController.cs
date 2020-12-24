@@ -19,7 +19,7 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string category="0")
+        public IActionResult Index()
         {
             var cate = _context.Category.ToList();
             
@@ -27,25 +27,23 @@ namespace WebMarket.Areas.Admin.Controllers
             {
                 Id = 0,
                 Name = "All Type",
+          
             };
             cate.Insert(0, s);
             ViewBag.IdCategory = new SelectList(cate, "Id", "Name");
-            ViewBag.val = category;
-            if (category != "0")
-            {
-                
-                var types = _context.Type
-                    .Include(c => c.IdCategoryNavigation)
-                    .Where(t => t.IdCategory == Int32.Parse(category));
-                return View(types);
-            }
-            else
-            {
-                var types = _context.Type.Include(c => c.IdCategoryNavigation).AsNoTracking();
-                return View(types);
-            }
+            var types = _context.Type
+                .Include(c => c.IdCategoryNavigation);
+           
+            return View(types);
+            
         }
-
+        public IActionResult filterajax(int cate=0)
+        {
+            var types = _context.Type
+                   .Include(c => c.IdCategoryNavigation)
+                   .Where(t => t.IdCategory == cate);   
+            return PartialView("_filterajax", types);
+        }
         [HttpGet]
         public IActionResult Create()
         {
@@ -83,7 +81,9 @@ namespace WebMarket.Areas.Admin.Controllers
         }
         public IActionResult Delete(int id)
         {
+            var products = _context.Product.Where(p=>p.IdType==id).ToList();
             var type = _context.Type.SingleOrDefault(c => c.Id == id);
+            _context.Product.RemoveRange(products);
             _context.Type.Remove(type);
             _context.SaveChanges();
             return RedirectToAction("Index");
