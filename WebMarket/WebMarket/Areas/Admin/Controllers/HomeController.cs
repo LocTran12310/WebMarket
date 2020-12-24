@@ -36,7 +36,7 @@ namespace WebMarket.Areas.Admin.Controllers
         [AllowAnonymous, HttpPost("Admin/Login")]
         public async Task<IActionResult> Login(AccountVM acc)
         {
-            var AdminInfor = _context.Admin.SingleOrDefault(a => a.Username == acc.UserName && a.Password == acc.PassWord);
+            var AdminInfor = _context.Admininfo.SingleOrDefault(a => a.Username == acc.UserName && a.Password == acc.PassWord);
             if (AdminInfor == null)
             {
                 ViewBag.Error = "Account not exsit";

@@ -26,24 +26,27 @@ namespace WebMarket.Areas.Admin.Controllers
             var order = _context.Order.Where(p=>p.Status ==status).ToList();
             return View(order);
         }
+
         [HttpPost]
-       
         public ActionResult Detail(int id)
         {
-            var detail = _context.Orderdetail.Include(od => od.IdOrderNavigation).Include(od => od.IdProductNavigation).Where(od=> od.IdOrder == id).ToList();
-            var order = _context.Order.SingleOrDefault(o=>o.Id ==id);
-            ViewBag.order = order;
-            return this.PartialView("_OrderPatial" , detail);
+            var detail = _context.Orderdetail.Include(ord => ord.IdOrderNavigation).Include(pro => pro.IdProductNavigation).Where(p => p.IdOrder == id).ToList();
+            ViewBag.order = _context.Order.Include(ord => ord.IdCustomerNavigation).Where(p => p.Id == id).SingleOrDefault();
+            return PartialView("_OrderPatial", detail);
 
         }
 
        [HttpPost]
            public IActionResult StatusChange(int Id_order,int status_order )
         {
+       
             var order = _context.Order.SingleOrDefault(od=>od.Id==Id_order);
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+            order.IdAdmin = Int32.Parse(user);
             order.Status = status_order;
             _context.Update(order);
             _context.SaveChanges();
+            ViewBag.Id_ord = status_order;
             return RedirectToAction("Index");
         }
 

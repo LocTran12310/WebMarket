@@ -8,17 +8,19 @@
         font-size: 0.9em;
         font-family: sans-serif;
         min-width: 1000px;
-        
     }
+
         .styled-table thead tr {
             background-color: #009879;
             color: #ffffff;
             text-align: left;
         }
+
         .styled-table th,
         .styled-table td {
             padding: 12px 15px;
         }
+
         .styled-table tbody tr {
             border-bottom: 1px solid #dddddd;
         }
@@ -30,11 +32,12 @@
             .styled-table tbody tr:last-of-type {
                 border-bottom: 2px solid #009879;
             }
+
             .styled-table tbody tr.active-row {
                 font-weight: bold;
                 color: #009879;
             }
-  
+
 
     h1 {
         margin: 0 0 0.25em;
@@ -89,81 +92,83 @@
     .select:hover::after {
         color: #f39c12;
     }
-
 </style>
+
+
 
 
 <div class="row">
     <div class="col-md-6">
-        <table >
+        <table>
             <tr><td><span style="color:black;">Họ tên:</span>@ViewBag.order.Name</td></tr>
             <tr><td><span style="color:black;">Ngày Đặt:</span>@ViewBag.order.OrderDate</td></tr>
-            <tr><td><span style="color:black;">Email :</span>@ViewBag.order.Email</td></tr>
             <tr><td><span style="color:black;">Địa chỉ:</span>@ViewBag.order.Address</td></tr>
             <tr><td><span style="color:black;">SĐT:</span>@ViewBag.order.Phone</td></tr>
         </table>
     </div>
     <div class="col-md-6">
-        <table >
+        <table>
             <tr><td><span style="color:black;">Phương thức thanh toán :</span>@ViewBag.order.PaymentType</td></tr>
             <tr><td><span style="color:black;">ShipCost</span>@ViewBag.order.ShipCost</td></tr>
 
-            <tr><td>
+            <tr>
+                <td>
 
-    <span style="color:black;">Trạng Thái :</span>
-    <form method="post" asp-action="StatusChange" asp-controller="OrderManager">
-        <input type="hidden" name="Id_order" value="@ViewBag.order.Id"/>
-        <div class="select">
-            <select name="status_order" >
-                <option value="0">Chưa xử lý</option>
-                <option value="1">Hoàn Tất</option>
-                <option value="2">Đang giao</option>
-                <option value="3">Hủy</option>
-            </select>
-        </div>
-        <input type="submit" class="btn btn-primary" value="Change Status"></input>
-    </form>
-</td></tr>
-           
+                    <span style="color:black;">Trạng Thái :</span>
+                    <form method="post" asp-action="StatusChange" asp-controller="OrderManager">
+                        <input type="hidden" name="Id_order" value="@ViewBag.order.Id" />
+                        <div class="select">
+                            <select name="status_order">
+                                    <option value="0">Chưa xử lý</option>
+                                    <option value="1">xác nhận </option>
+                                    <option value="2">Đang giao</option>
+                                    <option value="3">Hoàn Tất</option>
+                             </select>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Change Status"></input>
+                    </form>
+                </td>
+            </tr>
+
         </table>
     </div>
 
 </div>
-<hr/>-------------------
+<hr />-------------------
 <div class="row">
-        <table class="styled-table ">
-            <thead>
-                <tr>
-                    <td>Hình ảnh</td>
-                    <td>Tên sản phẩm</td>
-                    <td>Số lượng</td>
-                    <td>Giá tiền</td>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="styled-table ">
+        <thead>
+            <tr>
+                <td>Hình ảnh</td>
+                <td>Tên sản phẩm</td>
+                <td>Số lượng</td>
+                <td>Giá tiền</td>
+            </tr>
+        </thead>
+        <tbody>
 
-                @{
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td><img src="~/images/img-products/@item.IdProductNavigation.Image" style="display:block;max-height:90px;max-width:90px;width:auto;height:auto;" /></td>
-                            <td>@item.IdProductNavigation.Name</td>
-                            <td>@item.Quantity</td>
-                            <td>@item.Newprice</td>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td><img src="~/images/img-products/@item.IdProductNavigation.Image" style="display:block;max-height:90px;max-width:90px;width:auto;height:auto;" /></td>
+                        <td>@item.IdProductNavigation.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Newprice</td>
 
-                        </tr>
-                    }
+                    </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 <div class="row">
     <div class="col-md-8"></div>
     <div class="col-md-4">
-            <table>
-                <tr>Tổng Tiền :</tr>
-                <tr>@ViewBag.order.TotalPrice</tr>              
-            </table>
+        <table>
+            <tr>Tổng Tiền :</tr>
+            <tr>@ViewBag.order.TotalPrice</tr>
+        </table>
     </div>
 </div>
 

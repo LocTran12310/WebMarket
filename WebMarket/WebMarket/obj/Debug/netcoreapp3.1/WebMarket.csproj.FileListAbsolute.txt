@@ -684,3 +684,10 @@ D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\A
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductManager\_filterajax.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ProductManager\_selectajax.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TypeManager\_filterajax.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminManager\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminManager\Create.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminManager\Edit.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Edit.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Create.cshtml.g.cs

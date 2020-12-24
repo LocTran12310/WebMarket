@@ -3,41 +3,24 @@
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
-<style>
-    .link:hover {
-        background-color: aqua;
-        color: black;
-    }
-</style>
 
-<script>
-    $(document).ready(function () {
-        $(".link").click(function () {
-            var id = $(this).attr("data-id");
-            //console.log(id);
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Detail" , "OrderManager")',
-                data: { id: id },
-                success: function (res) {
-                    $("#details").html(res);
-                }
-            });
-        });
-    });
-</script>
+
+
 
 @section css {
     <link href="~/css/Admin/orderDetail.css" rel="stylesheet" />
+    <style>
+        .link-order:hover {
+            background-color: aqua;
+            color: black;
+        }
+        a {
+            text-decoration: none!important;
+        }
+    </style>
 }
 
-<script>
-    $(document).ready(function () {
-        $('.link').click(function () {
-            $('.link').removeClass("active1");
-            $(this).addClass("active1");
-        });
-    });</script>
+
 <div class="content-wrapper">
 
     <!-- Main content -->
@@ -54,12 +37,13 @@
                                 foreach (var item in Model)
                                 {
                                     <li class="nav-item active">
-                                        <div data-id="@item.Id" class="link list-group-item-action" style="text-decoration:none;height:70px">
-                                            <i class=" far fa-file-alt "style=" font-size: 22px;"></i>
+                                        <div data-id="@item.Id" class="link-order list-group-item-action" style="text-decoration:none;height:70px">
+                                            <i class=" far fa-file-alt " style=" font-size: 22px;"></i>
                                             <span style="font-size:20px;font-family:400">@item.Name</span>
                                             <span class="badge  float-right">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</span>
-                                          
+
                                             <i class="badge float-right">@item.Status</i>
+                                          
                                         </div>
                                     </li>
 
@@ -79,9 +63,9 @@
 
                     <div class="card-body p-sm-3">
                         <div class=" mailbox-messages">
-                                <div  id="details" >
-                                   
-                                </div>
+                            <div id="details">
+
+                            </div>
                         </div>
                     </div>
 
@@ -89,6 +73,30 @@
             </div>
         </div>
     </section>
+
+    @section Scripts{
+        <!-- Page level plugins -->
+       
+        <script>
+        $(document).ready(function () {
+            $('.link-order').click(function () {
+                $('.link-order').removeClass("active1");
+                $(this).addClass("active1");
+                var id = $(this).attr("data-id");
+            //console.log(id);
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Detail" , "OrderManager")',
+                    data: { id: id },
+                    success: function (res) {
+                        $("#details").html(res);
+                    }
+                });
+            });
+         });
+
+        </script>
+    }
 
 
 

@@ -18,7 +18,6 @@ namespace WebMarket.Entities
         public string Address { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public string Email { get; set; }
         public string PaymentType { get; set; }
         public string ShippingType { get; set; }
         public double? ShipCost { get; set; }
@@ -26,7 +25,7 @@ namespace WebMarket.Entities
         public string Note { get; set; }
         public double? TotalPrice { get; set; }
 
-        public virtual Admin IdAdminNavigation { get; set; }
+        public virtual Admininfo IdAdminNavigation { get; set; }
         public virtual Customer IdCustomerNavigation { get; set; }
         public virtual ICollection<Orderdetail> Orderdetail { get; set; }
     }

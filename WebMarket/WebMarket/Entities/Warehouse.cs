@@ -8,6 +8,6 @@ namespace WebMarket.Entities
         public int Id { get; set; }
         public int IdAdmin { get; set; }
 
-        public virtual Admin IdAdminNavigation { get; set; }
+        public virtual Admininfo IdAdminNavigation { get; set; }
     }
 }

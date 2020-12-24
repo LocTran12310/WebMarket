@@ -53,26 +53,22 @@ namespace WebMarket.Controllers
             ord.OrderDate = DateTime.Now;
             ord.IdAdmin = 1;
             ord.IdCustomer = id;
-            ord.Email = customer.Email;
             ord.Phone = customer.Phone;
             ord.TotalPrice = TongTien;
             _context.Order.Add(ord);
             _context.SaveChanges();
 
-            int lastOrder = _context.Order.OrderByDescending(a => a.Id).Select(a => a.Id).First();
-            List<Orderdetail> lorderdetail = new List<Orderdetail>();
+            int lastOrder = _context.Order.OrderByDescending(a => a.Id).Select(a => a.Id).First(); 
             
             foreach (var item in cart)
-            {
-                //var priceupdated = _context.Priceupdate.Where(p => p.IdProduct == item.Id).LastOrDefault();
+            {  
                 var orderdetail = new Orderdetail
                 {
                     IdOrder = lastOrder,
                     IdProduct = item.Id,
                     Quantity = item.Quantity,
                     Discount = item.Discount,
-                    Newprice = item.NewPrice,
-                    
+                    Newprice = item.NewPrice
                 };
                 _context.Orderdetail.Add(orderdetail);
 

@@ -34,7 +34,7 @@ namespace WebMarket.Controllers
             ViewBag.role = role;
             if (user == null || role !="Customer")
             {
-                var admin = _context.Admin.Find(Int32.Parse(user));
+                var admin = _context.Admininfo.Find(Int32.Parse(user));
                 return View(admin);
             }
             var customer = _context.Customer.Find(Int32.Parse(user));

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace WebMarket.Entities
 {
-    public partial class Admin
+    public partial class Admininfo
     {
-        public Admin()
+        public Admininfo()
         {
             Order = new HashSet<Order>();
             Priceupdate = new HashSet<Priceupdate>();

@@ -22,6 +22,7 @@ namespace WebMarket.Entities
         public double Discount { get; set; }
         public int? QuantityStock { get; set; }
         public int? QuantitySold { get; set; }
+        public string Status { get; set; }
 
         public virtual Provider IdProviderNavigation { get; set; }
         public virtual Type IdTypeNavigation { get; set; }

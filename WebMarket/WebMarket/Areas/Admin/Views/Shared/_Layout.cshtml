@@ -63,11 +63,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Quản lý Hóa đơn</span>
+                    <span>Quản lý hóa đơn</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Hóa Đơn mua hàng</h6>
+                        <h6 class="collapse-header">Hóa đơn mua hàng</h6>
                         <a class="collapse-item" href="@Url.Action("Index","OrderManager",new { status=0})">Hóa Đơn chưa xác nhận</a>
                         <a class="collapse-item" href="@Url.Action("Index","OrderManager",new { status=1})">Hóa Đơn đã xác nhận</a>
                         <a class="collapse-item" href="@Url.Action("Index","OrderManager",new { status=2})">Hóa đơn đang giao</a>
@@ -91,6 +91,21 @@
                         <a class="collapse-item" href="@Url.Action("Index","TypeManager")">Type Products</a>
                         <a class="collapse-item" href="@Url.Action("Index","CategoryManager")">Category</a>
                         <a class="collapse-item" href="@Url.Action("Index","ProviderManager")">Provider</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Order Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Quản lý tài khoản</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Tài khoản</h6>
+                        <a class="collapse-item" href="@Url.Action("Index","AdminManager")">Tài khoản nhân viên</a>
+                        <a class="collapse-item" href="@Url.Action("Index","CustomerManager")">Tài khoản khách hàng</a>
                     </div>
                 </div>
             </li>
@@ -432,7 +447,7 @@
 <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="~/js/sb-admin-2.min.js"></script>
+<script src="~/js/Admin/sb-admin-2.min.js"></script>
 @RenderSection("Scripts", false)
 <!-- Code injected by live-server -->
 <script type="text/javascript">

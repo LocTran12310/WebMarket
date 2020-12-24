@@ -2,12 +2,13 @@
 USE [master]
 GO
 
-DROP DATABASE [WebMarket]
+IF DB_ID('WebMarket') IS NOT NULL DROP DATABASE [WebMarket] 
 GO
 CREATE DATABASE [WebMarket]
 GO
-use WebMarket
+USE WebMarket
 GO
+
 
 CREATE TABLE [category] (
 	ID integer NOT NULL IDENTITY,
@@ -53,8 +54,9 @@ CREATE TABLE [product] (
 	ID_provider integer NOT NULL,
 	ID_type integer NOT NULL,
 	discount float NOT NULL,
-	quantity_stock integer,
-	quantity_sold integer
+	quantity_stock integer DEFAULT 0,
+	quantity_sold integer DEFAULT 0,
+	status nvarchar(10) NOT NULL CHECK (status IN('Disable', 'Visible')) DEFAULT 'Visible',
   CONSTRAINT [PK_PRODUCT] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -64,12 +66,12 @@ CREATE TABLE [product] (
 GO
 CREATE TABLE [productdetail] (
 	ID integer NOT NULL IDENTITY,
-	ID_warehouse integer NOT NULL,
+	ID_warehouse integer,
 	ID_product integer NOT NULL,
 	quantity integer NOT NULL,
-	entry_date datetime NOT NULL,
-	MFG datetime NOT NULL,
-	EXP datetime NOT NULL,
+	entry_date DATETIME NOT NULL,
+	MFG DATE NOT NULL,
+	EXP DATE NOT NULL,
   CONSTRAINT [PK_PRODUCTDETAIL] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -87,7 +89,7 @@ CREATE TABLE [warehouse] (
 
 )
 GO
-CREATE TABLE [admin] (
+CREATE TABLE [admininfo] (
 	ID integer NOT NULL IDENTITY,
 	username varchar(50) NOT NULL UNIQUE,
 	password varchar(50) NOT NULL,
@@ -106,10 +108,10 @@ CREATE TABLE [orderdetail] (
 	ID integer NOT NULL IDENTITY,
 	ID_order integer NOT NULL,
 	ID_product integer NOT NULL,
-	ID_priceupdate integer NOT NULL,
+	ID_priceupdate integer,
 	quantity float NOT NULL,
 	discount float NOT NULL,
-	newprice float NULL,
+	newprice float,
   CONSTRAINT [PK_ORDERDETAIL] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -120,18 +122,19 @@ GO
 CREATE TABLE [order] (
 	ID integer NOT NULL IDENTITY,
 	ID_customer integer NOT NULL,
-	ID_admin integer NULL,
+	ID_admin integer ,
 	order_date datetime NOT NULL,
-	delivery_date datetime,
+	delivery_date datetime NULL,
 	address nvarchar(255) NOT NULL,
-	name nvarchar(50) NOT NULL,
-	phone nvarchar(11) NOT NULL,
-	email nvarchar(50) NULL,
+	name nvarchar(50),
+	phone varchar(11),
 	payment_type varchar(50) NULL,
 	shipping_type varchar(50),
 	ship_cost float(50),
 	status integer default 0,
 	note nvarchar(50),
+	total_price float,
+	
   CONSTRAINT [PK_ORDER] PRIMARY KEY CLUSTERED
   (
   [ID] ASC
@@ -139,7 +142,6 @@ CREATE TABLE [order] (
 
 )
 GO
-
 CREATE TABLE [customer] (
 	ID integer NOT NULL ,
 	name nvarchar(50) NOT NULL,
@@ -169,21 +171,19 @@ CREATE TABLE [account] (
 )
 GO
 CREATE TABLE [priceupdate] (
-	ID integer NOT NULL IDENTITY,
+	ID integer NOT NULL IDENTITY PRIMARY KEY CLUSTERED,
 	ID_product integer NOT NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
 	priceupdated float NOT NULL,
-	date_update datetime NOT NULL,
-	date_end datetime ,
-  CONSTRAINT [PK_PRICEUPDATE] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
+	date_update DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+	date_end DATETIME2 GENERATED ALWAYS AS ROW END  NOT NULL,
+	PERIOD FOR SYSTEM_TIME (date_update, date_end)
 
-)
+)WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.pricehistory, DATA_CONSISTENCY_CHECK = ON));
 GO
 
+GO
 CREATE TABLE [background](
 		ID integer NOT NULL IDENTITY,
 		name varchar(50),
@@ -314,4 +314,5 @@ INSERT INTO background(name,image,description) VALUES
 
 insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
-select * from [order]
+
+select * from [orderdetail]
