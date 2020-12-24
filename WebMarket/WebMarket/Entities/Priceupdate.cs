@@ -5,11 +5,6 @@ namespace WebMarket.Entities
 {
     public partial class Priceupdate
     {
-        public Priceupdate()
-        {
-            Orderdetail = new HashSet<Orderdetail>();
-        }
-
         public int Id { get; set; }
         public int IdProduct { get; set; }
         public int IdAdmin { get; set; }
@@ -20,6 +15,5 @@ namespace WebMarket.Entities
 
         public virtual Admininfo IdAdminNavigation { get; set; }
         public virtual Product IdProductNavigation { get; set; }
-        public virtual ICollection<Orderdetail> Orderdetail { get; set; }
     }
 }

@@ -72,7 +72,7 @@ namespace WebMarket.Areas.Admin.Controllers
             return View(type);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Type type)
+        public IActionResult Edit(Type type)
         {
            
             _context.Update(type);

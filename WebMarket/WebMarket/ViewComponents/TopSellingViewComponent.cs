@@ -19,7 +19,7 @@ namespace WebMarket.ViewComponents
         {
             _context = context;
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
       
             var sellitems = (from product in _context.Product.Where(p => p.Discount >= 0)                 

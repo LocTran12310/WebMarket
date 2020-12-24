@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,22 +32,23 @@ namespace WebMarket.Controllers
         {
             var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
             var role = @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
-            ViewBag.role = role;
             if (user == null || role !="Customer")
             {
                 var admin = _context.Admininfo.Find(Int32.Parse(user));
+                ViewBag.user = admin;
                 return View(admin);
             }
             var customer = _context.Customer.Find(Int32.Parse(user));
+            ViewBag.user = customer;
             return View(customer);
         }
-
         public IActionResult Login()
         {
            
             ViewBag.Status = TempData["Message"];
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(AccountVM acc)
         {
@@ -57,8 +59,17 @@ namespace WebMarket.Controllers
                 return View();
             }
             var customer = _context.Customer.SingleOrDefault(c => c.Id == AccCus.Id);
-            HttpContext.Session.Set("KhachHang", customer.Id);
-          
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name,customer.Name),
+                new Claim(ClaimTypes.Email, customer.Email),
+                new Claim("Ma", customer.Id.ToString()),
+                new Claim(ClaimTypes.Role, "Customer"),
+            };
+            var userIdentity = new ClaimsIdentity(claims, "login");
+            // create principal
+            var principal = new ClaimsPrincipal(userIdentity);
+            await HttpContext.SignInAsync(principal);
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()
@@ -74,14 +85,14 @@ namespace WebMarket.Controllers
             ViewBag.Status = TempData["Message"];
             return View();
         }
+
         [HttpPost]
         public IActionResult Register(RegisterVM res)
         {
-            
             var idAcc = _context.Account.SingleOrDefault(a => a.Username == res.account.UserName);
             if (idAcc == null)
             {
-                var acc = new Account
+                var acc = new Account()
                 {
                     Username = res.account.UserName,
                     Password = res.account.PassWord,
@@ -121,6 +132,7 @@ namespace WebMarket.Controllers
            
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
+
         [Route("google-response")]
         public async Task<IActionResult> GoogleResponseRegister()
         {
@@ -179,6 +191,20 @@ namespace WebMarket.Controllers
             var principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            _context.Customer.Update(customer);
+            _context.SaveChanges();
+            ViewBag.user = customer;
+            return View("Index");
+        }
+
+        public IActionResult BillCheck()
+        {
+            return PartialView("_Billcheck");
         }
 
     }

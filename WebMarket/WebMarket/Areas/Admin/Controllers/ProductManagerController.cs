@@ -157,7 +157,8 @@ namespace WebMarket.Areas.Admin.Controllers
             return View(product);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product,double old_price ,IFormFile file)
+        [Obsolete]
+        public IActionResult Edit(Product product,double old_price ,IFormFile file)
         {
             string image = Helpers.ExtensionHelper.UploadFile(file, "img-products");
             if (image != "error")

@@ -79,16 +79,6 @@ CREATE TABLE [productdetail] (
 
 )
 GO
-CREATE TABLE [warehouse] (
-	ID integer NOT NULL IDENTITY,
-	ID_admin integer NOT NULL,
-  CONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
 CREATE TABLE [admininfo] (
 	ID integer NOT NULL IDENTITY,
 	username varchar(50) NOT NULL UNIQUE,
@@ -108,7 +98,6 @@ CREATE TABLE [orderdetail] (
 	ID integer NOT NULL IDENTITY,
 	ID_order integer NOT NULL,
 	ID_product integer NOT NULL,
-	ID_priceupdate integer,
 	quantity float NOT NULL,
 	discount float NOT NULL,
 	newprice float,
@@ -191,10 +180,6 @@ CREATE TABLE [background](
 		description varchar(255) 
  )
 
-
-
-
-
 ALTER TABLE [type] WITH CHECK ADD CONSTRAINT [type_fk0] FOREIGN KEY ([ID_category]) REFERENCES [category]([ID])
 ON UPDATE CASCADE
 GO
@@ -214,19 +199,13 @@ GO
 ALTER TABLE [product] CHECK CONSTRAINT [product_fk1]
 GO
 
+
+
 ALTER TABLE [productdetail] WITH CHECK ADD CONSTRAINT [productdetail_fk0] FOREIGN KEY ([ID_product]) REFERENCES [product]([ID])
 ON UPDATE CASCADE
 GO
 ALTER TABLE [productdetail] CHECK CONSTRAINT [productdetail_fk0]
 GO
-
-
-ALTER TABLE [warehouse] WITH CHECK ADD CONSTRAINT [warehouse_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [warehouse] CHECK CONSTRAINT [warehouse_fk1]
-GO
-
 
 
 
@@ -240,18 +219,17 @@ ON UPDATE CASCADE
 GO
 ALTER TABLE [orderdetail] CHECK CONSTRAINT [orderdetail_fk1]
 GO
-ALTER TABLE [orderdetail] WITH CHECK ADD CONSTRAINT [orderdetail_fk2] FOREIGN KEY ([ID_priceupdate]) REFERENCES [priceupdate]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [orderdetail] CHECK CONSTRAINT [orderdetail_fk2]
-GO
+
+
+
+
 
 ALTER TABLE [order] WITH CHECK ADD CONSTRAINT [order_fk0] FOREIGN KEY ([ID_customer]) REFERENCES [customer]([ID])
 ON UPDATE CASCADE
 GO
 ALTER TABLE [order] CHECK CONSTRAINT [order_fk0]
 GO
-ALTER TABLE [order] WITH CHECK ADD CONSTRAINT [order_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
+ALTER TABLE [order] WITH CHECK ADD CONSTRAINT [order_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admininfo]([ID])
 ON UPDATE CASCADE
 GO
 ALTER TABLE [order] CHECK CONSTRAINT [order_fk1]
@@ -264,12 +242,15 @@ GO
 ALTER TABLE [customer] CHECK CONSTRAINT [customer_fk0]
 GO
 
+
+
 ALTER TABLE [priceupdate] WITH CHECK ADD CONSTRAINT [priceupdate_fk0] FOREIGN KEY ([ID_product]) REFERENCES [product]([ID])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [priceupdate] CHECK CONSTRAINT [priceupdate_fk0]
 GO
-ALTER TABLE [priceupdate] WITH CHECK ADD CONSTRAINT [priceupdate_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admin]([ID])
+
+ALTER TABLE [priceupdate] WITH CHECK ADD CONSTRAINT [priceupdate_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admininfo]([ID])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [priceupdate] CHECK CONSTRAINT [priceupdate_fk1]
@@ -313,7 +294,6 @@ INSERT INTO background(name,image,description) VALUES
 ('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
-insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+insert into admininfo(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
 
-select * from [orderdetail]

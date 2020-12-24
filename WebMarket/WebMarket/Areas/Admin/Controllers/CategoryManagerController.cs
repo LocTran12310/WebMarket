@@ -55,7 +55,7 @@ namespace WebMarket.Areas.Admin.Controllers
             return View(category);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Category category,IFormFile file)
+        public IActionResult Edit(Category category,IFormFile file)
         {
             string image = Helpers.ExtensionHelper.UploadFile(file);
             if (image != "error")

@@ -51,7 +51,7 @@ namespace WebMarket.Areas.Admin.Controllers
             return View(provider);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Provider provider)
+        public IActionResult Edit(Provider provider)
         {
             
             _context.Provider.Update(provider);
