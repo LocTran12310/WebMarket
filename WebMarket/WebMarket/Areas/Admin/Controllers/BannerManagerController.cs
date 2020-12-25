@@ -56,9 +56,9 @@ namespace WebMarket.Areas.Admin.Controllers
             return View(background);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Background background, IFormFile file)
+        public IActionResult Edit(Background background, IFormFile file)
         {
-            string image = Helpers.ExtensionHelper.UploadFile(file, "img-banner");
+            string image =  Helpers.ExtensionHelper.UploadFile(file, "img-banner");
             if (image != "error")
             {
                 background.Image = image;

@@ -32,7 +32,7 @@
     </p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4 table-data">
-        @Html.Partial("_filterajax", Model);
+        @await Html.PartialAsync("_filterajax", Model);
     </div>
 </div>
 <!-- /.container-fluid -->

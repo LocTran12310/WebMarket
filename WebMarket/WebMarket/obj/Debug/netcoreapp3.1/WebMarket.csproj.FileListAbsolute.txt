@@ -645,7 +645,6 @@ D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\C
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\detail.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\Index.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Category\_ProductPartialView.cshtml.g.cs
-D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Edit.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\GoogleResponse.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Index.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Login.cshtml.g.cs
@@ -655,7 +654,6 @@ D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\H
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Offers.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Navigation\Default.cshtml.g.cs
-D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TopSelling\Default.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Type\Default.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -702,3 +700,5 @@ D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\C
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery-validation\.bower.json
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery\.bower.json
 D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\vendor\fontawesome-free\package.json
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\Index.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\_billtable.cshtml.g.cs

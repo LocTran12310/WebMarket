@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    body {
+    .render-body {
         background: #EEF2F7;
     }
     .customer-info, .customer-action {
@@ -46,39 +46,39 @@
         padding-bottom:10px;
     }
 </style>
-@ViewBag.role
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">
             <div class=" customer-info">
                 <div class="image-user">
-                    <img src="@Model.Image" />
-                    <h3>@Model.Name</h3>
-                    <h5>@Model.Email</h5>
+                    <img src="@ViewBag.user.Image" />
+                    <h3>@ViewBag.user.Name</h3>
+                    <h5>@ViewBag.user.Email</h5>
                 </div>
                 <hr />
                 <div class="info-user">
                     <div>
-                        <p>Name:<span class="info">@Model.Name</span></p>
+                        <p>Name:<span class="info">@ViewBag.user.Name</span></p>
                     </div>
                     <hr />
                     <div>
-                        <p>DateofBirth: <span class="info">@Model.DateOfBirth</span></p>
+                        <p>DateofBirth: <span class="info">@ViewBag.user.DateOfBirth</span></p>
 
                     </div>
                     <hr />
                     <div>
-                        <p>Address:<span class="info">@Model.Address</span></p>
+                        <p>Address:<span class="info">@ViewBag.user.Address</span></p>
 
                     </div>
                     <hr />
                     <div>
-                        <p>Phone: <span class="info">@Model.Phone</span></p>
+                        <p>Phone: <span class="info">@ViewBag.user.Phone</span></p>
 
                     </div>
                     <hr />
                     <div>
-                        <p>Email:<span class="info">@Model.Email</span></p>
+                        <p>Email:<span class="info">@ViewBag.user.Email</span></p>
 
                     </div>
                     <hr />
@@ -88,24 +88,30 @@
         <div class="col-md-8 ">
             <div class="customer-action">
                 <div class="menu-action">
-                    <div class="edit-action">
+                    <div class="action edit-action active">
                         Edit Profiles
                     </div>
-                    <div class="check-action">
+                    <div class="action check-action">
                         Check Bill
                     </div>
-                    <div class="history-action">
+                    <div class="action history-action">
                         Bill History
                     </div>
                 </div>
                 <div class="content-action">
-                    <form asp-action="Edit">
+                    <form asp-action="Edit" asp-controller="Customer" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label asp-for="Name" class="control-label"></label>
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <hr />
                         <div class="form-group">
@@ -125,17 +131,8 @@
                             <input asp-for="DateOfBirth" class="form-control" />
                             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                         </div>
-                        <hr />
-                        <div class="form-group">
-                            <label asp-for="Image" class="control-label"></label>
-                            <input asp-for="Image" class="form-control" />
-                            <span asp-validation-for="Image" class="text-danger"></span>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label asp-for="Email" class="control-label"></label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="form-group"> 
+                            <input asp-for="Image" class="form-control "  style="display:none !important"/>
                         </div>
                         <hr />
                         <div class="form-group">
@@ -147,3 +144,6 @@
         </div>
     </div>
 </div>
+<script>
+    
+</script>
