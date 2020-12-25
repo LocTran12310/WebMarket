@@ -3,7 +3,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
-
+@Html.ActionLink("Print", "PrintAllReport", "ExportPDF")
 <!-- Content Row -->
 <div class="row">
 
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    
+
 </div>
 
 <!-- Content Row -->
@@ -163,7 +163,7 @@
                     title: 'Pie Chart: Number product by type',
                     width: 370,
                     height: 409,
-                    
+
                 };
                 var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
                 piechart.draw(data, piechart_options);

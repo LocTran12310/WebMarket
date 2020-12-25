@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using WebMarket.Entities;
 using WebMarket.Secure;
+using Rotativa.AspNetCore;
 
 namespace WebMarket
 {
@@ -75,11 +76,12 @@ namespace WebMarket
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
             app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
