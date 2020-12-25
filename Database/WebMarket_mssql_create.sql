@@ -297,3 +297,13 @@ INSERT INTO background(name,image,description) VALUES
 insert into admininfo(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
 
+SELECT type.Name, Count(product.name) AS "Tong"
+   FROM [type],[product]
+   where type.ID =product.ID_type
+   GROUP BY type.name;
+
+
+select product.name,product.quantity_stock ,sum(orderdetail.quantity)
+from product,orderdetail
+where product.ID = orderdetail.ID_product
+GROUP BY product.name,product.quantity_stock ;

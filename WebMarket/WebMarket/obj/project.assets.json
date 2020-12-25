@@ -9027,32 +9027,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hieu Tran\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\truon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "projectUniqueName": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
       "projectName": "WebMarket",
-      "projectPath": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
-      "packagesPath": "C:\\Users\\Hieu Tran\\.nuget\\packages\\",
-      "outputPath": "D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+      "projectPath": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Hieu Tran\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9125,13 +9119,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\web_final\\WebMarket\\WebMarket\\WebMarket\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
