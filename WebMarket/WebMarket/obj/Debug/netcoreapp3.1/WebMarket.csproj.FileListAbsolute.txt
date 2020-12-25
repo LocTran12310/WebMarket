@@ -888,7 +888,11 @@ C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\sta
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
-C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\Index.cshtml.g.cs
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\_billtable.cshtml.g.cs
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Chart\Index.cshtml.g.cs
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\bootstrap\.bower.json
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery-validation-unobtrusive\.bower.json
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery-validation\.bower.json
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery\.bower.json
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\vendor\fontawesome-free\package.json

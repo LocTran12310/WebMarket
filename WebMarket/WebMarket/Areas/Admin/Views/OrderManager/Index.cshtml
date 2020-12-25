@@ -5,79 +5,29 @@
 }
 
 
-
-
 @section css {
     <link href="~/css/Admin/orderDetail.css" rel="stylesheet" />
     <style>
         .link-order:hover {
-            background-color: aqua;
+            transition: background-color 1s;
             color: black;
         }
+
         a {
-            text-decoration: none!important;
+            text-decoration: none !important;
+        }
+
+        .active1 {
+            border-bottom: 1px solid black;
+            transition: background-color 1s;
         }
     </style>
 }
 
+@section Scripts{
+    <!-- Page level plugins -->
 
-<div class="content-wrapper">
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title" style="font-size:16px;color:black;">Hóa đơn chưa xử lý</h3>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="nav nav-pills flex-column">
-                            @{
-                                foreach (var item in Model)
-                                {
-                                    <li class="nav-item active">
-                                        <div data-id="@item.Id" class="link-order list-group-item-action" style="text-decoration:none;height:70px">
-                                            <i class=" far fa-file-alt " style=" font-size: 22px;"></i>
-                                            <span style="font-size:20px;font-family:400">@item.Name</span>
-                                            <span class="badge  float-right">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</span>
-
-                                            <i class="badge float-right">@item.Status</i>
-                                          
-                                        </div>
-                                    </li>
-
-                                }
-                            }
-                        </ul>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-md-9">
-                <div class="card card-primary card-outline" id="">
-                    <div class="card-header">
-                        <h3 class="card-title">Chi tiết hóa đơn</h3>
-                    </div>
-
-                    <div class="card-body p-sm-3">
-                        <div class=" mailbox-messages">
-                            <div id="details">
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    @section Scripts{
-        <!-- Page level plugins -->
-       
-        <script>
+    <script>
         $(document).ready(function () {
             $('.link-order').click(function () {
                 $('.link-order').removeClass("active1");
@@ -86,17 +36,55 @@
             //console.log(id);
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("Detail" , "OrderManager")',
+                    url: '@Url.Action("Detail", "OrderManager")',
                     data: { id: id },
                     success: function (res) {
-                        $("#details").html(res);
+                        $(".message-body").html(res);
                     }
                 });
             });
          });
 
-        </script>
-    }
+    </script>
+}
+<div class="">
+    <div class="">
+        <div class="email-wrapper wrapper">
+            <div class="row align-items-stretch">
+                <div class=" col-md-3 pt-4 pb-4 border-right bg-white">
+                    <div class="border-bottom pb-4 mb-3 px-3">
+                        <div class="form-group">
+                            <input class="form-control w-100" type="search" placeholder="Search mail" id="Mail-rearch">
+                        </div>
+                    </div>                   
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <div class="mail-list  " style=" border-bottom-left-radius:1px inherit; ">
+                                <div class="content link-order" data-id="@item.Id">
+                                   <p class="sender-name">@item.Name </p><i class="far fa-file-alt" style="float:right !important"></i>
+                                    <p class="message_text">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</p>
 
+                                </div>
+                                <div class="details">
+                                   
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="mail-view d-none d-md-block col-md-9 bg-white">
+                    <div class="row mb-4 pt-3 pl-3">
+                        <h5 style="font-size:20px;font-weight:500;">Chi Tiết Hóa đơn</h5>
+
+                    </div>
+                    <div class="message-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 

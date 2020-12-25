@@ -4,15 +4,15 @@
 
     .styled-table {
         border-collapse: collapse;
-        margin: 25px 0;
+        margin:35px 0;
         font-size: 0.9em;
         font-family: sans-serif;
         min-width: 1000px;
     }
 
         .styled-table thead tr {
-            background-color: #009879;
-            color: #ffffff;
+            background-color: cornflowerblue;
+            color: black;
             text-align: left;
         }
 
@@ -51,7 +51,7 @@
         outline: 0;
         box-shadow: none;
         border: 0 !important;
-        background: #2c3e50;
+        background: cornflowerblue;
         background-image: none;
     }
         /* Remove IE arrow */
@@ -62,10 +62,10 @@
     .select {
         position: relative;
         display: flex;
-        line-height: 3;
-        background: #2c3e50;
+        line-height: 2;
+        background: cornflowerblue;
         overflow: hidden;
-        border-radius: .25em;
+   
     }
 
     select {
@@ -94,7 +94,46 @@
     }
 </style>
 
+<script>
+    $(document).ready(function () {
+        $('.btn').hide();
+        let sta = { "0": "Chưa xử lý", "1": "Xác nhận", "2": "Đang Giao", "3": "Hoàn tất" };
+        var selectElem = $("#mySelect");
+        $.each(sta, function (index, value ) {
 
+            if (index <= @ViewBag.order.Status+1) {
+                $("<option/>",
+                    {
+                        value: index,
+                        text: value
+
+                    }).appendTo(selectElem);
+                 if (@ViewBag.order.Status > 0) {
+                $("#mySelect option[value='0']").remove();
+            }
+            if (@ViewBag.order.Status > 1) {
+                $("#mySelect option[value='1']").remove();
+
+            }
+            if (@ViewBag.order.Status == 3) {
+                $("#mySelect option[value='2']").remove();
+               // $('.btn').remove();
+            }
+
+            }
+        });
+
+        $(document).ready(function () {
+            $('#mySelect').on('change', function () {
+                var $form = $(this).closest('form');
+                $form.find('input[type=submit]').click();
+            });
+        });
+      
+    
+    });
+
+</script>
 
 
 <div class="row">
@@ -115,17 +154,17 @@
                 <td>
 
                     <span style="color:black;">Trạng Thái :</span>
-                    <form method="post" asp-action="StatusChange" asp-controller="OrderManager">
+                    <form method="post" asp-action="StatusChange" asp-controller="OrderManager" >
                         <input type="hidden" name="Id_order" value="@ViewBag.order.Id" />
                         <div class="select">
-                            <select name="status_order">
-                                    <option value="0">Chưa xử lý</option>
-                                    <option value="1">xác nhận </option>
-                                    <option value="2">Đang giao</option>
-                                    <option value="3">Hoàn Tất</option>
-                             </select>
+                            <select name="status_order" id="mySelect"  >
+                                    
+                                <option disabled>Status</option>
+                            
+                                
+                            </select>
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Change Status"></input>
+                        <input type="submit" class="btn btn-primary hidden" value="Change Status" ></input>
                     </form>
                 </td>
             </tr>
@@ -134,8 +173,9 @@
     </div>
 
 </div>
-<hr />-------------------
-<div class="row">
+<hr />
+
+<div class="row mt-5">
     <table class="styled-table ">
         <thead>
             <tr>
@@ -175,4 +215,5 @@
 
 <script>
     $('.status_order  option[value="@ViewBag.order.Status"]').css("display", "none");
+
 </script>
