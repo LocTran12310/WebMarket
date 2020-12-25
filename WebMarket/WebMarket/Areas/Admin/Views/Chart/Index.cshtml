@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Charts</h1>
+    <p class="mb-4">
+        Chart.js is a third party plugin that is used to generate the charts in this theme.
+        The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">
+            official Chart.js
+            documentation
+        </a>.
+    </p>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Donut Chart -->
+        <div class="col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div id="piechart_div" style="border: 1px solid #ccc">
+                        
+                    </div>
+                    <hr>
+                    Styling for the donut chart can be found in the
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 col-lg-5">
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Col Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div id="piechart_div" style="border: 1px solid #ccc">
+
+                    </div>
+                    <hr>
+                    Styling for the area chart can be found in the
+                    <code>/js/demo/chart-area-demo.js</code> file.
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+@section Scripts{
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var data01 = [['Task', 'Hours per Day']];
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.ajax({
+                type: 'GET',
+                url: 'Chart/TypeChart',
+                contentType: "application/json; charset=utf-8",
+                success: function (res) {
+                    loadData(res)
+                }
+            })
+            function loadData(result) {
+                result.forEach(x => data01.push(Object.values(x)))
+                var data = new google.visualization.arrayToDataTable(data01);
+                var options = {
+                    title: 'My Assessments'
+                };
+                var piechart_options = {
+                    title: 'Pie Chart: Number product by type',
+                    width: 400,
+                    height: 300
+                };
+                var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+                piechart.draw(data, piechart_options);
+            }
+        }
+        function drawChart() {
+            $.ajax({
+                type: 'GET',
+                url: 'Chart/TypeChart',
+                contentType: "application/json; charset=utf-8",
+                success: function (res) {
+                    loadData(res)
+                }
+            })
+            function loadData(result) {
+                result.forEach(x => data01.push(Object.values(x)))
+                var data = new google.visualization.arrayToDataTable(data01);
+                var options = {
+                    title: 'My Assessments'
+                };
+                var piechart_options = {
+                    title: 'Pie Chart: Number product by type',
+                    width: 400,
+                    height: 300
+                };
+                var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+                piechart.draw(data, piechart_options);
+            }
+        }
+    </script>
+}

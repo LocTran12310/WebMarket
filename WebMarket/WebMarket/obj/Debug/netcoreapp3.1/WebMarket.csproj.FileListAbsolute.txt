@@ -891,3 +891,4 @@ C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Web
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\Index.cshtml.g.cs
 C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Views\BillCheck\_billtable.cshtml.g.cs
+C:\Users\truon\Desktop\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Chart\Index.cshtml.g.cs
