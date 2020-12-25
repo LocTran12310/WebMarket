@@ -22,6 +22,9 @@ namespace WebMarket.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.bill0 = _context.Order.Count(x => x.Status == 0);
+            ViewBag.bill1 = _context.Order.Count(x => x.Status == 1);
+            ViewBag.bill2 = _context.Order.Count(x => x.Status == 2);
             var category = _context.Category.ToList();
             ViewBag.IdCategory = new SelectList(category, "Id", "Name");
             return View();

@@ -289,7 +289,7 @@ namespace WebMarket.Areas.Admin.Controllers
                 await file.CopyToAsync(stream);
                 using (var package = new ExcelPackage(stream))
                 {
-
+                    var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                     var rowcount = worksheet.Dimension.Rows;
                     worksheet.Cells.Style.Font.Name = "Arial";
@@ -300,15 +300,27 @@ namespace WebMarket.Areas.Admin.Controllers
                         product.Name = worksheet.Cells[row, 2].Value.ToString().Trim();
                         product.Price = double.Parse(worksheet.Cells[row, 3].Value.ToString().Trim());
                         product.Image = worksheet.Cells[row, 4].Value.ToString().Trim();
-                        product.Description = worksheet.Cells[row, 8].Value.ToString().Trim();
+                        product.Description = worksheet.Cells[row, 8].Value == null ? string.Empty : worksheet.Cells[row, 8].Value.ToString().Trim();
                         product.IdProvider = int.Parse(worksheet.Cells[row, 9].Value.ToString().Trim());
                         product.IdType = 1;
                         product.Discount = double.Parse(worksheet.Cells[row, 5].Value.ToString().Trim());
                         product.Status = default;
                         _context.Product.Add(product);
-
+                        _context.SaveChanges();
+                        int lastRow = _context.Product.OrderByDescending(a => a.Id).Select(a => a.Id).First();
+                        var updatedetail = new Priceupdate()
+                        {
+                            IdProduct = lastRow,
+                            IdAdmin = Int32.Parse(user),
+                            Price = (double)product.Price,
+                            Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
+                            DateUpdate = default,
+                            DateEnd = default,
+                        };
+                        _context.Priceupdate.Add(updatedetail);
                     }
                     _context.SaveChanges();
+
                 }
             }
             return RedirectToAction("Index");
