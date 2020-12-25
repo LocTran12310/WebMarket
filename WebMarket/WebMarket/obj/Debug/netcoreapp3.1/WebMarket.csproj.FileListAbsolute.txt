@@ -691,3 +691,14 @@ D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\A
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Index.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Edit.cshtml.g.cs
 D:\web_final\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CustomerManager\Create.cshtml.g.cs
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\ClosedXML.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\EPPlus.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\bootstrap\.bower.json
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery-validation-unobtrusive\.bower.json
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery-validation\.bower.json
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\lib\jquery\.bower.json
+D:\web_final\WebMarket\WebMarket\WebMarket\bin\Debug\netcoreapp3.1\Areas\Admin\Controllers\wwwroot\vendor\fontawesome-free\package.json
