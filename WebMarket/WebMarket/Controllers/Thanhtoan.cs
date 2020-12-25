@@ -74,6 +74,10 @@ namespace WebMarket.Controllers
 
             }
             _context.SaveChanges();
+            var session = HttpContext.Session;
+            session.Remove("GioHang");
+                 
+        
             return RedirectToAction("Index", "Cart");
         }
     }

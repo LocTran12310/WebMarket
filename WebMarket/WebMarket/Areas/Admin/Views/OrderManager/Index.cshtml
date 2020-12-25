@@ -18,8 +18,9 @@
         }
 
         .active1 {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid cornflowerblue;
             transition: background-color 1s;
+            color:black;
         }
     </style>
 }
@@ -60,7 +61,7 @@
                     @{
                         foreach (var item in Model)
                         {
-                            <div class="mail-list  " style=" border-bottom-left-radius:1px inherit; ">
+                            <div class="mail-list  " style="border-top:1px solid  ">
                                 <div class="content link-order" data-id="@item.Id">
                                    <p class="sender-name">@item.Name </p><i class="far fa-file-alt" style="float:right !important"></i>
                                     <p class="message_text">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</p>
