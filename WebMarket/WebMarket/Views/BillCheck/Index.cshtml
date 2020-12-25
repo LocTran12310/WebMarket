@@ -70,19 +70,23 @@
     }
 </style>
 <div class="container">
-    <div class="menu-bill ">
-        <div class="status-menu active-status" data-status="-1">
-            Tất cả
-        </div>
-        <div class="status-menu" data-status="0">
+    <div class="menu-bill ">      
+        <div class="status-menu active-status" data-status="0">
             Chờ Xác Nhận
         </div>
         <div class="status-menu" data-status="1">
-            Chờ Lấy Hàng
+            Đã Xác nhận
         </div>
         <div class="status-menu" data-status="2">
             Đang Giao Hàng
         </div>
+        <div class="status-menu" data-status="3">
+            Hoàn tất
+        </div>
+        <div class="status-menu" data-status="4">
+             Đã hủy
+        </div>
+
     </div>
     <div class="row display-flex">
         @Html.Partial("_billtable",Model)

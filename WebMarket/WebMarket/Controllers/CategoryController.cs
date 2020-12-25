@@ -25,23 +25,7 @@ namespace WebMarket.Controllers
        
 
 
-        [HttpPost]
-        public PartialViewResult Discount(int data)
-        {
-            var Dis = (from product in _context.Product.Where(p => p.Discount > 0)
-                       select new ProductVM
-                       {
-                           Id = product.Id,
-                           Image = product.Image,
-                           Name = product.Name,
-                           Price = product.Price,
-                           Discount = product.Discount,
-                           NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
-                       }).ToList();
-            ViewBag.data = data;                     
-            return PartialView("_ProductPartialView", Dis);
-        }
-        private int numpage = 6;
+          private int numpage = 6;
         [HttpGet("Category/{name}")]
         public IActionResult Index(string name ,int page=1)
         {

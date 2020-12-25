@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<WebMarket.Entities.Orderdetail>
 
+
 @foreach (var order in ViewBag.order)
 {
     <div class="col-md-7 col-bills">
@@ -34,6 +35,10 @@
             <div class="flex ma-don">
                 <h4>Mã đơn hàng:</h4>
                 <p>MADH00 @order.Id</p>
+               @if(order.Status == 0)
+               {
+                      <a name="hủy" data-id="0" id="delete">hủy đơn hàng</a>  
+               }
             </div>
             <div class="flex ma-don">
                 <h4>Status:</h4>
@@ -58,3 +63,24 @@
         </div>
     </div>
 }
+<script>
+    $(document).ready(function () {
+        $("#delete").click(function () {
+            var id = $(this).attr('data-id');         
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("BillDelete","BillCheck")",
+                data: {id:id},
+                success: function (res) {
+
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+</script>

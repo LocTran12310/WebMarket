@@ -20,6 +20,8 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             _context = context;
         }
+        
+      
         public IActionResult Index(int? status)
         {
             var cart = HttpContext.Session.Get<List<CartItem>>("GioHang");
@@ -36,19 +38,22 @@ namespace WebMarket.Areas.Admin.Controllers
 
         }
 
-       [HttpPost]
-           public IActionResult StatusChange(int Id_order,int status_order )
+        [HttpPost]
+        public IActionResult StatusChange(int Id_order, int status_order)
         {
-       
-            var order = _context.Order.SingleOrDefault(od=>od.Id==Id_order);
-            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+
+            
+            var order = _context.Order.SingleOrDefault(od => od.Id == Id_order);
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;                    
             order.IdAdmin = Int32.Parse(user);
             order.Status = status_order;
             _context.Update(order);
             _context.SaveChanges();
             ViewBag.Id_ord = status_order;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { status = status_order - 1 });
         }
 
+
+       
     }
 }

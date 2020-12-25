@@ -20,7 +20,7 @@ namespace WebMarket.Controllers
         public IActionResult Index()
         {
             int user = Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
-            ViewBag.order = _context.Order.Where(od => od.IdCustomer == user && od.Status != 4).ToList();
+            ViewBag.order = _context.Order.Where(od => od.IdCustomer == user && od.Status == 0).ToList();
             var orderDetail = _context.Orderdetail.Include(x => x.IdOrderNavigation).Include(p => p.IdProductNavigation).ToList();
             return View(orderDetail);
         }
@@ -31,15 +31,24 @@ namespace WebMarket.Controllers
             ViewBag.order = _context.Order
                .Where(od => od.IdCustomer == user && od.Status == status)
                .ToList();
-            if (status == -1)
+            if (status == 3)
             {
-                ViewBag.order = _context.Order.Where(od => od.IdCustomer == user && od.Status != 4).ToList();
-            }
+                ViewBag.order = _context.Order.Where(od => od.IdCustomer == user && od.Status == status).ToList();
+            }      
             var orderDetail = _context.Orderdetail
                 .Include(x => x.IdOrderNavigation)
                 .Include(p => p.IdProductNavigation)
                 .ToList();
             return PartialView("_billtable",orderDetail);
+        }
+        [HttpPost]
+        public IActionResult BillDelete(int id)
+        {
+            var order = _context.Order.FirstOrDefault(c => c.Status == id);
+            order.Status = 4;
+            _context.Update(order);
+            _context.SaveChanges();
+            return PartialView("_billtable",order);
         }
     }
 }
