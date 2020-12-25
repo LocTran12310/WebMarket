@@ -44,16 +44,39 @@ namespace WebMarket.Areas.Admin.Controllers
 
             
             var order = _context.Order.SingleOrDefault(od => od.Id == Id_order);
-            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;                    
+            var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
+
+            var orderupdate = new Orderupdate()
+            {
+                IdOrder = Id_order,
+                IdAdmin = Int32.Parse(user),
+                OldStatus = order.Status,
+                NewStatus = status_order,
+                DateUpdate = default,
+                DateEnd = default,
+            };
+
             order.IdAdmin = Int32.Parse(user);
             order.Status = status_order;
+            _context.Orderupdate.Update(orderupdate);
             _context.Update(order);
             _context.SaveChanges();
-            ViewBag.Id_ord = status_order;
+            
             return RedirectToAction("Index", new { status = status_order - 1 });
+
         }
-
-
-       
+        [HttpPost]
+        public ActionResult History(int id)
+        {
+            var queryables = _context.Orderupdate.FromSqlRaw("SELECT * FROM dbo.Orderupdate FOR SYSTEM_TIME ALL")
+                .AsNoTracking()
+                .OrderByDescending(od => od.DateUpdate)
+                .Include(p => p.IdOrderNavigation)
+                .Include(a => a.IdAdminNavigation)
+                .Where(p => p.IdOrder == id)
+                .ToList();
+            ViewBag.id = id;
+            return PartialView("_HistoryPatial", queryables);
+        }
     }
 }

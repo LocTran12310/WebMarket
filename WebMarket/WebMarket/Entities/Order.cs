@@ -8,6 +8,7 @@ namespace WebMarket.Entities
         public Order()
         {
             Orderdetail = new HashSet<Orderdetail>();
+            Orderupdate = new HashSet<Orderupdate>();
         }
 
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace WebMarket.Entities
         public virtual Admininfo IdAdminNavigation { get; set; }
         public virtual Customer IdCustomerNavigation { get; set; }
         public virtual ICollection<Orderdetail> Orderdetail { get; set; }
+        public virtual ICollection<Orderupdate> Orderupdate { get; set; }
     }
 }

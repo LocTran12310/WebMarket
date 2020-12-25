@@ -74,6 +74,16 @@ namespace WebMarket.Controllers
 
             }
             _context.SaveChanges();
+
+            var orderupdate = new Orderupdate()
+            {
+                IdOrder = lastOrder,
+                NewStatus = ord.Status,
+                DateUpdate = default,
+                DateEnd = default,
+            };
+            _context.Orderupdate.Add(orderupdate);
+            _context.SaveChanges();
             var session = HttpContext.Session;
             session.Remove("GioHang");
                  
