@@ -128,6 +128,7 @@ namespace WebMarket.Controllers
                                Image = p.Image,
                                Name = p.Name,
                                Price = p.Price,
+                               Description = p.Description,
                                Discount = p.Discount,
                                NewPrice = (Double)((100 - p.Discount) * p.Price) / 100
                            }).SingleOrDefault();

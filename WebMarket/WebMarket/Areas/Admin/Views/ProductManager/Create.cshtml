@@ -5,16 +5,17 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" style="font-weight: 700;">Create Product</h1>
+</div>
 
-<h4>Product</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control d-lg-none" />
             </div>
             <div class="form-group">
@@ -35,7 +36,7 @@
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
                 <input name="file" id="imgInp" class="form-control" type="file" />
-                <img id="blah" src="" width="150px" height="150px" />
+                <img id="blah" src="~/images/no-image.png" width="150px" height="150px" />
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -43,19 +44,16 @@
 
             </div>
             <div class="form-group">
-                <label asp-for="IdProvider" class="control-label"></label>
-                <select asp-for="IdProvider" class="form-control" asp-items="ViewBag.IdProvider"></select>
+                <label for="IdProvider" class="control-label">Provider</label>
+                <select for="IdProvider" class="form-control" asp-items="ViewBag.IdProvider"></select>
             </div>
             <div class="form-group">
-                <label  class="control-label"></label>
-                <select  class="form-control category" asp-items="ViewBag.IdCategory"></select>
-            </div>
-            <div class="form-group type-select">
-                
+                <label class="control-label"></label>
+                <select class="form-control category" asp-items="ViewBag.IdCategory"></select>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>

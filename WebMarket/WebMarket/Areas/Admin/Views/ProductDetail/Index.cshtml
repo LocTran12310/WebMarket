@@ -53,7 +53,7 @@
     <div class="col-md-4">
         <div class=" customer-info ">
             <div class="image-user">
-                <img src="~/images/img-products/@ViewBag.product.Image" alt="@ViewBag.product.Name" />
+                <img src="@Url.Content(ViewBag.product.Image)" alt="@ViewBag.product.Name" />
                 <div>
                     <h3>@ViewBag.product.Name</h3>
                     <h5>@ViewBag.product.Price</h5>

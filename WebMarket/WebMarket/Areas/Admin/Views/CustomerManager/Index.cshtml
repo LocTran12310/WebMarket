@@ -20,15 +20,19 @@
 }
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800" style="font-weight: 700;">Customer</h1>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h1 class="h3 mb-2 text-gray-800">Admin Tables</h1>
-            <a href="@Url.Action("Create")" class="btn btn-success">Create New</a>
-        </div>
-        <div class="m-md-8" style="display:flex">
-            <div class="form-group md-3 pl-4">
+            <div>
+                <a href="@Url.Action("Create")" class="btn btn-success btn-icon-split d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-3">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Create New</span>
+                </a>
             </div>
         </div>
         <div class="card-body">
@@ -66,37 +70,43 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdNavigation.Username)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdNavigation.Password)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdNavigation.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdNavigation.Password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <img src="https://img.icons8.com/fluent-systems-regular/24/000000/edit.png" style="height:20px; width:20px" />
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-info shadow-sm">
+                                        <img src="https://img.icons8.com/windows/32/000000/Detail-view-of-part.png" style="height:20px; width:20px" />
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-danger shadow-sm">
+                                        <img src="https://img.icons8.com/windows/32/000000/delete-forever.png" style="height:20px; width:20px" />
+                                    </a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>

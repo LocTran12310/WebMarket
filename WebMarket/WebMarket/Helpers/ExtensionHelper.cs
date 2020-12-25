@@ -35,7 +35,8 @@ namespace WebMarket.Helpers
                 {
                     file.CopyTo(stream);
                 }
-                return file.FileName;
+                string newpath = string.Concat("~/images/",folder,"/",file.FileName);
+                return newpath;
             }
         }
     }

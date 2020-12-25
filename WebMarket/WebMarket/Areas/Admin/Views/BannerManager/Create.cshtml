@@ -5,9 +5,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Background</h4>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" style="font-weight: 700;">Create Background</h1>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
                 <input name="file" id="imgInp" class="form-control" type="file" required/>
-                <img id="blah" src="" width="150px" height="150px" />
+                <img id="blah" src="~/images/no-image.png" width="150px" height="150px" />
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -29,7 +29,7 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>

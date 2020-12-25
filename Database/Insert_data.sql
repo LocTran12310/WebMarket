@@ -15,8 +15,6 @@ INSERT INTO [type] ([name],[ID_category]) VALUES
     (N'Bánh kẹo - Đồ ăn vặt',4),
     (N'Đồ uống - Giải khát',4)
 
-INSERT INTO [provider] ([name]) VALUES
-    (N''),
 
 insert into dbo.provider(name,address,phone) values
 (N'Trương Văn Nam', 'TPHCM','123456789'),
@@ -52,15 +50,28 @@ INSERT INTO background(name,image,description) VALUES
 ('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
 ('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
 
-insert into admin(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+insert into admininfo(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
 
 Insert into priceupdate (ID_product,ID_admin,price,priceupdated) VALUES
-(1, 1, 11100, 52352),
+(4, 1, 11100, 52352),
 (2, 1, 12450, 54652),
 (3, 1, 5453, 51232)
 
+SELECT * FROM product
+SELECT * FROM [admininfo]
+USE WebMarket
+GO
+delete from [provider]
+SELECT * FROM [provider]
+
+SELECT * FROM priceupdate
+
 UPDATE priceupdate 
-SET price = 135650
-WHERE ID_product = 1
+SET price = 550
+WHERE ID_product = 2
 
 SELECT * FROM priceupdate FOR SYSTEM_TIME ALL
+
+UPDATE [priceupdate] SET price = 2500 WHERE ID_product = 2
+
+DELETE from provider WHERE id =1

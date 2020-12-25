@@ -116,9 +116,7 @@ namespace WebMarket.Areas.Admin.Controllers
                     for (int row = 2; row <= rowcount; row++)
                     {
                         Provider provider = new Provider();
-                        provider.Name = worksheet.Cells[row, 1].Value.ToString().Trim();
-                        provider.Address = worksheet.Cells[row, 2].Value.ToString().Trim();
-                        provider.Phone = worksheet.Cells[row, 3].Value.ToString().Trim();
+                        provider.Name = worksheet.Cells[row, 2].Value.ToString().Trim();
                         _context.Provider.Add(provider);
                        
                     }

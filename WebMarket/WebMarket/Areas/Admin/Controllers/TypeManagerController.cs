@@ -32,16 +32,20 @@ namespace WebMarket.Areas.Admin.Controllers
             cate.Insert(0, s);
             ViewBag.IdCategory = new SelectList(cate, "Id", "Name");
             var types = _context.Type
-                .Include(c => c.IdCategoryNavigation);
+                .Include(c => c.IdCategoryNavigation).ToList();
            
             return View(types);
             
         }
         public IActionResult filterajax(int cate=0)
         {
-            var types = _context.Type
+            var types = _context.Type.ToList();
+            if (cate != 0)
+            {
+                types = _context.Type
                    .Include(c => c.IdCategoryNavigation)
-                   .Where(t => t.IdCategory == cate);   
+                   .Where(t => t.IdCategory == cate).ToList();
+            }
             return PartialView("_filterajax", types);
         }
         [HttpGet]
@@ -83,6 +87,14 @@ namespace WebMarket.Areas.Admin.Controllers
         {
             var products = _context.Product.Where(p=>p.IdType==id).ToList();
             var type = _context.Type.SingleOrDefault(c => c.Id == id);
+            foreach (var idx in products)
+            {
+                var priceupdate = _context.Priceupdate.Where(p=>p.IdProduct == idx.Id).ToList();
+                foreach( var item in priceupdate)
+                {
+                    _context.Priceupdate.Remove(item);
+                }
+            }
             _context.Product.RemoveRange(products);
             _context.Type.Remove(type);
             _context.SaveChanges();

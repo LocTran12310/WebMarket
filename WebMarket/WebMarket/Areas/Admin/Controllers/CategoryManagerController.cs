@@ -77,6 +77,15 @@ namespace WebMarket.Areas.Admin.Controllers
                            select product).ToList();
             var types = _context.Type.Where(t => t.IdCategory == id).ToList();
             var category = _context.Category.SingleOrDefault(c => c.Id == id);
+            foreach (var idx in products)
+            {
+                var priceupdate = _context.Priceupdate.Where(p => p.IdProduct == idx.Id).ToList();
+                foreach (var item in priceupdate)
+                {
+                    _context.Priceupdate.Remove(item);
+                }
+            }
+
             _context.Product.RemoveRange(products);
             _context.Type.RemoveRange(types);
             _context.Category.Remove(category);
