@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebMarket.Areas.Admin.Models;
 using WebMarket.Entities;
@@ -21,15 +22,17 @@ namespace WebMarket.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            var category = _context.Category.ToList();
+            ViewBag.IdCategory = new SelectList(category, "Id", "Name");
             return View();
         }
         [HttpGet]
-        public List<TypeChart> TypeChart()
+        public List<TypeChart> TypeChart(int id=1)
         {
             List<TypeChart> lst = new List<TypeChart>();
             lst = (from t in _context.Type
                         join od in _context.Product on t.Id equals od.IdType
-                        where t.IdCategory == 1
+                        where t.IdCategory == id
                         group od by t.Name into chart
                         select new TypeChart()
                         {
@@ -38,16 +41,19 @@ namespace WebMarket.Areas.Admin.Controllers
                         }).ToList();
             return lst;
         }
-        public List<ProductSellChart> SellChart()
+        public List<ProductSellChart> SellChart(string nameType)
         {
-            var lst = (from t in _context.Product
-                       join od in _context.Orderdetail on t.Id equals od.IdProduct 
-                       group od by t.Name into chart
+
+            var lst = (from p in _context.Product
+                       join od in _context.Orderdetail on p.Id equals od.IdProduct
+                       where p.IdTypeNavigation.Name == nameType
+                       group od by p.Name into chart
                        select new ProductSellChart()
                        {
                            Name = chart.Key,
-                           sold = chart.Sum(x=>x.Quantity)
+                           Sold = chart.Sum(p => p.Quantity)
                        }).ToList();
+          
             return lst;
         }
     }

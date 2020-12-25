@@ -296,8 +296,10 @@ namespace WebMarket.Entities
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.DateEnd).HasColumnName("date_end");
+                entity.Property(e => e.DateEnd).HasComputedColumnSql("GENERATED ALWAYS AS ROW START");
 
                 entity.Property(e => e.DateUpdate).HasColumnName("date_update");
+                entity.Property(e => e.DateUpdate).HasDefaultValueSql("('9999-12-31 23:59:59.9999999')");
 
                 entity.Property(e => e.IdAdmin).HasColumnName("ID_admin");
 

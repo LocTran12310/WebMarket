@@ -303,7 +303,7 @@ SELECT type.Name, Count(product.name) AS "Tong"
    GROUP BY type.name;
 
 
-select product.name,product.quantity_stock ,sum(orderdetail.quantity)
+select product.name,product.quantity_stock ,sum(orderdetail.quantity) as sold
 from product,orderdetail
 where product.ID = orderdetail.ID_product
 GROUP BY product.name,product.quantity_stock ;

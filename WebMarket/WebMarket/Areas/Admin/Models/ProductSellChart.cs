@@ -8,6 +8,6 @@ namespace WebMarket.Areas.Admin.Models
     public class ProductSellChart
     {
         public string Name { get; set; }
-        public double sold { get; set; }
+        public double Sold { get; set; }
     }
 }

@@ -27,10 +27,7 @@
         display: block;
         margin: auto;
     }
-    .customer-info .info {
 
-        margin-left: 80px;
-    }
     .customer-action {
         padding:0 50px;
     }
@@ -44,6 +41,9 @@
     .content-action{
         margin-top:20px;
         padding-bottom:10px;
+    }
+    .action{
+        text-align:center;
     }
 </style>
 
@@ -63,7 +63,7 @@
                     </div>
                     <hr />
                     <div>
-                        <p>DateofBirth: <span class="info">@ViewBag.user.DateOfBirth</span></p>
+                        <p>DateofBirth: <span class="info">@ViewBag.user.DateOfBirth.Day/@ViewBag.user.DateOfBirth.Month/@ViewBag.user.DateOfBirth.Year</span></p>
 
                     </div>
                     <hr />
@@ -78,7 +78,7 @@
                     </div>
                     <hr />
                     <div>
-                        <p>Email:<span class="info">@ViewBag.user.Email</span></p>
+                        <p>Email:<span class="info" >@ViewBag.user.Email</span></p>
 
                     </div>
                     <hr />
@@ -88,15 +88,9 @@
         <div class="col-md-8 ">
             <div class="customer-action">
                 <div class="menu-action">
-                    <div class="action edit-action active">
+                    <div class="action ">
                         Edit Profiles
-                    </div>
-                    <div class="action check-action">
-                        Check Bill
-                    </div>
-                    <div class="action history-action">
-                        Bill History
-                    </div>
+                    </div>                   
                 </div>
                 <div class="content-action">
                     <form asp-action="Edit" asp-controller="Customer" method="post">
