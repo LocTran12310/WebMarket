@@ -299,11 +299,11 @@ namespace WebMarket.Areas.Admin.Controllers
                         Product product = new Product();
                         product.Name = worksheet.Cells[row, 2].Value.ToString().Trim();
                         product.Price = double.Parse(worksheet.Cells[row, 3].Value.ToString().Trim());
-                        product.Image = worksheet.Cells[row, 4].Value.ToString().Trim();
-                        product.Description = worksheet.Cells[row, 8].Value == null ? string.Empty : worksheet.Cells[row, 8].Value.ToString().Trim();
-                        product.IdProvider = int.Parse(worksheet.Cells[row, 9].Value.ToString().Trim());
-                        product.IdType = 1;
-                        product.Discount = double.Parse(worksheet.Cells[row, 5].Value.ToString().Trim());
+                        product.Discount = double.Parse(worksheet.Cells[row, 4].Value.ToString().Trim());
+                        product.Image = worksheet.Cells[row, 7].Value.ToString().Trim();
+                        product.Description = worksheet.Cells[row, 9].Value == null ? string.Empty : worksheet.Cells[row, 9].Value.ToString().Trim();
+                        product.IdProvider = int.Parse(worksheet.Cells[row, 12].Value.ToString().Trim());
+                        product.IdType = int.Parse(worksheet.Cells[row, 13].Value.ToString().Trim());
                         product.Status = default;
                         _context.Product.Add(product);
                         _context.SaveChanges();

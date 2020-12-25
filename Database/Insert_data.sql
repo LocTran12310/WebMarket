@@ -1,9 +1,12 @@
-INSERT INTO [category] ([name],[image]) VALUES
-    ('Groceries','p2.jpg'),
-    ('Household','p3.jpg'),
-    ('Personal Care','p4.jpg'),
-    ('Package Foods','111.jpg')
+USE [WebMarket]
+GO
 
+INSERT INTO [category] ([name],[image]) VALUES
+    ('Groceries','images/p2.jpg'),
+    ('Household','images/p3.jpg'),
+    ('Personal Care','images/p4.jpg'),
+    ('Package Foods','images/111.jpg')
+GO
 INSERT INTO [type] ([name],[ID_category]) VALUES
     (N'Dầu ăn - Gia vị - Đồ khô',1),
     (N'Đồ đông lạnh/mát',1),
@@ -14,64 +17,11 @@ INSERT INTO [type] ([name],[ID_category]) VALUES
     (N'Chăm sóc cho bé',3),
     (N'Bánh kẹo - Đồ ăn vặt',4),
     (N'Đồ uống - Giải khát',4)
-
-
-insert into dbo.provider(name,address,phone) values
-(N'Trương Văn Nam', 'TPHCM','123456789'),
-(N'Trần Phước Lộc', 'TPHCM','123456789'),
-(N'Trần Trung Hiếu', 'TPHCM','0352460179'),
-(N'Nguyễn Càn Long', 'TPHCM','1111111111')
-
-
-
-
-insert into dbo.product(name,price,image,description,ID_provider,ID_type,discount) values
-(N'Bò Húc',	15000,'bohuc.jpg',	NULL,	1,	2,	10),
-(N'CoCa',	10000,'coca.jpg',	NULL,	2,	2,	0),
-(N'Nước Cam',15000,'nuoccam.jpg',	NULL,	3,	2,	0),
-(N'Nước Suối',5000,'nuocsuoi.jpg',	NULL,	3,	2,	0),
-(N'Pepsi',15000,'pepsi.jpg',NULL,	2,	2,	0),
-(N'Trà Xanh',10000,'traxanh.jpg',	NULL,	1,	2,	10),
-(N'Bánh Mì',15000,'banhmi.jpg',	NULL,	1,	1,	20),
-(N'Cơm Gà',	35000,'comga.jpg',	NULL,	1,	1,	0),
-(N'Cơm Sường',25000,'comsuong.jpg',NULL,	1,	1,	20),
-(N'Hambuger',20000,'hambuger.jpg',	NULL,	1,	1,	0),
-(N'Nem Chua',15000,'nemchua.jpg',	NULL,	1,	1,	20),
-(N'Xúc Xích',20000,'xucxich.jpg',	NULL,	1,	1,	0),
-(N'Cam'		,50000,'cam.jpg',	NULL,	1,	3,	10),
-(N'ổi'		,45000,'oi.jpg',	NULL,	1,	3,	0),
-(N'Xoài'	,60000,'xoai.jpg',	NULL,	2,	3,	0)
-
-
-
-
-INSERT INTO background(name,image,description) VALUES 
-('BG1','11.jpg','Buy Rice Products Are Now On Line With Us'),
-('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
-('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
-
-insert into admininfo(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
-
-Insert into priceupdate (ID_product,ID_admin,price,priceupdated) VALUES
-(4, 1, 11100, 52352),
-(2, 1, 12450, 54652),
-(3, 1, 5453, 51232)
-
-SELECT * FROM product
-SELECT * FROM [admininfo]
-USE WebMarket
 GO
-delete from [provider]
-SELECT * FROM [provider]
-
-SELECT * FROM priceupdate
-
-UPDATE priceupdate 
-SET price = 550
-WHERE ID_product = 2
-
-SELECT * FROM priceupdate FOR SYSTEM_TIME ALL
-
-UPDATE [priceupdate] SET price = 2500 WHERE ID_product = 2
-
-DELETE from provider WHERE id =1
+INSERT INTO [background] ([name],[image],[description]) VALUES 
+('BG1','images/img-banner/11.jpg','Buy Rice Products Are Now On Line With Us'),
+('BG2','images/img-banner/22.jpg','Whole Spices Products Are Now On Line With Us'),
+('BG3','images/img-banner/44.jpg','Whole Spices Products Are Now On Line With Us')
+GO
+INSERT INTO [admininfo]([username],[password],[name],[address],[phone],[type]) values ('admin','admin','ADMIN','HCM','0123456789',1)
+GO

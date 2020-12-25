@@ -36,7 +36,7 @@
                         <tr class="rem1">
                             <td class="invert">1</td>
                             <td class="invert-image">
-                                <a href="single.html"> <img src="~/images/img-products/@item.Image" alt=" " class="img-responsive" /></a>
+                                <a href="single.html"> <img src="@Url.Content(item.Image)" alt=" " class="img-responsive" /></a>
                             </td>
                             <td class="invert">
                                 <div class="cart-products__qty"> <div class="qtty"> <span class="qty-decrease">-</span> <input type="tel" class="qty-input" value="@item.Quantity" data-masp='@item.Id' min="1" max="100"> <span class="qty-increase">+</span> </div> </div>

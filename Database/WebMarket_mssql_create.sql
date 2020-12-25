@@ -46,9 +46,9 @@ CREATE TABLE [provider] (
 GO
 CREATE TABLE [product] (
 	ID integer NOT NULL IDENTITY,
-	name nvarchar(50) NOT NULL UNIQUE,
+	name nvarchar(255) NOT NULL UNIQUE,
 	price float,
-	image nvarchar(100) NOT NULL,
+	image nvarchar(255) NOT NULL,
 	description nvarchar(max) ,
 	ID_provider integer NULL,
 	ID_type integer NOT NULL,
@@ -136,6 +136,20 @@ CREATE TABLE [order] (
 
 )
 GO
+
+CREATE TABLE [orderupdate](
+	ID integer NOT NULL IDENTITY PRIMARY KEY CLUSTERED,
+	ID_order integer NOT NULL,
+	ID_admin integer NULL,
+	old_status integer NULL,
+	new_status integer NULL,
+	date_update DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+	date_end DATETIME2 GENERATED ALWAYS AS ROW END  NOT NULL,
+	PERIOD FOR SYSTEM_TIME (date_update, date_end)
+
+)WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.orderhistory, DATA_CONSISTENCY_CHECK = ON));
+GO
+
 CREATE TABLE [customer] (
 	ID integer NOT NULL ,
 	name nvarchar(50) NOT NULL,
@@ -166,7 +180,7 @@ CREATE TABLE [account] (
 GO
 CREATE TABLE [priceupdate] (
 	ID integer NOT NULL IDENTITY PRIMARY KEY CLUSTERED,
-	ID_product integer NOT NULL,
+	ID_product integer NULL,
 	ID_admin integer NOT NULL,
 	price float NOT NULL,
 	priceupdated float NOT NULL,
@@ -261,29 +275,14 @@ GO
 ALTER TABLE [priceupdate] CHECK CONSTRAINT [priceupdate_fk1]
 GO
 
-insert into category(Name,image) values('Groceries','p2.jpg'),('Household','p3.jpg'),('Personal Care','p4.jpg'),('Package Foods','111.jpg')
+ALTER TABLE [orderupdate] WITH CHECK ADD CONSTRAINT [orderupdate_fk0] FOREIGN KEY ([ID_order]) REFERENCES [order]([ID])
+--ON UPDATE CASCADE
+GO
+ALTER TABLE [orderupdate] CHECK CONSTRAINT [orderupdate_fk0]
+GO
 
-insert into dbo.type(name,ID_category) values ('Foods',1),('Drinks',1),('Fruits',1),('Cakes',1)
-
-insert into dbo.provider(name,address,phone) values 
-(N'Trương Văn Nam', 'TPHCM','123456789'),
-(N'Trần Phước Lộc', 'TPHCM','123456789'),
-(N'Trần Trung Hiếu', 'TPHCM','0352460179'),
-(N'Nguyễn Càn Long', 'TPHCM','1111111111')
-
-
-
-
-insert into dbo.product(name,price,image,ID_provider,ID_type,discount) values
-(N'Bò Húc',	15000,'bohuc.jpg',	1,	2,	10),
-(N'CoCa',	10000,'coca.jpg',	2,	2,	0)
-
-
-
-
-INSERT INTO background(name,image,description) VALUES 
-('BG1','11.jpg','Buy Rice Products Are Now On Line With Us'),
-('BG2','22.jpg','Whole Spices Products Are Now On Line With Us'),
-('BG3','44.jpg','Whole Spices Products Are Now On Line With Us')
-
-insert into admininfo(username,password,name,address,phone,type) values ('admin','admin','Nam','hcm','0123456789',1)
+ALTER TABLE [orderupdate] WITH CHECK ADD CONSTRAINT [orderupdate_fk1] FOREIGN KEY ([ID_admin]) REFERENCES [admininfo]([ID])
+--ON UPDATE CASCADE
+GO
+ALTER TABLE [orderupdate] CHECK CONSTRAINT [orderupdate_fk1]
+GO

@@ -22,6 +22,12 @@
             transition: background-color 1s;
             color:black;
         }
+        .orderhistory {
+            margin: 15px 3% 35px 3%;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 94%;
+        }
     </style>
 }
 
@@ -34,13 +40,22 @@
                 $('.link-order').removeClass("active1");
                 $(this).addClass("active1");
                 var id = $(this).attr("data-id");
-            //console.log(id);
+            //console.log(-->id);
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("Detail", "OrderManager")',
                     data: { id: id },
                     success: function (res) {
                         $(".message-body").html(res);
+                    }
+                });
+                console.log(id)
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("History", "OrderManager")',
+                    data: { id: id },
+                    success: function (res) {
+                        $(".orderhistory").html(res);
                     }
                 });
             });
@@ -61,9 +76,9 @@
                     @{
                         foreach (var item in Model)
                         {
-                            <div class="mail-list  " style="border-top:1px solid  ">
-                                <div class="content link-order" data-id="@item.Id">
-                                   <p class="sender-name">@item.Name </p><i class="far fa-file-alt" style="float:right !important"></i>
+                            <div class="mail-list  " style="border-top:1px solid">
+                                <div class="content link-order" data-id="@item.Id" style="position: relative">
+                                   <p class="sender-name">@item.Name </p><span style="right:0px; top:0px ">@item.Id</span> <i class="far fa-file-alt" style="float:right !important"></i>
                                     <p class="message_text">@item.OrderDate.DayOfWeek/@item.OrderDate.Day/@item.OrderDate.Month/@item.OrderDate.Year</p>
 
                                 </div>
@@ -79,8 +94,15 @@
                         <h5 style="font-size:20px;font-weight:500;">Chi Tiết Hóa đơn</h5>
 
                     </div>
-                    <div class="message-body">
+                    <div>
+                        <div class="message-body">
 
+
+                    </div>
+                    <div class="row">
+                        <div class="orderhistory">
+
+                        </div>
                     </div>
                 </div>
             </div>

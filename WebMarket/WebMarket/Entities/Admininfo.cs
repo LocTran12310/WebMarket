@@ -8,6 +8,7 @@ namespace WebMarket.Entities
         public Admininfo()
         {
             Order = new HashSet<Order>();
+            Orderupdate = new HashSet<Orderupdate>();
             Priceupdate = new HashSet<Priceupdate>();
         }
 
@@ -20,6 +21,7 @@ namespace WebMarket.Entities
         public int Type { get; set; }
 
         public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Orderupdate> Orderupdate { get; set; }
         public virtual ICollection<Priceupdate> Priceupdate { get; set; }
     }
 }
