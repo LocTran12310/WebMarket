@@ -46,7 +46,7 @@ namespace WebMarket.Controllers
             var cart = HttpContext.Session.Get<List<CartItem>>("GioHang");
             double? TongTien = cart.Sum(p => p.TotalPrice);
         
-
+            
             Order ord = new Order();
             ord.Name = customer.Name;
             ord.Address = customer.Address;

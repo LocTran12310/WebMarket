@@ -7,7 +7,7 @@ namespace WebMarket.Entities
     {
         public int Id { get; set; }
         public int IdOrder { get; set; }
-        public int IdAdmin { get; set; }
+        public int? IdAdmin { get; set; }
         public int? OldStatus { get; set; }
         public int? NewStatus { get; set; }
         public DateTime DateUpdate { get; set; }

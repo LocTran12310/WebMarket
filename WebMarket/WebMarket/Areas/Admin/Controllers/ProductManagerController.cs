@@ -190,7 +190,7 @@ namespace WebMarket.Areas.Admin.Controllers
                         Price = (double)old_price,
                         Priceupdated = (double)((100 - product.Discount) * product.Price) / 100,
                         DateUpdate = default,
-                        DateEnd = default,
+                        DateEnd = default, 
                     };
                     _context.Priceupdate.Add(updatedetail);
                 }

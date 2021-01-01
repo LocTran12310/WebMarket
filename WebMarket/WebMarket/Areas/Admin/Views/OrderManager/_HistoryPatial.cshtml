@@ -28,7 +28,11 @@
                 @item.NewStatus
             </td>
             <td>
-                @item.IdAdminNavigation.Name
+                @if (item.IdAdmin != null)
+                {
+                    @item.IdAdminNavigation.Name
+                }
+
             </td>
         </tr>
         }

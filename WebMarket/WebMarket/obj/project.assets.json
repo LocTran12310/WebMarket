@@ -10398,19 +10398,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\truon\\.nuget\\packages\\": {}
+    "C:\\Users\\TAI TRAN\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "projectUniqueName": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
       "projectName": "WebMarket",
-      "projectPath": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
-      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\truon\\Desktop\\WebMarket\\WebMarket\\WebMarket\\obj\\",
+      "projectPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\WebMarket.csproj",
+      "packagesPath": "C:\\Users\\TAI TRAN\\.nuget\\packages\\",
+      "outputPath": "D:\\LocTran\\HocPhan\\HP_CNWeb\\Final-3AE\\Final-3AE\\WebMarket\\WebMarket\\WebMarket\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TAI TRAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10422,6 +10426,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -10433,6 +10438,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "ClosedXML": {
             "target": "Package",

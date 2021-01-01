@@ -52,7 +52,15 @@
         <div class="col-md-4">
             <div class=" customer-info">
                 <div class="image-user">
-                    <img src="@ViewBag.user.Image" />
+                    @if (@ViewBag.user.Image == null)
+                    {
+                        <img src="@Url.Content("images/img-customer/default.png")" />
+                    }
+                    else
+                    {
+                        <img src="@ViewBag.user.Image" />
+                    }
+
                     <h3>@ViewBag.user.Name</h3>
                     <h5>@ViewBag.user.Email</h5>
                 </div>

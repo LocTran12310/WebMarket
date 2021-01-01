@@ -45,7 +45,7 @@ namespace WebMarket.Entities
                 entity.ToTable("account");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__account__F3DBC5728046F9FD")
+                    .HasName("UQ__account__F3DBC57294F21C36")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -69,7 +69,7 @@ namespace WebMarket.Entities
                 entity.ToTable("admininfo");
 
                 entity.HasIndex(e => e.Username)
-                    .HasName("UQ__admininf__F3DBC572B7D2AAA9")
+                    .HasName("UQ__admininf__F3DBC5723AB925E5")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -135,7 +135,7 @@ namespace WebMarket.Entities
                 entity.ToTable("category");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__category__72E12F1BDF7B09B3")
+                    .HasName("UQ__category__72E12F1BD471E47F")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -313,7 +313,6 @@ namespace WebMarket.Entities
                 entity.HasOne(d => d.IdAdminNavigation)
                     .WithMany(p => p.Orderupdate)
                     .HasForeignKey(d => d.IdAdmin)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("orderupdate_fk1");
 
                 entity.HasOne(d => d.IdOrderNavigation)
@@ -360,7 +359,7 @@ namespace WebMarket.Entities
                 entity.ToTable("product");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__product__72E12F1B54BB7D96")
+                    .HasName("UQ__product__72E12F1B5904C2EE")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -428,6 +427,8 @@ namespace WebMarket.Entities
                     .HasColumnName("EXP")
                     .HasColumnType("date");
 
+                entity.Property(e => e.IdAdmin).HasColumnName("ID_admin");
+
                 entity.Property(e => e.IdProduct).HasColumnName("ID_product");
 
                 entity.Property(e => e.IdWarehouse).HasColumnName("ID_warehouse");
@@ -437,6 +438,12 @@ namespace WebMarket.Entities
                     .HasColumnType("date");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.HasOne(d => d.IdAdminNavigation)
+                    .WithMany(p => p.Productdetail)
+                    .HasForeignKey(d => d.IdAdmin)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("productdetail_fk1");
 
                 entity.HasOne(d => d.IdProductNavigation)
                     .WithMany(p => p.Productdetail)
@@ -450,7 +457,7 @@ namespace WebMarket.Entities
                 entity.ToTable("provider");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__provider__72E12F1B3CA680DF")
+                    .HasName("UQ__provider__72E12F1BC1ABBAD4")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -475,7 +482,7 @@ namespace WebMarket.Entities
                 entity.ToTable("type");
 
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__type__72E12F1B14D0D2D5")
+                    .HasName("UQ__type__72E12F1BF37E5653")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
