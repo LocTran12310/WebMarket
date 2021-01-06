@@ -25,7 +25,7 @@ namespace WebMarket.Controllers
        
 
 
-          private int numpage = 6;
+          private int numpage = 15;
         [HttpGet("Category/{name}")]
         public IActionResult Index(string name ,int page=1)
         {

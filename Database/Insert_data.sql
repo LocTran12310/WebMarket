@@ -2,10 +2,10 @@ USE [WebMarket]
 GO
 
 INSERT INTO [category] ([name],[image]) VALUES
-    ('Groceries','images/p2.jpg'),
-    ('Household','images/p3.jpg'),
-    ('Personal Care','images/p4.jpg'),
-    ('Package Foods','images/111.jpg')
+    ('Groceries','/images/p2.jpg'),
+    ('Household','/images/p3.jpg'),
+    ('Personal Care','/images/p4.jpg'),
+    ('Package Foods','/images/111.jpg')
 GO
 INSERT INTO [type] ([name],[ID_category]) VALUES
     (N'Dầu ăn - Gia vị - Đồ khô',1),
@@ -25,3 +25,5 @@ INSERT INTO [background] ([name],[image],[description]) VALUES
 GO
 INSERT INTO [admininfo]([username],[password],[name],[address],[phone],[type]) values ('admin','admin','ADMIN','HCM','0123456789',1)
 GO
+
+Select * From Productdetail
