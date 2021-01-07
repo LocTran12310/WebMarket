@@ -167,7 +167,7 @@
 .cart-products__del {
     color: rgb(27, 168, 255);
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 0 auto;
     font-size: 13px;
     cursor: pointer;
 }
@@ -213,12 +213,6 @@
     display: inline-block;
 }
 
-.prices__value--final {
-    color: rgb(255, 66, 78);
-    font-size: 22px;
-    font-weight: 400;
-    text-align: right;
-}
 
 .cart__submit {
     color: rgb(255, 255, 255) !important;
@@ -281,7 +275,6 @@
     width: 35px;
     text-align: center;
     font-size: 13px;
-    appearance: none;
     border-width: initial;
     border-style: none;
     border-color: initial;
@@ -333,4 +326,40 @@
     background: rgba(243, 243, 243, 0.486);
     margin: 0px;
     border-radius: 4px;
+}
+
+@media (min-width: 1200px){
+    .invert-quantity{
+        width: 122px;
+    }
+}
+
+.checkout-left-basket ul li:last-child {
+    font-size: 1em;
+    color: #212121;
+    font-weight: 600;
+    padding: 1em 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.checkout-left-basket ul li:not(:last-child) {
+    border-bottom: 1px solid #DDD;
+}
+
+.checkout-left-basket ul li:nth-last-child(2) {
+    margin-bottom: 0;
+}
+.payment-btn {
+    color: white;
+    background: #fe9126;
+    font-size: 1.1em;
+    padding: 1em;
+    text-align: center;
+    font-weight: 700;
+    width:100%;
+    line-height:1.1em;
+}
+.payment-btn:hover {
+    background: #ff7e00;
+    color: white;
 }
