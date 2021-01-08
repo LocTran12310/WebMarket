@@ -13,7 +13,7 @@
                     <figure>
                         <div class="snipcart-item block" data-id="@item.Id">
                             <div class="snipcart-thumb">
-                                <a href="~/Category/@ViewBag.name/@item.type1/Detail/@item.EncryptedId"><img title=" " alt=" " src="@Url.Content(item.Image)" width="150px" height="150px" /></a>
+                                <a href="~/Category/@ViewBag.name/@item.type1/Detail/@item.EncryptedId"><img title=" " alt=" " src="@Url.Content(item.Image)"style="width:150px;height:150px;" /></a>
                                 <p style="height:63px;">@item.Name</p>
 
                                 <div class="stars">
@@ -58,7 +58,7 @@
             <div class="modal-body" data-id="">
                 <div class="row">
                     <div class="col-md-4 ">
-                        <img src="" width="150px" height="150px">
+                        <img src="" style="width:150px;height:150px;">
                     </div>
                     <div class="col-md-8 ">
                         <div style="font-size:17px;font-weight:200">Name : <span class="modal-item-name"></span></div>
@@ -80,45 +80,68 @@
 
 
 <nav class="numbering" aria-label="...">
-        <ul class="pagination paging">
-            @{
-                int totalpage = ViewBag.total;
-                int currentpage = ViewBag.currentpage;
-                if (currentpage > 1)
-                {
-                        <li class="page-item">
-                            @if (ViewBag.type !=null)
-                            {
-                                <a class="page-link" href="@Url.Action("ProductByType",new {type = ViewBag.type, page = currentpage-1 })" tabindex="-1">Previous</a>
-                            }
-                            else
-                            {
-                                <a class="page-link" href="@Url.Action("Index", new { page = currentpage-1 })" tabindex="-1">Previous</a>
-                            }
+    <ul class="pagination paging">
+        @{
+            int totalpage = ViewBag.total;
+            int currentpage = ViewBag.currentpage;
+            if (currentpage > 1)
+            {
+                <li class="page-item">
+                    @if (ViewBag.type != null)
+                    {
+                        <a class="page-link" href="@Url.Action("ProductByType", new { type = ViewBag.type, page = currentpage - 1,data = @ViewBag.da,searchString = ViewBag.search, minPrice = ViewBag.min , maxPrice =ViewBag.max})" tabindex="-1">Previous</a>
+                    }
+                    else
+                    {
+                        <a class="page-link" href="@Url.Action("Index", new { page = currentpage - 1,data = ViewBag.da,searchString = ViewBag.search, minPrice = ViewBag.min , maxPrice =ViewBag.max})" tabindex="-1">Previous</a>
+                    }
 
-                        </li>
-                }
-                for (int i = 1; i <= totalpage; i++)
+                </li>
+            }
+            @if(totalpage <=10 )
+            {
+                currentpage = 1;
+            }
+            
+
+            for (int i = currentpage; i < 10 + currentpage; i++)
+            {
+                if (i <= totalpage)
                 {
-                    <li class="@(i == ViewBag.currentpage ? "page-item active" : "page-item")">
+                    <li class="@(i == ViewBag.currentpage ? "page-item active " : "page-item")">
                         @if (ViewBag.type != null)
                         {
-                            <a class="page-link" href="@Url.Action("ProductByType", new { type=ViewBag.type,page = i })">@i</a>
+                            <a class="page-link" href="@Url.Action("ProductByType", new { type = ViewBag.type, page = i , data=@ViewBag.da,searchString = ViewBag.search, minPrice = ViewBag.min , maxPrice =ViewBag.max})">@i</a>
                         }
                         else
                         {
-                            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                            <a class="page-link" href="@Url.Action("Index", new { page = i , data = @ViewBag.da,searchString = ViewBag.search, minPrice = ViewBag.min , maxPrice =ViewBag.max})">@i</a>
+
                         }
                     </li>
                 }
-                if (currentpage < totalpage)
+            }
+
+            @if (currentpage < totalpage)
+            {
+                @if (ViewBag.type != null)
+                {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("ProductByType", new { page = currentpage + 1, data = @ViewBag.da , searchString = ViewBag.search , minPrice = ViewBag.min , maxPrice =ViewBag.max})" tabindex="-1">Next</a>
+                </li>
+                }
+                else
                 {
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index", new { page = currentpage + 1 })" tabindex="-1">Next</a>
+                        <a class="page-link" href="@Url.Action("Index", new { page = currentpage + 1, data = @ViewBag.da ,searchString = ViewBag.search, minPrice = ViewBag.min , maxPrice =ViewBag.max})" tabindex="-1">Next</a>
                     </li>
                 }
             }
-        </ul>
+        }
+    </ul>
     </nav>
+<script>
+   
+</script>
 
 <script src="~/js/cart.js"></script>

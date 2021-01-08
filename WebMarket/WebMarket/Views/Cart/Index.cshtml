@@ -47,8 +47,19 @@
                             <td class="invert-image">
                                 <a href="single.html"> <img src="@Url.Content(item.Image)" alt=" " class="img-responsive" /></a>
                             </td>
+<<<<<<< HEAD
+                            <td class="invert">
+                                <div class="cart-products__qty">
+                                    <div class="qtty" >
+                                        <span class="qty-decrease " style=" flex: 2;">-</span>
+                                        <input type="number"  min="1" max="100" class="qty-input" style=" flex: 2;" value="@item.Quantity" data-masp='@item.Id' >
+                                        <span class="qty-increase" style=" flex: 2;">+</span> 
+                                     </div> 
+                                </div>
+=======
                             <td class="invert invert-quantity">
                                 <div class="cart-products__qty"> <div class="qtty"> <span class="qty-decrease">-</span> <input type="tel" class="qty-input" value="@item.Quantity" data-masp='@item.Id' min="1" max="100"> <span class="qty-increase">+</span> </div> </div>
+>>>>>>> a46faeee3b04d8f07e416798bff36387224bb571
                             </td>
                             <td class="invert">@item.Name</td>
                             <td class="invert">@item.Price</td>
@@ -79,6 +90,20 @@
                                 <span class="prices__value--final" style="float:right"> @ViewBag.TongTien</span>
                             </li>
                         </ul>
+<<<<<<< HEAD
+                    }
+                }
+                <span class="prices__text">Thành tiền</span>
+                <span class="prices__value--final"> @ViewBag.TongTien đ </span>
+            </div>
+
+            <div class="clearfix"> </div>
+            @{
+                if (ViewBag.TongTien > 0)
+                {
+                    <a href="@Url.Action("Index" , "Thanhtoan" )" style=" float: right; padding: 10px 60px; background-color: rgb(254,145,38); color: #fff; border-radius: 2px;">Thanh Toán</a>
+                }
+=======
                         <a href="@Url.Action("Index" , "Thanhtoan" )" class="btn payment-btn">Procceed to checkout</a>
                     </div>
                     <div class="checkout-right-basket">
@@ -86,6 +111,7 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
+>>>>>>> a46faeee3b04d8f07e416798bff36387224bb571
             }
         </div>
     </div>
