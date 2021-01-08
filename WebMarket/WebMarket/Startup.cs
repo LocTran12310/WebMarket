@@ -47,11 +47,11 @@ namespace WebMarket
                     options.LoginPath = "/Admin/Login";
                     options.AccessDeniedPath = "/Admin/Login";
                 })
-                .AddGoogle(options => 
+                .AddGoogle(options =>
                 {
                     options.ClientId = "491121016030-rm8qkusguio7p85llrcankohq9u1k1e8.apps.googleusercontent.com";
                     options.ClientSecret = "gAr9iBOTPBGyXmq0_3GCseZv";
-                  
+
                     options.Events.OnCreatingTicket = (context) =>
                     {
                         var picture = context.User.GetProperty("picture").GetString();
@@ -81,7 +81,7 @@ namespace WebMarket
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-           
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -91,7 +91,7 @@ namespace WebMarket
                 endpoints.MapControllerRoute(
                      name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                
+
             });
         }
     }

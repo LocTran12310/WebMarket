@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +17,6 @@ using WebMarket.Models;
 
 namespace WebMarket.Controllers
 {
-    
     public class CustomerController : Controller
     {
 
@@ -32,7 +30,7 @@ namespace WebMarket.Controllers
         {
             var user = @User.Claims.FirstOrDefault(c => c.Type == "Ma").Value;
             var role = @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
-            if (user == null || role !="Customer")
+            if (user == null || role != "Customer")
             {
                 var admin = _context.Admininfo.Find(Int32.Parse(user));
                 ViewBag.user = admin;
@@ -44,7 +42,7 @@ namespace WebMarket.Controllers
         }
         public IActionResult Login()
         {
-           
+
             ViewBag.Status = TempData["Message"];
             return View();
         }
@@ -74,7 +72,7 @@ namespace WebMarket.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            
+            ExtensionHelper.isLogin = false;
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
@@ -109,7 +107,7 @@ namespace WebMarket.Controllers
                     Phone = res.customer.Phone,
                     DateOfBirth = res.customer.Date,
                     Email = res.account.UserName,
-                    Image="default.png",
+                    Image = "~/images/img-customer/default.png",
                     Status = 0,
                 };
                 _context.Customer.Add(cus);
@@ -129,14 +127,14 @@ namespace WebMarket.Controllers
             {
                 properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponseLogin") };
             }
-           
+
             return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
         [Route("google-response")]
         public async Task<IActionResult> GoogleResponseRegister()
         {
-            
+
             var info = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             var acc = new Account
             {
@@ -152,7 +150,8 @@ namespace WebMarket.Controllers
             _context.Account.Add(acc);
             _context.SaveChanges();
             int lastRow = _context.Account.OrderByDescending(a => a.Id).Select(a => a.Id).First();
-            var userInfo = new Customer() {
+            var userInfo = new Customer()
+            {
                 Id = lastRow,
                 Name = info.Principal.FindFirst(ClaimTypes.Name).Value,
                 Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
@@ -163,9 +162,8 @@ namespace WebMarket.Controllers
             _context.SaveChanges();
             return RedirectToAction("Login");
         }
-        public async Task<IActionResult> GoogleResponseLogin( )
+        public async Task<IActionResult> GoogleResponseLogin()
         {
-
             var info = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             var acc = new Account
             {
@@ -173,9 +171,9 @@ namespace WebMarket.Controllers
                 Type = 1,
             };
             var account = _context.Account.Where(a => a.Username == acc.Username).SingleOrDefault();
-            if (account== null)
+            if (account == null)
             {
-                TempData["Message"] ="* Email khong tồn tại";
+                TempData["Message"] = "* Email khong tồn tại";
                 return RedirectToAction("Login");
             }
             var customer = _context.Customer.SingleOrDefault(c => c.Id == account.Id);
