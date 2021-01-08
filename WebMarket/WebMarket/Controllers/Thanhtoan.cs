@@ -21,7 +21,6 @@ namespace WebMarket.Controllers
 
         public IActionResult Index()
         {
-
             int customer = Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
             var cart=HttpContext.Session.Get<List<CartItem>>("GioHang");
             if (cart != null)

@@ -1223,15 +1223,13 @@ td.invert-image a img {
 }
 .checkout-left-basket {
     float: left;
-    width: 25%;
+    width: 33.33%;
 }
 .checkout-right-basket{
 	float: right;
-    margin: 8em 0 0 0em;
+    margin: 1em 0 0 0em;
 }
-.checkout-left-basket ul li span {
-    float: right;
-}
+
 .checkout-left-basket ul li:nth-child(5) {
     font-size: 1em;
     color: #212121;
@@ -1258,6 +1256,7 @@ td.invert-image a img {
 .checkout {
     padding: 5em 0;
 }
+
 /*-- //checkout --*/
 /*-- faq --*/
 h3.w3ls-title.w3ls-title1 {
@@ -3412,4 +3411,6 @@ td.invert-image a img {
 }
 .info-product{
     margin-top: 98px;
+}
+
 }

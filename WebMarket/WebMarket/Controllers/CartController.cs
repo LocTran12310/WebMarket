@@ -34,8 +34,9 @@ namespace WebMarket.Controllers
 
         public IActionResult Index(CartItem cart)
         {
-            double? TongTien = Carts.Sum(p => p.TotalPrice);
-            ViewBag.TongTien = TongTien;
+            double? dTongTien = Carts.Sum(p => p.TotalPrice);
+            string sTongTien = $"{dTongTien:#,##0.00} đ";
+            ViewBag.TongTien = sTongTien;
             var name = cart.Name;
             ViewBag.data = HttpContext.Session.GetString("name");
             return View(Carts);
