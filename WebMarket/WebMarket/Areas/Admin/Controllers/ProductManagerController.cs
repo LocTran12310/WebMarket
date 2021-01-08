@@ -21,7 +21,7 @@ namespace WebMarket.Areas.Admin.Controllers
     [Authorize]
     public class ProductManagerController : Controller
     {
-        private WebMarketContext _context;
+        private   WebMarketContext  _context;
         public ProductManagerController(WebMarketContext context)
         {
             _context = context;

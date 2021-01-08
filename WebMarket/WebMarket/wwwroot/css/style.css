@@ -84,12 +84,25 @@ i.badge.badge-notify.my-cart-badge {
     color: #fff;
 	top: 1em;
 }
-input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input[type="reset"],.agileinfo_mail_grid_left ul li a,.events_bottom_left2 ul li a,.w3ls_service_grids1_right a,ul.agileits_social_icons li a,.w3l_banner_nav_right_banner_pet a,.w3ls_w3l_banner_nav_right_grid_head_grid ul li a,.products-breadcrumb ul li a,.w3_footer_grid ul li a,.w3l_fresh_vegetables_grid ul li a,.wthree_footer_copy p a,.agile_top_brand_left_grid1 .button,.w3ls_logo_products_left1 ul.special_items li a,.w3ls_logo_products_left1 ul.phone_email li a{
-	transition: .5s ease-in;
-	-webkit-transition: .5s ease-in;
-	-moz-transition: .5s ease-in;
-	-o-transition: .5s ease-in;
-	-ms-transition: .5s ease-in;
+.product_list_header .last{
+    position:relative;
+}
+.product_list_header .count {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    line-height: 1.2em;
+    background: #fe9126;
+    width: auto;
+    text-align: center;
+    padding: 0.05em 0.15em;
+}
+input[type="submit"], #PPMiniCart .minicart-submit, .w3ls_vegetables ul li a, input[type="reset"], .agileinfo_mail_grid_left ul li a, .events_bottom_left2 ul li a, .w3ls_service_grids1_right a, ul.agileits_social_icons li a, .w3l_banner_nav_right_banner_pet a, .w3ls_w3l_banner_nav_right_grid_head_grid ul li a, .products-breadcrumb ul li a, .w3_footer_grid ul li a, .w3l_fresh_vegetables_grid ul li a, .wthree_footer_copy p a, .agile_top_brand_left_grid1 .button, .w3ls_logo_products_left1 ul.special_items li a, .w3ls_logo_products_left1 ul.phone_email li a {
+    transition: .5s ease-in;
+    -webkit-transition: .5s ease-in;
+    -moz-transition: .5s ease-in;
+    -o-transition: .5s ease-in;
+    -ms-transition: .5s ease-in;
 }
 .agileits_header {
     background: #333333;
@@ -406,6 +419,7 @@ ul.multi-column-dropdown h6 {
 /*-- cart --*/
 .product_list_header {
     float: right;
+    line-height:2.1em;
 }
 .snipcart-details {
     text-align: center;
@@ -1223,15 +1237,13 @@ td.invert-image a img {
 }
 .checkout-left-basket {
     float: left;
-    width: 25%;
+    width: 33.33%;
 }
 .checkout-right-basket{
 	float: right;
-    margin: 8em 0 0 0em;
+    margin: 1em 0 0 0em;
 }
-.checkout-left-basket ul li span {
-    float: right;
-}
+
 .checkout-left-basket ul li:nth-child(5) {
     font-size: 1em;
     color: #212121;
@@ -1258,6 +1270,7 @@ td.invert-image a img {
 .checkout {
     padding: 5em 0;
 }
+
 /*-- //checkout --*/
 /*-- faq --*/
 h3.w3ls-title.w3ls-title1 {
@@ -3412,4 +3425,6 @@ td.invert-image a img {
 }
 .info-product{
     margin-top: 98px;
+}
+
 }

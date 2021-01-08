@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,26 +19,22 @@ namespace WebMarket.Controllers
         {
             _context = context;
         }
-
         public IActionResult Index()
         {
-
             int customer = Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
-            var cart=HttpContext.Session.Get<List<CartItem>>("GioHang");
+            var cart = HttpContext.Session.Get<List<CartItem>>("GioHang");
             if (cart != null)
             {
                 double? TongTien = cart.Sum(p => p.TotalPrice);
-                ViewBag.TongTien = TongTien;
+                string sTongTien = $"{TongTien:#,##0.00} đ";
+                ViewBag.TongTien = sTongTien;
                 int Quanity = cart.Sum(c => c.Quantity);
                 ViewBag.Quanity = Quanity;
-            }
-            if (customer == 0)
-            {
-                return RedirectToAction("Login", "Customer");
             }
             var customer_info = _context.Customer.Find(customer);
             ViewBag.cart = cart;
             return View(customer_info);
+            
         }
         [HttpPost]
         public IActionResult Pay(Customer customer)

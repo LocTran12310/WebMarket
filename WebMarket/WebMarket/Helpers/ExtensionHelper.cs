@@ -39,5 +39,6 @@ namespace WebMarket.Helpers
                 return newpath;
             }
         }
+        public static bool isLogin { get; set; } = false;
     }
 }
