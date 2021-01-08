@@ -39,7 +39,13 @@
                                 <a href="single.html"> <img src="@Url.Content(item.Image)" alt=" " class="img-responsive" /></a>
                             </td>
                             <td class="invert">
-                                <div class="cart-products__qty"> <div class="qtty"> <span class="qty-decrease">-</span> <input type="tel" class="qty-input" value="@item.Quantity" data-masp='@item.Id' min="1" max="100"> <span class="qty-increase">+</span> </div> </div>
+                                <div class="cart-products__qty">
+                                    <div class="qtty" >
+                                        <span class="qty-decrease " style=" flex: 2;">-</span>
+                                        <input type="number"  min="1" max="100" class="qty-input" style=" flex: 2;" value="@item.Quantity" data-masp='@item.Id' >
+                                        <span class="qty-increase" style=" flex: 2;">+</span> 
+                                     </div> 
+                                </div>
                             </td>
                             <td class="invert">@item.Name</td>
                             <td class="invert">@item.Price</td>
@@ -68,7 +74,7 @@
             @{
                 if (ViewBag.TongTien > 0)
                 {
-                    <a href="@Url.Action("Index" , "Thanhtoan" )">Thanh Toán</a>
+                    <a href="@Url.Action("Index" , "Thanhtoan" )" style=" float: right; padding: 10px 60px; background-color: rgb(254,145,38); color: #fff; border-radius: 2px;">Thanh Toán</a>
                 }
             }
 
