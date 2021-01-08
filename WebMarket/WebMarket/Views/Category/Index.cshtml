@@ -16,26 +16,193 @@
     </div>
     <!-- //breadcrumbs -->
 }
+@section css{
+    <style>
+        .sort {
+            position: relative;
+            background-color: #fafafa;
+            padding-bottom: 100px;
+        }
+
+        .sort-heading {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            border: 1px solid rgb(172,172,172);
+            padding: 8px 65px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+            .sort-heading:hover {
+                background-color: #ccc;
+            }
+
+                .sort-heading:hover .sort-box__list,
+                .sort-box__list:focus .search-box__item {
+                    display: block;
+                }
+
+        .sort-box__list {
+            position: absolute;
+            top: 4px;
+            right: 194px;
+            list-style: none;
+            border: 1px solid #cacaca;
+            box-shadow: 0 10px 10px #ccc;
+            line-height: 2;
+            display: none;
+            width: 100%;
+        }
+
+        .search-box__item {
+            padding: 8px 13px;
+        }
+
+            .search-box__item:hover {
+                background-color: #cacaca;
+            }
+
+            .search-box__item a {
+                text-decoration: none;
+            }
+        /*filter*/
+        .filter {
+            margin-top: 20px;
+        }
+
+        .filter-heading {
+            font-size: 1rem;
+            font-family: 'FontAwesome';
+            font-weight: 600;
+            border-bottom: 1px solid #ccc;
+            display: block;
+            margin-left: 4px;
+            margin-bottom: 4px;
+        }
+
+        .filter-list {
+            list-style: none;
+        }
+
+        .filter-item {
+            line-height: 3;
+            margin-left: 5px;
+            padding: 0 4px;
+            cursor: pointer;
+            transition: all linear 0.3s;
+        }
+
+            .filter-item:hover {
+                background-color: #cacaca;
+                color: white;
+            }
+
+            .filter-item.filter-item__link {
+                text-decoration: none;
+                color: none;
+                display: block;
+            }
+    </style>
+}
+@ViewBag.total
 <div class="products">
     <div class="container">
         <div class="col-md-3 products-left">
+
             @await Component.InvokeAsync("Type", new { name = ViewBag.name })
+
+            <div class="filter">
+                <span class="filter-heading">Mệnh Giá</span>
+                <ul class="filter-list">
+                    @if (ViewBag.type != null)
+                    {
+                        <li class="filter-item">
+                            <a href="@Url.Action("ProductByType", "Category", new { data = ViewBag.da, minPrice = 1, maxPrice = 100000 })" class="filter-item__link">Từ 0đ  đến 100.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("ProductByType", "Category", new { data = ViewBag.da, minPrice = 100000, maxPrice = 500000 })" class="filter-item__link">Từ 100.00đ đến 500.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("ProductByType", "Category", new { data = ViewBag.da, minPrice = 500000, maxPrice = 1000000 })" class="filter-item__link">Từ 500.000đ đến 1.000.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("ProductByType", "Category", new { data = ViewBag.da, minPrice = 1000000, maxPrice = 2000000 })" class="filter-item__link">Từ 1.000.000đ đến 2.000.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("ProductByType", "Category", new { data = ViewBag.da, minPrice = 2000000 })" class="filter-item__link">Trên 2.000.000đ</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="filter-item">
+                            <a href="@Url.Action("Index", "Category", new { data = ViewBag.da, minPrice = 1, maxPrice = 100000 })" class="filter-item__link">Từ 0đ  đến 100.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("Index", "Category", new { data = ViewBag.da, minPrice = 100000, maxPrice = 500000 })" class="filter-item__link">Từ 100.00đ đến 500.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("Index", "Category", new { data = ViewBag.da, minPrice = 500000, maxPrice = 1000000 })" class="filter-item__link">Từ 500.000đ đến 1.000.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("Index", "Category", new { data = ViewBag.da, minPrice = 1000000, maxPrice = 2000000 })" class="filter-item__link">Từ 1.000.000đ đến 2.000.000đ</a>
+                        </li>
+                        <li class="filter-item">
+                            <a href="@Url.Action("Index", "Category", new { data = ViewBag.da, minPrice = 2000000 })," class="filter-item__link">Trên 2.000.000đ</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
+
         <div class="col-md-9 products-right">
             <div class="products-right-grid">
-                <div class="products-right-grids">
-                    <div class="sorting">
-                        <select id="country" class="frm-field required sect">
-                            <option value=" ">All</option>
-                            <option value="1"><i class="fa fa-arrow-right" aria-hidden="true"></i>Theo thứ tự tăng dần</option>
-                            <option value="2"><i class="fa fa-arrow-right" aria-hidden="true"></i>Theo thứ tự giảm dần</option>
-                            <option value="3"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sản phẩm giảm giá</option>
-                            <option value="4"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sản phẩm bán chạy</option>
-                        </select>
+                <div class="row">
+                    <div class="products-right-grids">
+                        <div class="sort ">
+                            <div class="sort-heading">
+                                Sắp Xếp
+                                <ul class="sort-box__list">
+                                    @if (ViewBag.type != null)
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("ProductByType", "Category", new { data =1 ,minPrice = ViewBag.min, maxPrice = ViewBag.max })">giá tiền tăng</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("Index", "Category", new { data = 1 ,minPrice = ViewBag.min, maxPrice = ViewBag.max})">giá tiền tăng</a></li>
+                                    }
+
+                                    @if (ViewBag.type != null)
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("ProductByType", "Category", new { data = 2 ,minPrice = ViewBag.min, maxPrice = ViewBag.max})">giá tiền giảm</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("Index", "Category", new { data = 2 ,minPrice = ViewBag.min, maxPrice = ViewBag.max})">giá tiền giảm </a></li>
+                                    }
+
+                                    @if (ViewBag.type != null)
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("ProductByType", "Category", new { data = 3,minPrice = ViewBag.min, maxPrice = ViewBag.max })">Sản phẩm giảm giá</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="search-box__item"><a href="@Url.Action("Index", "Category", new { data = 3 ,minPrice = ViewBag.min, maxPrice = ViewBag.max})">Sản phẩm giảm giá</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+
+
+
+                            <div class="clearfix"></div>
+
+                        </div>
+
                     </div>
-                    <div class="clearfix"></div>
 
                 </div>
+
             </div>
             <div id="myparital">
                 <partial name="_ProductPartialView" model="Model" />
@@ -48,6 +215,6 @@
 
 
 
-@section Scripts{ 
+@section Scripts{
     <script src="~/js/sort.js"></script>
 }

@@ -208,3 +208,4 @@ D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\ob
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.dll
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.pdb
 D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.genruntimeconfig.cache
+D:\LocTran\HocPhan\HP_CNWeb\Final-3AE\Final-3AE\WebMarket\WebMarket\WebMarket\obj\Debug\netcoreapp3.1\WebMarket.csprojAssemblyReference.cache

@@ -1,5 +1,16 @@
 ﻿@model IEnumerable<WebMarket.Entities.Orderdetail>
 
+@section css{
+<style>
+    #delete:hover {
+        color: #fff;
+        cursor:pointer;
+    }
+
+</style>
+   
+}
+
 
 @foreach (var order in ViewBag.order)
 {
@@ -11,7 +22,7 @@
                 {
                     <div class="bill-info">
                         <div class="image">
-                            <img src="@Url.Content(item.IdProductNavigation.Image)" width="100px" height="100px" />
+                            <img src="@Url.Content(item.IdProductNavigation.Image)" style="width:100px;height:100px;" />
                             <div class="info">
                                 <div class="name">
                                     @item.IdProductNavigation.Name
@@ -32,13 +43,13 @@
     </div>
     <div class="col-md-5 col-bills">
         <div class="order-info">
-            <div class="flex ma-don">
+            <div class="flex ma-don" style="display: flex; justify-content: space-around;">
                 <h4>Mã đơn hàng:</h4>
                 <p>MADH00 @order.Id</p>
-               @if(order.Status == 0)
-               {
-                      <a name="hủy" data-id="0" id="delete">hủy đơn hàng</a>  
-               }
+                @if (order.Status == 0)
+                {
+                    <a name="hủy" data-id="0" id="delete" style=" border: 1px solid #ccc; border-radius: 2px; padding: 1px 2px; color: #000;background-color: salmon;">hủy đơn</a>
+                }
             </div>
             <div class="flex ma-don">
                 <h4>Status:</h4>
@@ -66,7 +77,7 @@
 <script>
     $(document).ready(function () {
         $("#delete").click(function () {
-            var id = $(this).attr('data-id');         
+            var id = $(this).attr('data-id');
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("BillDelete","BillCheck")",
