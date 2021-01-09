@@ -107,7 +107,7 @@
             <div class="w3l_search">
                 @if (ViewBag.type != null)
                 {
-                    <form asp-controller="Category" asp-action="ProductByType" method="post">
+                    <form asp-controller="Category" asp-action="ProductByType" method="get">
                         <input type="hidden" name="data" value="@ViewBag.da" />
                         <input type="search" name="SearchString" id="search1" placeholder="Search for a Product..." >
                         <button type="submit" class="btn btn-default search" value="Tìm kiếm" aria-label="Left Align">

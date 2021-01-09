@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     showModel();
 })
-showModel();
+
 
 function showModel() {
     $(".show").click(function () {
@@ -57,5 +57,6 @@ function addToCart() {
         })
     })
 }
+
 
 

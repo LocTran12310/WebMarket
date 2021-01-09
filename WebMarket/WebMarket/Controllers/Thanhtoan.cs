@@ -21,6 +21,10 @@ namespace WebMarket.Controllers
         }
         public IActionResult Index()
         {
+            if(!@User.Claims.Any(c => c.Type == "Ma"))
+            {
+                return RedirectToAction("Login", "Customer");
+            }
             int customer = Int32.Parse(@User.Claims.FirstOrDefault(c => c.Type == "Ma").Value);
             var cart = HttpContext.Session.Get<List<CartItem>>("GioHang");
             if (cart != null)
@@ -68,6 +72,10 @@ namespace WebMarket.Controllers
                     Newprice = item.NewPrice
                 };
                 _context.Orderdetail.Add(orderdetail);
+                var product = _context.Product.Find(item.Id);
+                product.QuantityStock -= item.Quantity;
+                product.QuantitySold += item.Quantity;
+                _context.Product.Update(product);
 
             }
             _context.SaveChanges();
