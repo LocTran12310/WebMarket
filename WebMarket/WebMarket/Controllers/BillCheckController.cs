@@ -44,11 +44,18 @@ namespace WebMarket.Controllers
         [HttpPost]
         public IActionResult BillDelete(int id)
         {
-            var order = _context.Order.FirstOrDefault(c => c.Status == id);
+            var order = _context.Order.FirstOrDefault(c => c.Id == id);
             order.Status = 4;
             _context.Update(order);
             _context.SaveChanges();
-            return PartialView("_billtable",order);
+            ViewBag.order = _context.Order
+               .Where(od => od.Status == 0)
+               .ToList();
+            var orderDetail = _context.Orderdetail
+                .Include(x => x.IdOrderNavigation)
+                .Include(p => p.IdProductNavigation)
+                .ToList();
+            return PartialView("_billtable",orderDetail);
         }
     }
 }

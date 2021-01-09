@@ -88,22 +88,29 @@
         </div>
 
     </div>
-    <div class="row display-flex">
+    <div class="row display-flex table-bill">
         @Html.Partial("_billtable",Model)
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        $(".status-menu").click(function () {   
-        $('.status-menu').removeClass("active-status");
-        $(this).addClass("active-status");
-          
-        var status = $(this).attr("data-status");
-        $.post("@Url.Action("BillFilter","BillCheck")", { status: status })
-            .done(function (res) {
-                $(".display-flex").html(res);
+        $(".status-menu").click(function () {
+            $('.status-menu').removeClass("active-status");
+            $(this).addClass("active-status");
 
+            var status = $(this).attr("data-status");
+            $.post("@Url.Action("BillFilter","BillCheck")", { status: status })
+                .done(function (res) {
+                    $(".display-flex").html(res);
+                })
+        })
+
+        $("#delete").click(function () {
+            var id = $(this).attr('data-id');
+            $.post("@Url.Action("BillDelete", "BillCheck")", { id: id })
+            .done(function (res) {
+                $(".table-bill").html(res);
             })
         })
-    })
+    });
 </script>

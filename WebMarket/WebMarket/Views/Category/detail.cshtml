@@ -18,6 +18,17 @@
     </div>
     <!-- //breadcrumbs -->
 }
+<style>
+    h1, h2, h3, h4, h5, h6, a {
+        font-family: sans-serif;
+        margin: 0;
+        font-weight: 700;
+    }
+    .quantity-product-form {
+        margin-bottom: 20px;
+        float: left;
+    }
+</style>
 
 <div class="products">
     <div class="container">
@@ -50,210 +61,147 @@
                 </div>
                 <div class="snipcart-item block">
                     <div class="snipcart-thumb agileinfo_single_right_snipcart">
-                        <h4 class="m-sing">@Model.NewPrice <span>@Model.Price</span></h4>
-                    </div>
-                    <div class="snipcart-details agileinfo_single_right_details">
-                        <form action="#" method="post">
-                            <fieldset>
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="add" value="1">
-                                <input type="hidden" name="business" value=" ">
-                                <input type="hidden" name="item_name" value="pulao basmati rice">
-                                <input type="hidden" name="amount" value="21.00">
-                                <input type="hidden" name="discount_amount" value="1.00">
-                                <input type="hidden" name="currency_code" value="USD">
-                                <input type="hidden" name="return" value=" ">
-                                <input type="hidden" name="cancel_return" value=" ">
-                                <input type="submit" name="submit" value="Add to cart" class="button">
-                            </fieldset>
-                        </form>
-                    </div>
+                        <h3>
+                            @Model.NewPrice Vnd<del>
+                            @if (Model.Discount > 0)
+                            {
+                                @Model.Price
+                            }
+                        </del>
+                    </h3>
+                </div>
+                <div class="snipcart-details agileinfo_single_right_details">
+
+                    <input type="hidden" value="@Model.Id" class="id-product-form" />
+                    <input type="number" value="1" class="quantity-product-form" min="1" max="100" />
+                    <input type="submit" name="submit" value="Add to cart" class="button add-form">
+
                 </div>
             </div>
-            <div class="clearfix"> </div>
         </div>
+        <div class="clearfix"> </div>
     </div>
+</div>
 </div>
 <!-- new -->
 <div class="newproducts-w3agile">
     <div class="container">
         <h3>New offers</h3>
         <div class="agile_top_brands_grids">
-            <div class="col-md-3 top_brand_left-1">
-                <div class="hover14 column">
-                    <div class="agile_top_brand_left_grid">
-                        <div class="agile_top_brand_left_grid_pos">
-                            <img src="/images/offer.png" alt=" " class="img-responsive">
-                        </div>
-                        <div class="agile_top_brand_left_grid1">
-                            <figure>
-                                <div class="snipcart-item block">
-                                    <div class="snipcart-thumb">
-                                        <a href="products.html"><img title=" " alt=" " src="@Url.Content(Model.Image)"></a>
-                                        <p>Fried-gram</p>
-                                        <div class="stars">
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star gray-star" aria-hidden="true"></i>
+            @foreach (var item in ViewBag.offeritems)
+            {
+                <div class="col-md-3 top_brand_left-1">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="agile_top_brand_left_grid_pos">
+                                <img src="~/images/offer.png" alt=" " class="img-responsive" />
+                            </div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block" data-id="@item.Id">
+                                        <div class="snipcart-thumb">
+                                            <a href="~/Category/@item.category/@item.type1/Detail/@item.EncryptedId"><img title=" " alt=" " src="@Url.Content(item.Image)" width="150px" height="150px" /></a>
+                                            <p style="height:63px;">@item.Name</p>
+
+                                            <div class="stars">
+                                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                                            </div>
+                                            <h4>
+                                                @item.NewPrice <del>
+                                                    @if (item.Discount > 0)
+                                                    {
+                                                        @item.Price
+                                                    }
+                                                </del>
+                                            </h4>
                                         </div>
-                                        <h4>$35.99 <span>$55.00</span></h4>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <input type="hidden" value="@item.Description" />
+                                            <input type="submit" name="submit" value="Add to cart" class="button show" data-toggle="modal" data-target="#modal-cart" />
+                                        </div>
                                     </div>
-                                    <div class="snipcart-details top_brand_home_details">
-                                        <form action="#" method="post">
-                                            <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart">
-                                                <input type="hidden" name="add" value="1">
-                                                <input type="hidden" name="business" value=" ">
-                                                <input type="hidden" name="item_name" value="Fortune Sunflower Oil">
-                                                <input type="hidden" name="amount" value="35.99">
-                                                <input type="hidden" name="discount_amount" value="1.00">
-                                                <input type="hidden" name="currency_code" value="USD">
-                                                <input type="hidden" name="return" value=" ">
-                                                <input type="hidden" name="cancel_return" value=" ">
-                                                <input type="submit" name="submit" value="Add to cart" class="button">
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </figure>
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 top_brand_left-1">
-                <div class="hover14 column">
-                    <div class="agile_top_brand_left_grid">
-                        <div class="agile_top_brand_left_grid_pos">
-                            <img src="/images/offer.png" alt=" " class="img-responsive">
-                        </div>
-                        <div class="agile_top_brand_left_grid1">
-                            <figure>
-                                <div class="snipcart-item block">
-                                    <div class="snipcart-thumb">
-                                        <a href="products.html"><img title=" " alt=" " src="https://lh3.googleusercontent.com/chIuiAHxxUBkrVCrtx1r-MlNwdLgR8qcVSEpg0Ixq5ORnVpuhQDCmriEoa48yh1VlVdHw4eQ7SmOqkv0X_Y=w185"></a>
-                                        <p>Navaratan-dal</p>
-                                        <div class="stars">
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                                        </div>
-                                        <h4>$30.99 <span>$45.00</span></h4>
-                                    </div>
-                                    <div class="snipcart-details top_brand_home_details">
-                                        <form action="#" method="post">
-                                            <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart">
-                                                <input type="hidden" name="add" value="1">
-                                                <input type="hidden" name="business" value=" ">
-                                                <input type="hidden" name="item_name" value="basmati rise">
-                                                <input type="hidden" name="amount" value="30.99">
-                                                <input type="hidden" name="discount_amount" value="1.00">
-                                                <input type="hidden" name="currency_code" value="USD">
-                                                <input type="hidden" name="return" value=" ">
-                                                <input type="hidden" name="cancel_return" value=" ">
-                                                <input type="submit" name="submit" value="Add to cart" class="button">
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 top_brand_left-1">
-                <div class="hover14 column">
-                    <div class="agile_top_brand_left_grid">
-                        <div class="agile_top_brand_left_grid_pos">
-                            <img src="/images/offer.png" alt=" " class="img-responsive">
-                        </div>
-                      
-                        <div class="agile_top_brand_left_grid1">
-                            <figure>
-                                <div class="snipcart-item block">
-                                    <div class="snipcart-thumb">
-                                        <a href="products.html"><img src="https://lh3.googleusercontent.com/CAk6WHDDAxXzSfh23HHV7U2BTv-todj9x6Mj8I7EE9h1J2pTI0Wlt1-e10dCBHy3Z9gGWiRh32875q1xVVot=w185" alt=" " class="img-responsive"></a>
-                                        <p>White-peasmatar</p>
-                                        <div class="stars">
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                                        </div>
-                                        <h4>$80.99 <span>$105.00</span></h4>
-                                    </div>
-                                    <div class="snipcart-details top_brand_home_details">
-                                        <form action="#" method="post">
-                                            <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart">
-                                                <input type="hidden" name="add" value="1">
-                                                <input type="hidden" name="business" value=" ">
-                                                <input type="hidden" name="item_name" value="Pepsi soft drink">
-                                                <input type="hidden" name="amount" value="80.00">
-                                                <input type="hidden" name="discount_amount" value="1.00">
-                                                <input type="hidden" name="currency_code" value="USD">
-                                                <input type="hidden" name="return" value=" ">
-                                                <input type="hidden" name="cancel_return" value=" ">
-                                                <input type="submit" name="submit" value="Add to cart" class="button">
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 top_brand_left-1">
-                <div class="hover14 column">
-                    <div class="agile_top_brand_left_grid">
-                        <div class="agile_top_brand_left_grid_pos">
-                            <img src="/images/offer.png" alt=" " class="img-responsive">
-                        </div>
-                        <div class="agile_top_brand_left_grid1">
-                            <figure>
-                                <div class="snipcart-item block">
-                                    <div class="snipcart-thumb">
-                                        <a href="products.html"><img title=" " alt=" " src="https://lh3.googleusercontent.com/B8l_xEi0F_TJ2dWORvGNYlYUF-Zd4D_vUgbi8lUEF3WMzEkIGTo4tGRbJMw35vkIE50uCeRGrlfFreS2Kjk=w185"></a>
-                                        <p>Channa-dal</p>
-                                        <div class="stars">
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                                        </div>
-                                        <h4>$35.99 <span>$55.00</span></h4>
-                                    </div>
-                                    <div class="snipcart-details top_brand_home_details">
-                                        <form action="#" method="post">
-                                            <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart">
-                                                <input type="hidden" name="add" value="1">
-                                                <input type="hidden" name="business" value=" ">
-                                                <input type="hidden" name="item_name" value="Fortune Sunflower Oil">
-                                                <input type="hidden" name="amount" value="35.99">
-                                                <input type="hidden" name="discount_amount" value="1.00">
-                                                <input type="hidden" name="currency_code" value="USD">
-                                                <input type="hidden" name="return" value=" ">
-                                                <input type="hidden" name="cancel_return" value=" ">
-                                                <input type="submit" name="submit" value="Add to cart" class="button">
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+
             <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 <!-- //new -->
+
+<div class="modal fade" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content" style="margin:0 120px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" data-id="">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <img src="" width="150px" height="150px">
+                    </div>
+                    <div class="col-md-8 ">
+                        <div style="font-size:17px;font-weight:200"><span class="modal-item-name"></span></div>
+                        <div style="font-size:17px;font-weight:200"><span class="modal-item-price"></span> </div>
+                        <div style="font-size:17px;font-weight:200"> <input type="number" value="1" name="quantity" min="1" max="100" /></div>
+                        <p style="margin-top:10px;">At PepsiCo, we aim to give consumers choices. Our full range of food and beverages are designed to bring a smile to anyone’s face, anytime, anywhere</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary add-to-cart">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".quantity-product-form").change(function () {
+        if ($(this).val() < 1) {
+            $(this).val(1);
+        }
+    });
+    $(".add-form").click(function () {
+        const form = $(this).parent();
+        let id = form.find(".id-product-form").val();
+        let quantity = form.find(".quantity-product-form").val();
+        $.ajax({
+            type: "POST",
+            url: '/Cart/AddToCart',
+            data: {
+                'id': id,
+                'quantity': quantity,
+            },
+            success: function (data) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thêm giỏ hàng thành công',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                $(".count").text(data.quantity);
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Thêm giỏ hàng thất bại',
+                    text: 'Vui lòng thử lại',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            },
+        })
+    })
+</script>
+<script src="~/js/cart.js"></script>

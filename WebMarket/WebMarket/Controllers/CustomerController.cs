@@ -42,7 +42,7 @@ namespace WebMarket.Controllers
         }
         public IActionResult Login()
         {
-
+           
             ViewBag.Status = TempData["Message"];
             return View();
         }
@@ -68,6 +68,7 @@ namespace WebMarket.Controllers
             // create principal
             var principal = new ClaimsPrincipal(userIdentity);
             await HttpContext.SignInAsync(principal);
+           
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> Logout()

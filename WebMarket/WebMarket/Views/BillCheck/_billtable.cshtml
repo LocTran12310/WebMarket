@@ -48,7 +48,7 @@
                 <p>MADH00 @order.Id</p>
                 @if (order.Status == 0)
                 {
-                    <a name="hủy" data-id="0" id="delete" style=" border: 1px solid #ccc; border-radius: 2px; padding: 1px 2px; color: #000;background-color: salmon;">hủy đơn</a>
+                    <button name="hủy" data-id=@order.Id id="delete" style=" border: 1px solid #ccc; border-radius: 2px; padding: 1px 2px; color: #000;background-color: salmon;">hủy đơn</button>
                 }
             </div>
             <div class="flex ma-don">
@@ -74,24 +74,3 @@
         </div>
     </div>
 }
-<script>
-    $(document).ready(function () {
-        $("#delete").click(function () {
-            var id = $(this).attr('data-id');
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("BillDelete","BillCheck")",
-                data: {id:id},
-                success: function (res) {
-
-                }
-
-            });
-
-        });
-
-    });
-
-
-
-</script>

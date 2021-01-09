@@ -501,7 +501,7 @@ namespace WebMarket.Controllers
                            {
                                Id = p.Id,
                                EncryptedId = protector.Protect(p.Id.ToString()),
-                               type1=type,
+                               type1 = type,
                                Image = p.Image,
                                Name = p.Name,
                                Price = p.Price,
@@ -509,6 +509,27 @@ namespace WebMarket.Controllers
                                Discount = p.Discount,
                                NewPrice = (Double)((100 - p.Discount) * p.Price) / 100
                            }).SingleOrDefault();
+
+
+            var offeritems = _context.Product
+                .Where(p => p.IdTypeNavigation.Name == type && p.Id != decryptedIntId)
+                .Include(p => p.IdTypeNavigation)
+                .Where(p => p.Discount > 0)
+                .Select(product => new ProductVM
+                {
+                    Id = product.Id,
+                    EncryptedId = protector.Protect(product.Id.ToString()),
+                    type1 = product.IdTypeNavigation.Name,
+                    category = product.IdTypeNavigation.IdCategoryNavigation.Name,
+                    Image = product.Image,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Description = product.Description,
+                    Discount = product.Discount,
+                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
+                }).Take(4)
+                .ToList();
+            ViewBag.offeritems = offeritems;
             return View(product);
         }
 
