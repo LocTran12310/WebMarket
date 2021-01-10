@@ -55,6 +55,7 @@ namespace WebMarket.Controllers
                                         Name = product.Name,
                                         Price = product.Price,
                                         Discount = product.Discount,
+                                        Description = product.Description,
                                         NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                                     }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     int countsss;
@@ -101,6 +102,7 @@ namespace WebMarket.Controllers
                                         Name = product.Name,
                                         Price = product.Price,
                                         Discount = product.Discount,
+                                        Description = product.Description,
                                         NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                                     }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     int countsss;
@@ -147,6 +149,7 @@ namespace WebMarket.Controllers
                                         Name = product.Name,
                                         Price = product.Price,
                                         Discount = product.Discount,
+                                        Description = product.Description,
                                         NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                                     }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     int countsss;
@@ -192,6 +195,7 @@ namespace WebMarket.Controllers
                                     Name = product.Name,
                                     Price = product.Price,
                                     Discount = product.Discount,
+                                    Description = product.Description,
                                     NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                                 }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 int countsss;
@@ -235,6 +239,7 @@ namespace WebMarket.Controllers
                                Name = product.Name,
                                Price = product.Price,
                                Discount = product.Discount,
+                               Description = product.Description,
                                NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                            }).ToList().Skip((page - 1) * numpage).Take(numpage);
 
@@ -280,6 +285,7 @@ namespace WebMarket.Controllers
                                Name = product.Name,
                                Price = product.Price,
                                Discount = product.Discount,
+                               Description = product.Description,
                                NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                            }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 int coun;
@@ -319,6 +325,7 @@ namespace WebMarket.Controllers
                                Name = product.Name,
                                Price = product.Price,
                                Discount = product.Discount,
+                               Description = product.Description,
                                NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                            }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 int coun;
@@ -359,6 +366,7 @@ namespace WebMarket.Controllers
                               Name = product.Name,
                               Price = product.Price,
                               Discount = product.Discount,
+                              Description = product.Description,
                               NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                           }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 int coun;
@@ -401,6 +409,7 @@ namespace WebMarket.Controllers
                      Name = product.Name,
                      Price = product.Price,
                      Discount = product.Discount,
+                     Description = product.Description,
                      NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                  }).ToList().Skip((page - 1) * numpage).Take(numpage);
             int count;
@@ -449,6 +458,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     var coun = (from product in _context.Product.Where(x => x.Price >= minPrice && x.Price <= maxPrice)
@@ -487,6 +497,7 @@ namespace WebMarket.Controllers
                   Name = product.Name,
                   Price = product.Price,
                   Discount = product.Discount,
+                  Description = product.Description,
                   NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
               }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     var coun = (from product in _context.Product.Where(x => x.Price >= minPrice && x.Price <= maxPrice)
@@ -527,6 +538,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                     var coun = (from product in _context.Product.Where(x => x.Price >= minPrice && x.Price <= maxPrice && x.Discount > 0)
@@ -564,6 +576,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 var coun = (from product in _context.Product.Where(x => x.Price >= minPrice && x.Price <= maxPrice)
@@ -601,6 +614,7 @@ namespace WebMarket.Controllers
                   Name = product.Name,
                   Price = product.Price,
                   Discount = product.Discount,
+                  Description = product.Description,
                   NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
               }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 var coun = (from product in _context.Product.Where(ProductVM => ProductVM.Name.Contains(searchString))
@@ -636,6 +650,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 var coun = (from product in _context.Product
@@ -668,6 +683,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 var coun = (from product in _context.Product
@@ -700,6 +716,7 @@ namespace WebMarket.Controllers
                    Name = product.Name,
                    Price = product.Price,
                    Discount = product.Discount,
+                   Description = product.Description,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
                 var coun = (from product in _context.Product.Where(x => x.Discount > 0)
@@ -729,6 +746,7 @@ namespace WebMarket.Controllers
                    Image = product.Image,
                    Name = product.Name,
                    Price = product.Price,
+                   Description = product.Description,
                    Discount = product.Discount,
                    NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
                }).ToList().Skip((page - 1) * numpage).Take(numpage);
@@ -780,7 +798,7 @@ namespace WebMarket.Controllers
                     Description = product.Description,
                     Discount = product.Discount,
                     NewPrice = (Double)((100 - product.Discount) * product.Price) / 100
-                }).Take(4)
+                }).Take(6)
                 .ToList();
             ViewBag.offeritems = offeritems;
             return View(product);

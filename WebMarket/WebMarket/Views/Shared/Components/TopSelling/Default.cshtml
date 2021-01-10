@@ -22,7 +22,7 @@
                         <div class="row">
                             @foreach (var item in Model.TakeLast(6))
                             {
-                            <div class="col-md-4 top_brand_left-1">
+                            <div class="col-md-4 top_brand_left-1 " style="padding-bottom: 1em;">
                                 <div class="hover14 column">
                                     <div class="agile_top_brand_left_grid">
                                         <div class="agile_top_brand_left_grid_pos">
@@ -43,16 +43,18 @@
                                                             <i class="fa fa-star gray-star" aria-hidden="true"></i>
                                                         </div>
                                                         <h4>
-                                                            @item.NewPrice <del>
-                                                                @if (item.Discount > 0)
-                                                                {
+                                                            @item.NewPrice
+                                                            @if (item.Discount > 0)
+                                                            {<span style="text-decoration:none; padding:0;"> | </span>
+                                                                <del>
                                                                     @item.Price
-                                                                }
-                                                            </del>
+                                                                </del>
+                                                            }
                                                         </h4>
                                                     </div>
                                                     <div class="snipcart-details top_brand_home_details">
-                                                        <input type="hidden" value="@item.Description" />
+                                                        <span>@item.Description</span>
+                                                        <input type="hidden" value="@item.Description" class="item-desc"/>
                                                         <input type="submit" name="submit" value="Add to cart" class="button show" data-toggle="modal" data-target="#modal-cart" />
                                                     </div>
                                                 </div>
@@ -72,7 +74,7 @@
                         <div class="row">
                             @foreach (var item in ViewBag.offeritems)
                             {
-                            <div class="col-md-4 top_brand_left-1">
+                            <div class="col-md-4 top_brand_left-1" style="padding-bottom: 1em;">
                                 <div class="hover14 column">
                                     <div class="agile_top_brand_left_grid">
                                         <div class="agile_top_brand_left_grid_pos">
@@ -93,16 +95,18 @@
                                                             <i class="fa fa-star gray-star" aria-hidden="true"></i>
                                                         </div>
                                                         <h4>
-                                                            @item.NewPrice <del>
-                                                                @if (item.Discount > 0)
-                                                                {
+                                                            @item.NewPrice 
+                                                            @if (item.Discount > 0)
+                                                            {<span style="text-decoration:none; padding:0;"> | </span>
+                                                                <del>
                                                                     @item.Price
-                                                                }
-                                                            </del>
+                                                                </del>
+                                                            }
                                                         </h4>
                                                     </div>
                                                     <div class="snipcart-details top_brand_home_details">
-                                                        <input type="hidden" value="@item.Description" />
+                                                        <span>@item.Description</span>
+                                                        <input type="hidden" value="@item.Description" class="item-desc" />
                                                         <input type="submit" name="submit" value="Add to cart" class="button show" data-toggle="modal" data-target="#modal-cart" />
                                                     </div>
                                                 </div>
@@ -137,9 +141,9 @@
                     </div>
                     <div class="col-md-8 ">
                         <div style="font-size:17px;font-weight:200"><span class="modal-item-name"></span></div>
-                        <div style="font-size:17px;font-weight:200"><span class="modal-item-price"></span> </div>
-                        <div style="font-size:17px;font-weight:200"><input type="number" value="1" name="quantity" min="1" max="100" /></div>
-                        <p style="margin-top:10px;">At PepsiCo, we aim to give consumers choices. Our full range of food and beverages are designed to bring a smile to anyone’s face, anytime, anywhere</p>
+                        <div style="font-size:17px;font-weight:200">Price: <span class="modal-item-price"></span> </div>
+                        <div style="font-size:17px;font-weight:200">Quantity: <input type="number" value="1" name="quantity" min="1" max="100" /></div>
+                        <p style="margin-top:10px; text-align:justify;" class="model-item-desc" ></p>
                     </div>
                 </div>
             </div>

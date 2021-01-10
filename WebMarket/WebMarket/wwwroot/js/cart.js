@@ -10,10 +10,12 @@ function showModel() {
         var name = product.find("p").text();
         var img = product.find("img").attr("src");
         var price = product.find("h4").html();
+        var desc = $(this).parent().find(".item-desc").val();
         var modal = $(".modal-body");
         modal.find("img").attr("src", img)
         modal.find(".modal-item-name").text(name);
         modal.find(".modal-item-price").html(price);
+        modal.find(".model-item-desc").html(desc);
         modal.attr("data-id", id);
     })
     addToCart();
@@ -40,7 +42,6 @@ function addToCart() {
                 });
                 $(".count").text(data.quantity);
                 $(".modal-body").find('input[name=quantity]').val("1");
-                console.log($(".modal-body").find('input[name=quantity]').val());
                 $('#modal-cart').modal('hide');
             },
             error: function () {
@@ -57,6 +58,3 @@ function addToCart() {
         })
     })
 }
-
-
-
